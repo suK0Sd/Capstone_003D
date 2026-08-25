@@ -1,0 +1,25 @@
+.DS_Store       # macOS
+Thumbs.db      # Windows
+
+.vscode/        # Visual�Studio�Code
+.idea/          # IntelliJ�IDEA
+
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+
+node_modules/
+package-lock.json
+yarn.lock
+
+*.log
+*.tmp
+
+# Skills / agent config
+.agents/
+.claude/
+skills/
+skills-lock.json
+*.obsidian-mcp*
