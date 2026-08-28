@@ -59,3 +59,7 @@ tasks/
 skills/
 skills-lock.json
 *.obsidian-mcp*
+.playwright-mcp/
+landing_page.png
+start_page.png
+catalog_page.png
