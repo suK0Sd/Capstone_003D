@@ -13,8 +13,8 @@ export const SpotlightCard = React.forwardRef<HTMLDivElement, SpotlightCardProps
     {
       children,
       className,
-      spotlightColor = 'rgba(201, 53, 159, 0.12)',
-      borderGlowColor = 'rgba(20, 184, 166, 0.35)',
+      spotlightColor = 'rgba(37, 99, 235, 0.10)',
+      borderGlowColor = 'rgba(6, 182, 212, 0.45)',
       ...props
     },
     ref

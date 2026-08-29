@@ -1,4 +1,4 @@
-@import '@fontsource-variable/inter';
+﻿@import '@fontsource-variable/inter';
 
 @tailwind base;
 @tailwind components;
@@ -6,76 +6,93 @@
 
 @layer base {
   :root {
-    --background: 214 45% 97%;
+    --background: 210 40% 98%;
     --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    /* teal-700 — AA contrast with white text on light surfaces */
-    --primary: 175 84% 26%;
-    --primary-foreground: 0 0% 100%;
-    /* brand magenta used as secondary accent */
-    --secondary: 317 58% 96%;
-    --secondary-foreground: 317 58% 38%;
+    
+    /* Electric Cobalt Blue */
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    
+    /* Glacier Cyan Ice */
+    --secondary: 199 89% 94%;
+    --secondary-foreground: 221 83% 35%;
+    
     --muted: 214 32% 91%;
-    --muted-foreground: 220 14% 40%;
-    --accent: 317 58% 50%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 189 94% 43%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 45%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 20% 88%;
-    --input: 220 20% 88%;
-    --ring: 175 84% 26%;
+    
+    --border: 214 32% 88%;
+    --input: 214 32% 88%;
+    --ring: 221 83% 53%;
     --radius: 0.625rem;
+    
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 30% 26%;
-    --sidebar-primary: 175 84% 26%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 45% 94%;
+    --sidebar-accent: 210 40% 95%;
     --sidebar-accent-foreground: 222 47% 16%;
-    --sidebar-border: 220 20% 90%;
-    --sidebar-ring: 175 84% 26%;
-    /* brand tokens */
-    --brand-magenta: 317 58% 50%;
-    --brand-teal: 174 80% 40%;
-    --brand-navy: 222 49% 8%;
-    --brand-gradient: linear-gradient(120deg, hsl(317 58% 50%) 0%, hsl(280 45% 45%) 45%, hsl(174 80% 36%) 100%);
+    --sidebar-border: 214 32% 90%;
+    --sidebar-ring: 221 83% 53%;
+    
+    /* Brand Design Tokens (Cobalt & Glacier Cyan) */
+    --brand-primary: 221 83% 53%;
+    --brand-accent: 189 94% 43%;
+    --brand-navy: 222 47% 7%;
+    --brand-gradient: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(199 89% 48%) 50%, hsl(189 94% 43%) 100%);
   }
 
   .dark {
-    --background: 222 49% 8%;
-    --foreground: 214 32% 91%;
-    --card: 222 44% 11%;
-    --card-foreground: 214 32% 91%;
-    --popover: 222 44% 11%;
-    --popover-foreground: 214 32% 91%;
-    /* teal-400 — AA contrast against dark navy surfaces */
-    --primary: 172 66% 50%;
-    --primary-foreground: 222 49% 8%;
-    --secondary: 317 40% 18%;
-    --secondary-foreground: 317 70% 82%;
-    --muted: 222 30% 16%;
-    --muted-foreground: 218 15% 62%;
-    --accent: 317 70% 62%;
-    --accent-foreground: 222 49% 8%;
-    --destructive: 0 72% 55%;
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+    --card: 222 44% 10%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 44% 10%;
+    --popover-foreground: 210 40% 96%;
+    
+    /* Vibrant Electric Cobalt in Dark Mode */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 7%;
+    
+    /* Deep Slate Cyan in Dark Mode */
+    --secondary: 222 35% 15%;
+    --secondary-foreground: 189 94% 75%;
+    
+    --muted: 222 30% 14%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 189 94% 53%;
+    --accent-foreground: 222 47% 7%;
+    
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
-    --border: 222 25% 20%;
-    --input: 222 25% 20%;
-    --ring: 172 66% 50%;
-    --sidebar-background: 222 49% 7%;
+    
+    --border: 222 25% 18%;
+    --input: 222 25% 18%;
+    --ring: 217 91% 60%;
+    
+    --sidebar-background: 222 49% 6%;
     --sidebar-foreground: 214 25% 80%;
-    --sidebar-primary: 172 66% 50%;
-    --sidebar-primary-foreground: 222 49% 8%;
-    --sidebar-accent: 222 35% 14%;
-    --sidebar-accent-foreground: 214 32% 91%;
-    --sidebar-border: 222 25% 18%;
-    --sidebar-ring: 172 66% 50%;
-    --brand-magenta: 317 70% 62%;
-    --brand-teal: 172 66% 50%;
-    --brand-navy: 222 49% 8%;
-    --brand-gradient: linear-gradient(120deg, hsl(317 70% 60%) 0%, hsl(280 60% 55%) 45%, hsl(172 66% 45%) 100%);
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 7%;
+    --sidebar-accent: 222 35% 12%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 25% 16%;
+    --sidebar-ring: 217 91% 60%;
+    
+    --brand-primary: 217 91% 60%;
+    --brand-accent: 189 94% 53%;
+    --brand-navy: 222 47% 7%;
+    --brand-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(199 89% 52%) 50%, hsl(189 94% 50%) 100%);
   }
 }
 
@@ -99,17 +116,12 @@
   .brand-gradient {
     background-image: var(--brand-gradient);
   }
+  .brand-gradient-soft {
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, hsl(var(--primary) / 0.12), transparent 70%);
+  }
   .text-brand-gradient {
     background-image: var(--brand-gradient);
     -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .brand-gradient-soft {
-    background-image: linear-gradient(
-      120deg,
-      hsl(var(--brand-magenta) / 0.14) 0%,
-      hsl(var(--brand-teal) / 0.14) 100%
-    );
+    -webkit-text-fill-color: transparent;
   }
 }

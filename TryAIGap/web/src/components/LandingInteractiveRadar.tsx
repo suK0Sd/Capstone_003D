@@ -56,7 +56,7 @@ export function LandingInteractiveRadar() {
         level: 3,
         label: t('landing.demo.levels.l3'),
         variant: 'secondary' as const,
-        badgeClass: 'bg-teal-500/15 text-teal-600 dark:text-teal-400 border-teal-500/30',
+        badgeClass: 'bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 border-cyan-500/30',
         desc: t('landing.demo.levels.l3Desc'),
       };
     }
@@ -204,7 +204,7 @@ export function LandingInteractiveRadar() {
                   {/* Dynamic Filled Polygon */}
                   <polygon
                     points={dynamicPoints}
-                    className="fill-[#C9359F]/25 stroke-[#14B8A6] stroke-2 transition-all duration-300 ease-out"
+                    className="fill-[#2563EB]/20 stroke-[#06B6D4] stroke-2 transition-all duration-300 ease-out"
                   />
 
                   {/* Vertex Dots */}
@@ -216,7 +216,7 @@ export function LandingInteractiveRadar() {
                         cx={x}
                         cy={y}
                         r="4"
-                        className={i % 2 === 0 ? 'fill-[#C9359F]' : 'fill-[#14B8A6]'}
+                        className={i % 2 === 0 ? 'fill-[#2563EB]' : 'fill-[#06B6D4]'}
                       />
                     );
                   })}
