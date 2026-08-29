@@ -1,4 +1,4 @@
-﻿@import '@fontsource-variable/inter';
+@import '@fontsource-variable/inter';
 
 @tailwind base;
 @tailwind components;
@@ -101,6 +101,7 @@
     @apply border-border;
   }
   html {
+    scroll-behavior: smooth;
     font-family: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
   body {

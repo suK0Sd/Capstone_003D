@@ -264,7 +264,7 @@
       },
       "insightTitle": "Diagnóstico Predictivo de Madurez",
       "radarFootnote": "Cálculo pentagonal basado en el algoritmo del Módulo 1 de TryAIGap.",
-      "cta": "Comenzar diagnóstico oficial para mi empresa",
+      "cta": "Comenzar diagnóstico oficial",
       "levels": {
         "l1": "Nivel 1: Inicial / Explorador (0-25%)",
         "l1Desc": "Tu organización se encuentra en fase de exploración inicial. El foco crítico debe ser ordenar los inventarios de datos y capacitar a líderes antes de adquirir licencias costosas.",
@@ -275,6 +275,110 @@
         "l4": "Nivel 4: Líder Transformador (76-100%)",
         "l4Desc": "Organización de vanguardia AI-Native. Cultura de experimentación arraigada, gobernanza sólida y captura de valor cuantificable con alto ROI."
       }
+    },
+    "comparison": {
+      "badge": "Rigor Metodológico vs. Enfoque Informal",
+      "title": "El Costo de la IA sin Método vs. Con TryAIGap",
+      "subtitle": "La diferencia entre gastar presupuesto en experimentos fallidos o capturar valor empresarial cuantificable.",
+      "withoutTitle": "Adopción Espontánea (Sin Método)",
+      "withoutSub": "El 80% de las empresas fracasa aquí",
+      "withoutTag": "Alto Riesgo",
+      "withoutFootnote": "Resultado: Proyectos abandonados y frustración ejecutiva.",
+      "withoutItems": {
+        "item1": "70-85% de pilotos quedan estancados y nunca llegan a producción.",
+        "item2": "Shadow AI descontrolado con riesgo de fuga de datos corporativos.",
+        "item3": "12 a 18 meses de demora para ver el primer resultado operativo.",
+        "item4": "Falta de gobernanza ante el EU AI Act y normativas de privacidad."
+      },
+      "withTitle": "Con Metodología TryAIGap",
+      "withSub": "Aceleración y Gobernanza Enterprise",
+      "withTag": "Acelerado & Seguro",
+      "withFootnote": "Resultado: Portafolio priorizado con ROI medible desde el mes 1.",
+      "withItems": {
+        "item1": "Diagnóstico y priorización cuantificada en solo 3 semanas.",
+        "item2": "Gobernanza alineada con EU AI Act, ISO 42001 y NIST AI RMF.",
+        "item3": "Portafolio de dos horizontes: Quick Wins inmediatos + Transformacionales.",
+        "item4": "3 a 5 veces mayor retorno de inversión con gestión del cambio real."
+      }
+    },
+    "deliverables": {
+      "title": "Entregables Tangibles por Módulo",
+      "subtitle": "Cada uno de los 7 módulos produce artefactos, matrices y documentos listos para implementar.",
+      "deliverablesLabel": "Artefactos que produce:",
+      "formatLabel": "Formato del Entregable",
+      "readyTag": "Listo para auditoría y ejecución",
+      "items": {
+        "m1": {
+          "tag": "Gobernanza & Diagnóstico",
+          "name": "Módulo 1: Fundamentos y Alineación Estratégica",
+          "desc": "Auditoría transversal de 5 dimensiones con radar de preparación y definición de apetito al riesgo de la junta directiva.",
+          "d1": "Radar pentagonal de madurez (Datos, Tech, Talento, Procesos, Cultura).",
+          "d2": "Declaración formal de apetito al riesgo en IA para el directorio.",
+          "d3": "Informe ejecutivo A4 con diagnóstico predictivo y brechas críticas.",
+          "format": "Informe PDF Ejecutivo + Matriz de Brechas"
+        },
+        "m2": {
+          "tag": "Priorización Cuantificada",
+          "name": "Módulo 2: Diagnóstico y Mapa de Oportunidades",
+          "desc": "Evaluación sistemática de preparación por área funcional con matriz de valor vs. esfuerzo técnico.",
+          "d1": "Mapa de calor (Heatmap) departamental de las 7 áreas clave.",
+          "d2": "Matriz de cuadrantes Valor vs. Esfuerzo (Quick Wins vs Proyectos Mayores).",
+          "d3": "Inventario calificado de oportunidades y cuellos de botella.",
+          "format": "Matriz Dinámica Valor/Esfuerzo + Heatmap"
+        },
+        "m3": {
+          "tag": "Gestión de Portafolio",
+          "name": "Módulo 3: Portafolio de Innovación",
+          "desc": "Estructuración balanceada de iniciativas de corto plazo y apuestas transformacionales con KPIs de negocio.",
+          "d1": "Portafolio de Dos Horizontes (Horizonte 1 táctico + Horizonte 2 estratégico).",
+          "d2": "Tablero de 12 métricas clave de rendimiento e impacto financiero.",
+          "d3": "Cronograma de despliegue secuencial y asignación de recursos.",
+          "format": "Tablero de Métricas + Roadmap Ejecutivo"
+        },
+        "m4": {
+          "tag": "Arquitectura & Decisión",
+          "name": "Módulo 4: Marco de Decisión de IA",
+          "desc": "Algoritmo multicriterio para seleccionar la tecnología adecuada y evitar sobrecostos en herramientas innecesarias.",
+          "d1": "Árbol de decisión estructurado (Reglas vs ML Clásico vs GenAI/LLM).",
+          "d2": "Scoring de idoneidad tecnológica y criterios de selección Make vs Buy.",
+          "d3": "Filtros de viabilidad técnica, ética y regulatoria.",
+          "format": "Árbol de Decisión Interactivo + Cuestionario"
+        },
+        "m5": {
+          "tag": "7 Playbooks Departamentales",
+          "name": "Módulo 5: Recetas por Área Funcional",
+          "desc": "Guías prácticas y casos de uso prediseñados para los líderes de cada departamento de la organización.",
+          "d1": "7 Kits de preguntas y casos de uso (Ventas, Mkt, Servicio, Finanzas, RRHH, Ops, Legal).",
+          "d2": "Flujos de trabajo asistidos y recetas de automatización con agentes.",
+          "d3": "Plantillas de delegación y recopilación de evidencias por rol.",
+          "format": "Kits Departamentales + Plantillas de Caso de Uso"
+        },
+        "m6": {
+          "tag": "Calidad & Cambio Cultural",
+          "name": "Módulo 6: Implementación y Gestión del Cambio",
+          "desc": "Protocolo de 5 fases técnicas con compuertas de calidad y plan de mitigación del miedo al reemplazo.",
+          "d1": "Ciclo de 5 fases técnicas con Quality Gates obligatorios.",
+          "d2": "Matriz de mitigación de riesgos (Shadow AI, Explicabilidad XAI, Sesgos).",
+          "d3": "Estrategia de comunicación interna y capacitación por niveles.",
+          "format": "Manual de Gates de Calidad + Plan de Adopción"
+        },
+        "m7": {
+          "tag": "Centro de Excelencia",
+          "name": "Módulo 7: Sostenibilidad y Centro de Excelencia (CoE)",
+          "desc": "Diseño del modelo operativo y comité de gobierno para garantizar la mejora continua y el escalamiento.",
+          "d1": "Estructura organizacional y roles del Centro de Excelencia de IA.",
+          "d2": "Reglamento y cartas de gobierno para el Comité de IA.",
+          "d3": "Protocolo de revisión periódica del portafolio y reentrenamiento.",
+          "format": "Estatuto de CoE + Cartas de Gobierno de IA"
+        }
+      }
+    },
+    "navLinks": {
+      "simulator": "Simulador 5D",
+      "comparison": "Comparativa",
+      "impact": "Impacto & ROI",
+      "deliverables": "Entregables M1-M7",
+      "backToTop": "Volver arriba"
     }
   },
   "terms": {

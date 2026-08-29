@@ -264,7 +264,7 @@
       },
       "insightTitle": "Prädiktive Reifegrad-Diagnose",
       "radarFootnote": "Fünfeckige Berechnung basierend auf der TryAIGap Modul-1-Methodik.",
-      "cta": "Offizielles Assessment für mein Unternehmen starten",
+      "cta": "Offizielles Assessment starten",
       "levels": {
         "l1": "Stufe 1: Initial / Entdecker (0-25%)",
         "l1Desc": "Anfangsphase. Konzentrieren Sie sich auf Datenhygiene und Führungskräfte-Schulung.",
@@ -275,6 +275,110 @@
         "l4": "Stufe 4: KI-Transformationsführer (76-100%)",
         "l4Desc": "Führendes AI-Native-Unternehmen mit exzellenter Governance und nachweisbarem ROI."
       }
+    },
+    "comparison": {
+      "badge": "Methodological Rigor vs. Informal Approach",
+      "title": "The Cost of AI without Method vs. With TryAIGap",
+      "subtitle": "The difference between burning budget on failed pilots or capturing measurable business ROI.",
+      "withoutTitle": "Ad-hoc Adoption (No Method)",
+      "withoutSub": "80% of companies fail here",
+      "withoutTag": "High Risk",
+      "withoutFootnote": "Result: Abandoned prototypes and executive frustration.",
+      "withoutItems": {
+        "item1": "70-85% of pilots get stuck and never reach production.",
+        "item2": "Shadow AI sprawl with confidential data leak risks.",
+        "item3": "12 to 18 months of delay to see the first operational outcome.",
+        "item4": "Zero governance facing EU AI Act and global privacy laws."
+      },
+      "withTitle": "With TryAIGap Methodology",
+      "withSub": "Enterprise Acceleration & Governance",
+      "withTag": "Fast & Compliant",
+      "withFootnote": "Result: Prioritized portfolio with measurable ROI from Month 1.",
+      "withItems": {
+        "item1": "Full assessment and quantified prioritization in just 3 weeks.",
+        "item2": "Governance aligned with EU AI Act, ISO 42001, and NIST AI RMF.",
+        "item3": "Two-horizon portfolio: Immediate Quick Wins + Transformational bets.",
+        "item4": "3 to 5x higher return on investment with true organizational adoption."
+      }
+    },
+    "deliverables": {
+      "title": "Tangible Deliverables per Module",
+      "subtitle": "Each of the 7 modules produces audit-ready artifacts, matrices, and actionable documents.",
+      "deliverablesLabel": "Produced Artifacts:",
+      "formatLabel": "Deliverable Format",
+      "readyTag": "Audit & Execution Ready",
+      "items": {
+        "m1": {
+          "tag": "Governance & Strategy",
+          "name": "Module 1: Foundations & Strategic Alignment",
+          "desc": "5-dimension cross-functional audit with readiness radar and board-level risk appetite definition.",
+          "d1": "5D maturity pentagon (Data, Tech, Talent, Processes, Culture).",
+          "d2": "Formal board-level AI risk appetite statement.",
+          "d3": "Executive A4 diagnostic report with critical gap analysis.",
+          "format": "Executive PDF Report + Gap Matrix"
+        },
+        "m2": {
+          "tag": "Quantified Prioritization",
+          "name": "Module 2: Diagnosis & Opportunity Map",
+          "desc": "Systematic departmental readiness evaluation with value vs. technical effort matrix.",
+          "d1": "Departmental heatmap across 7 functional areas.",
+          "d2": "Value vs. Effort quadrant matrix (Quick Wins vs Major Projects).",
+          "d3": "Qualified opportunity catalog and bottleneck analysis.",
+          "format": "Dynamic Value/Effort Matrix + Heatmap"
+        },
+        "m3": {
+          "tag": "Portfolio Management",
+          "name": "Module 3: Innovation Portfolio",
+          "desc": "Balanced structuring of near-term initiatives and transformational bets with business KPIs.",
+          "d1": "Two-Horizon Portfolio (Horizon 1 tactical + Horizon 2 strategic).",
+          "d2": "12-metric financial and operational performance scorecard.",
+          "d3": "Sequential rollout roadmap and resource allocation plan.",
+          "format": "Metrics Scorecard + Executive Roadmap"
+        },
+        "m4": {
+          "tag": "Architecture & Selection",
+          "name": "Module 4: AI Decision Framework",
+          "desc": "Multi-criteria selection algorithm to pick the right tech and prevent costly unnecessary tools.",
+          "d1": "Structured decision tree (Rules vs Classical ML vs GenAI/LLM).",
+          "d2": "Technology suitability scoring and Make vs Buy criteria.",
+          "d3": "Technical, ethical, and regulatory feasibility filters.",
+          "format": "Interactive Decision Tree + Questionnaire"
+        },
+        "m5": {
+          "tag": "7 Departmental Playbooks",
+          "name": "Module 5: Functional Area Recipes",
+          "desc": "Practical guides and pre-built use cases tailored for leaders in each corporate unit.",
+          "d1": "7 departmental questionnaires & use cases (Sales, Mkt, Support, Finance, HR, Ops, Legal).",
+          "d2": "Agentic workflow blueprints and automation recipes.",
+          "d3": "Role-based delegation and evidence collection templates.",
+          "format": "Departmental Kits + Use Case Templates"
+        },
+        "m6": {
+          "tag": "Quality & Change Management",
+          "name": "Module 6: Implementation & Change Management",
+          "desc": "5-phase technical lifecycle with quality gates and fear-of-replacement mitigation plan.",
+          "d1": "5-phase technical cycle with mandatory Quality Gates.",
+          "d2": "Risk mitigation matrix (Shadow AI, XAI Explainability, Bias).",
+          "d3": "Internal communication and multi-level training strategy.",
+          "format": "Quality Gates Manual + Adoption Plan"
+        },
+        "m7": {
+          "tag": "Center of Excellence",
+          "name": "Module 7: Sustainability & AI CoE",
+          "desc": "Operating model and governance committee design to guarantee continuous improvement and scale.",
+          "d1": "Organizational structure and job profiles for AI Center of Excellence.",
+          "d2": "Charters and bylaws for the corporate AI Steering Committee.",
+          "d3": "Periodic portfolio review and model retraining protocol.",
+          "format": "CoE Operating Charter + AI Governance Bylaws"
+        }
+      }
+    },
+    "navLinks": {
+      "simulator": "5D-Simulator",
+      "comparison": "Vergleich",
+      "impact": "Wirkung & ROI",
+      "deliverables": "Ergebnisse M1-M7",
+      "backToTop": "Nach oben"
     }
   },
   "terms": {

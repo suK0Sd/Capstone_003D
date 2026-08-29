@@ -179,7 +179,7 @@ export function LandingInteractiveRadar() {
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.1 }}
               className="lg:col-span-7 space-y-4"
             >
               <div className="flex items-center justify-between border-b pb-2.5">
@@ -233,7 +233,7 @@ export function LandingInteractiveRadar() {
               variants={radarVariants}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, amount: 0.1 }}
               className="lg:col-span-5 flex flex-col items-center justify-center p-5 rounded-xl brand-gradient-soft border border-border/40 text-center"
             >
               {/* SVG Pentagonal Dynamic Radar */}
@@ -313,9 +313,10 @@ export function LandingInteractiveRadar() {
               </div>
 
               {/* Action Button */}
-              <Button asChild size="sm" className="mt-5 w-full brand-gradient border-0 text-white shadow-md hover:opacity-95">
-                <Link to="/start">
-                  {t('landing.demo.cta')} <ArrowRight className="ml-1.5 h-4 w-4" />
+              <Button asChild size="default" className="mt-5 w-full brand-gradient border-0 text-white shadow-md hover:opacity-95 text-xs sm:text-sm font-semibold h-auto py-2.5 px-4 whitespace-normal text-center leading-tight">
+                <Link to="/start" className="inline-flex items-center justify-center gap-1.5 w-full">
+                  <span>{t('landing.demo.cta')}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" />
                 </Link>
               </Button>
             </motion.div>

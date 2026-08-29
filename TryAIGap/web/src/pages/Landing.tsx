@@ -1,23 +1,20 @@
+﻿import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
-import { motion, type Variants } from 'motion/react';
+import { ArrowRight, ArrowUp, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { LandingInteractiveRadar } from '@/components/LandingInteractiveRadar';
+import { LandingComparison } from '@/components/LandingComparison';
+import { LandingModuleDeliverables } from '@/components/LandingModuleDeliverables';
 
 interface LandingStat {
   v: string;
   l: string;
-}
-
-interface LandingModule {
-  n: string;
-  t: string;
-  d: string;
 }
 
 const containerVariants: Variants = {
@@ -67,34 +64,130 @@ const gridReveal: Variants = {
   },
 };
 
-/** Public landing: brand hero with coordinated staggered entrance + module overview. */
+const NAV_ITEMS = [
+  { id: 'simulator', labelKey: 'landing.navLinks.simulator' },
+  { id: 'comparison', labelKey: 'landing.navLinks.comparison' },
+  { id: 'impact', labelKey: 'landing.navLinks.impact' },
+  { id: 'deliverables', labelKey: 'landing.navLinks.deliverables' },
+];
+
+/** Public landing: adaptive morphing header (Full-width edge-to-edge at top -> Floating glass capsule on scroll). */
 export default function Landing() {
   const { t } = useTranslation();
   const stats = t('landing.stats', { returnObjects: true }) as LandingStat[];
-  const modules = t('landing.modules', { returnObjects: true }) as LandingModule[];
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 25);
+      setShowBackToTop(scrollY > 400);
+
+      // Section scrollspy tracking
+      const sections = NAV_ITEMS.map((item) => document.getElementById(item.id));
+      const scrollPosition = scrollY + 220;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(NAV_ITEMS[i].id);
+          return;
+        }
+      }
+      if (scrollY < 300) {
+        setActiveSection('');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background overflow-hidden">
-      <header className="flex h-16 items-center justify-between px-4 md:px-8">
-        <BrandLogo compact />
-        <div className="flex items-center gap-1">
-          <LanguageSwitcher />
-          <ThemeToggle />
-          <Button asChild size="sm" className="ml-2">
-            <Link to="/login">{t('landing.navLogin')}</Link>
-          </Button>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-background text-foreground relative">
+      {/* Adaptive Morphing Header */}
+      <div className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none transition-all duration-300">
+        <motion.header
+          layout
+          initial={false}
+          animate={{
+            y: isScrolled ? 12 : 0,
+            width: isScrolled ? 'min(92%, 64rem)' : '100%',
+            borderRadius: isScrolled ? '9999px' : '0px',
+            height: isScrolled ? '3.5rem' : '4rem',
+            paddingLeft: isScrolled ? '1.25rem' : '1.5rem',
+            paddingRight: isScrolled ? '1.25rem' : '1.5rem',
+          }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className={`pointer-events-auto flex items-center justify-between transition-colors duration-300 ${
+            isScrolled
+              ? 'border border-border/80 bg-background/85 shadow-lg shadow-black/5 dark:shadow-black/25 backdrop-blur-xl'
+              : 'border-b border-border/40 bg-background/75 backdrop-blur-md'
+          }`}
+        >
+          {/* Left: Brand Logo */}
+          <div className="flex items-center">
+            <button
+              onClick={scrollToTop}
+              className="flex items-center text-left cursor-pointer focus-visible:outline-none transition-transform hover:scale-[1.02]"
+              aria-label="TryAIGap Home"
+            >
+              <BrandLogo compact />
+            </button>
+          </div>
 
-      {/* Main Content Landmark */}
-      <main className="flex-1">
-        {/* Hero with Staggered Entrance */}
+          {/* Center: Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+            {NAV_ITEMS.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`relative px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                    isActive
+                      ? 'text-primary bg-primary/10 font-bold'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  }`}
+                >
+                  {t(item.labelKey)}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Right: Controls & Actions */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            <LanguageSwitcher />
+            <ThemeToggle />
+            <Button asChild size="sm" variant="ghost" className="hidden sm:inline-flex text-xs font-semibold h-8 px-3">
+              <Link to="/login">{t('landing.navLogin')}</Link>
+            </Button>
+            <Button asChild size="sm" className="brand-gradient border-0 text-white shadow-xs text-xs font-semibold h-8 px-3.5 rounded-full">
+              <Link to="/start">{t('landing.ctaPrimary')}</Link>
+            </Button>
+          </div>
+        </motion.header>
+      </div>
+
+      {/* Main Content Landmark with Top Spacer */}
+      <main className="flex-1 pt-16">
+        {/* 1. Hero with Staggered Entrance */}
         <section className="brand-gradient-soft">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="mx-auto max-w-5xl px-4 py-20 text-center md:py-28"
+            className="mx-auto max-w-5xl px-4 py-16 text-center md:py-24"
           >
             <motion.p
               variants={itemFadeUp}
@@ -119,12 +212,12 @@ export default function Landing() {
               variants={itemFadeUp}
               className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
             >
-              <Button asChild size="lg" className="brand-gradient border-0 text-white shadow-md hover:opacity-95">
+              <Button asChild size="lg" className="brand-gradient border-0 text-white shadow-md hover:opacity-95 rounded-full px-6">
                 <Link to="/start">
                   {t('landing.ctaPrimary')} <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-border/80">
+              <Button asChild size="lg" variant="outline" className="border-border/80 rounded-full px-6">
                 <Link to="/login">{t('landing.ctaSecondary')}</Link>
               </Button>
             </motion.div>
@@ -166,69 +259,39 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* Interactive Simulator / Demo with Scroll-In Reveal */}
-        <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <LandingInteractiveRadar />
-        </motion.div>
-
-        {/* Stats with Staggered Scroll Reveal */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={gridReveal}
-          className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-12 md:grid-cols-3"
-        >
-          {Array.isArray(stats) &&
-            stats.map((s) => (
-              <motion.div key={s.v} variants={itemFadeUp} className="h-full">
-                <SpotlightCard className="flex h-full flex-col justify-between">
-                  <div>
-                    <p className="text-3xl font-extrabold text-brand-gradient tracking-tight">{s.v}</p>
-                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.l}</p>
-                  </div>
-                </SpotlightCard>
-              </motion.div>
-            ))}
-        </motion.section>
-
-        {/* Modules with Staggered Scroll Reveal */}
-        <section className="mx-auto w-full max-w-5xl px-4 pb-16">
+        {/* 2. Interactive Simulator / Demo */}
+        <section id="simulator" className="scroll-mt-24">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5 }}
-            className="text-center"
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="text-2xl font-bold md:text-3xl">{t('landing.modulesTitle')}</h2>
-            <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
-              {t('landing.modulesSub')}
-            </p>
+            <LandingInteractiveRadar />
           </motion.div>
+        </section>
 
+        {/* 3. Impact Comparison ("Sin Método vs Con TryAIGap") */}
+        <section id="comparison" className="scroll-mt-24">
+          <LandingComparison />
+        </section>
+
+        {/* 4. Stats with Staggered Scroll Reveal */}
+        <section id="impact" className="scroll-mt-24">
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={gridReveal}
-            className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-12 md:grid-cols-3"
           >
-            {Array.isArray(modules) &&
-              modules.map((m) => (
-                <motion.div key={m.n} variants={itemFadeUp} className="h-full">
+            {Array.isArray(stats) &&
+              stats.map((s) => (
+                <motion.div key={s.v} variants={itemFadeUp} className="h-full">
                   <SpotlightCard className="flex h-full flex-col justify-between">
                     <div>
-                      <span className="mb-2.5 inline-flex w-fit rounded-md bg-secondary/80 px-2.5 py-0.5 text-xs font-bold text-secondary-foreground border border-border/40">
-                        {m.n}
-                      </span>
-                      <h3 className="text-base font-semibold text-foreground tracking-tight">{m.t}</h3>
-                      <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">{m.d}</p>
+                      <p className="text-3xl font-extrabold text-brand-gradient tracking-tight">{s.v}</p>
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.l}</p>
                     </div>
                   </SpotlightCard>
                 </motion.div>
@@ -236,7 +299,12 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* Final CTA */}
+        {/* 5. Interactive 7-Module Deliverables Selector */}
+        <section id="deliverables" className="scroll-mt-24">
+          <LandingModuleDeliverables />
+        </section>
+
+        {/* 6. Final CTA */}
         <motion.section
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -247,7 +315,7 @@ export default function Landing() {
           <div className="mx-auto max-w-5xl px-4 py-16 text-center text-white">
             <h2 className="text-2xl font-bold md:text-3xl">{t('landing.finalTitle')}</h2>
             <p className="mx-auto mt-2 max-w-xl text-white/85">{t('landing.finalSub')}</p>
-            <Button asChild size="lg" variant="secondary" className="mt-6 shadow-lg hover:opacity-95">
+            <Button asChild size="lg" variant="secondary" className="mt-6 shadow-lg hover:opacity-95 rounded-full px-6">
               <Link to="/start">
                 {t('landing.finalCta')} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -259,6 +327,29 @@ export default function Landing() {
       <footer className="border-t px-4 py-6 text-center text-xs text-muted-foreground">
         {t('landing.footer')}
       </footer>
+
+      {/* Modern Executive Floating Pill "Scroll to Top" Indicator */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            key="back-to-top"
+            initial={{ opacity: 0, y: 15, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 15, scale: 0.9 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            onClick={scrollToTop}
+            aria-label={t('landing.navLinks.backToTop')}
+            className="fixed bottom-6 right-6 z-40 group inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/90 px-3.5 py-2 text-xs font-semibold text-muted-foreground shadow-lg shadow-black/5 dark:shadow-black/20 backdrop-blur-xl transition-all hover:border-primary/60 hover:text-foreground hover:shadow-primary/10 cursor-pointer"
+          >
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+              <ArrowUp className="h-3 w-3" />
+            </div>
+            <span className="text-[11px] tracking-wide uppercase font-bold text-foreground">
+              {t('landing.navLinks.backToTop')}
+            </span>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
