@@ -824,7 +824,9 @@
     "errEmail": "The email does not look valid.",
     "delegationTitle": "External-link delegation",
     "delegationBody": "You can delegate specific questions from the questionnaires (“Delegate” button). The person receives an email with a public link and answers only that question; the answer appears automatically in your assessment.",
-    "areaGeneral": "General (all areas)"
+    "areaGeneral": "General (all areas)",
+    "copyLink": "Copy invitation link",
+    "linkCopied": "Invitation link copied to clipboard for {{email}}"
   },
   "inviteModal": {
     "title": "Invite a person to the assessment",

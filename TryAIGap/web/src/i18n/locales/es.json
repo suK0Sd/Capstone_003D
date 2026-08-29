@@ -824,7 +824,9 @@
     "errEmail": "El correo no parece válido.",
     "delegationTitle": "Delegación por enlace externo",
     "delegationBody": "Puedes delegar preguntas concretas desde los cuestionarios (botón «Delegar a otro»). La persona recibe un email con un enlace público y responde solo esa pregunta; la respuesta aparece automáticamente en tu assessment.",
-    "areaGeneral": "General (todas las áreas)"
+    "areaGeneral": "General (todas las áreas)",
+    "copyLink": "Copiar enlace de invitación",
+    "linkCopied": "Enlace de invitación copiado al portapapeles para {{email}}"
   },
   "inviteModal": {
     "title": "Invitar persona al assessment",

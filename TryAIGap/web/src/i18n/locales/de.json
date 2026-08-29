@@ -824,7 +824,9 @@
     "errEmail": "Die E-Mail scheint ungültig zu sein.",
     "delegationTitle": "Delegierung per externem Link",
     "delegationBody": "Sie können einzelne Fragen aus den Fragebögen delegieren (Schaltfläche „Delegieren“). Die Person erhält eine E-Mail mit einem öffentlichen Link und beantwortet nur diese Frage; die Antwort erscheint automatisch in Ihrer Bewertung.",
-    "areaGeneral": "Allgemein (alle Bereiche)"
+    "areaGeneral": "Allgemein (alle Bereiche)",
+    "copyLink": "Einladungslink kopieren",
+    "linkCopied": "Einladungslink für {{email}} in die Zwischenablage kopiert"
   },
   "inviteModal": {
     "title": "Person zum Assessment einladen",

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { createInvitation, fetchMetadata, updateOrganization } from '@/api';
+import { createInvitation, fetchMetadata, fetchOrganization, updateOrganization } from '@/api';
 import { ApiError } from '@/api/client';
 import type { MetadataResponse } from '@/api';
 import { BrandLogo } from '@/components/BrandLogo';
@@ -53,7 +53,7 @@ interface Draft {
 }
 
 const EMPTY_DRAFT: Draft = {
-  profile: { name: '', sector: '', size: '', country: '', currency: 'GBP' },
+  profile: { name: '', sector: '', size: '', country: '', currency: 'USD' },
   frameworks: [],
   areas: [],
   leaders: [],
@@ -102,13 +102,37 @@ export default function Onboarding() {
       .catch(() => setMetadata(null));
   }, [i18n.language]);
 
+  // Pre-populate company profile if organization was created during signup/leadgate
+  useEffect(() => {
+    if (!user?.organization_id) return;
+    fetchOrganization(user.organization_id)
+      .then((org) => {
+        setDraft((d) => {
+          if (d.profile.name) return d; // User already typed or customized profile
+          return {
+            ...d,
+            profile: {
+              name: org.name || '',
+              sector: org.sector || '',
+              size: org.size || '',
+              country: org.country || '',
+              currency: org.currency || 'USD',
+            },
+          };
+        });
+      })
+      .catch(() => undefined);
+  }, [user?.organization_id]);
+
   useEffect(() => {
     localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
   }, [draft]);
 
   const catalogs = useMemo(() => {
     const fallback = (key: string) =>
-      (t(`examples.${key}`, { returnObjects: true }) as string[]) ?? [];
+      (t(`leadgate.${key}`, { returnObjects: true }) as string[]) ??
+      (t(`examples.${key}`, { returnObjects: true }) as string[]) ??
+      [];
     return {
       sectors: metadata?.industries ?? fallback('sectors'),
       sizes: metadata?.sizes ?? fallback('sizes'),

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { MailPlus, RefreshCw, Send, Trash2, Users as UsersIcon, Waypoints } from 'lucide-react';
+import { Check, Copy, MailPlus, RefreshCw, Send, Trash2, Users as UsersIcon, Waypoints } from 'lucide-react';
 import { ApiError } from '@/api/client';
 import { createInvitation, deleteInvitation, fetchAreas, fetchTeam, resendInvitation } from '@/api';
 import type { InvitationOut } from '@/api/types';
@@ -78,6 +78,16 @@ export default function Team() {
   const [whatsapp, setWhatsapp] = useState('');
   const [phone, setPhone] = useState('');
   const [areaKey, setAreaKey] = useState('');
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  function copyInviteLink(inv: InvitationOut) {
+    const url = `${window.location.origin}/invite/${inv.invitation_id}`;
+    void navigator.clipboard.writeText(url).then(() => {
+      setCopiedId(inv.invitation_id);
+      setNotice({ kind: 'info', text: t('team.linkCopied', { email: inv.email }) });
+      setTimeout(() => setCopiedId(null), 2500);
+    });
+  }
 
   const teamQuery = useQuery({ queryKey: ['team'], queryFn: fetchTeam });
   const areasQuery = useQuery({
@@ -254,6 +264,19 @@ export default function Team() {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-1">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          aria-label={t('team.copyLink')}
+                          title={t('team.copyLink')}
+                          onClick={() => copyInviteLink(inv)}
+                        >
+                          {copiedId === inv.invitation_id ? (
+                            <Check className="h-4 w-4 text-primary" />
+                          ) : (
+                            <Copy className="h-4 w-4" />
+                          )}
+                        </Button>
                         <Button
                           variant="ghost"
                           size="icon"
