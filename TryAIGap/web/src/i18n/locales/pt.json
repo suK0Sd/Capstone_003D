@@ -242,7 +242,40 @@
       "privacy": "Privacidade",
       "contact": "Contato"
     },
-    "ctaNote": "Sem cartão de crédito · E-mail corporativo obrigatório"
+    "ctaNote": "Sem cartão de crédito · E-mail corporativo obrigatório",
+    "demo": {
+      "title": "Simulador Interativo de Maturidade em IA",
+      "sub": "Calibre as 5 dimensões oficiais da metodologia TryAIGap (Módulo 1) para pré-visualizar seu radar de prontidão.",
+      "controlsHeading": "5 Dimensões do Módulo 1 (Fundamentos & Estratégia)",
+      "controlsHint": "Mova os controles para simular",
+      "dims": {
+        "data": "Dados (Inventário, Qualidade & Privacidade)",
+        "tech": "Tecnologia (Infraestrutura, APIs & MLOps)",
+        "talent": "Talento (Capacitação & Perfis Internos)",
+        "processes": "Processos (Comitê de IA & Gates de Qualidade)",
+        "culture": "Cultura (Decisões Data-Driven & Adoção)"
+      },
+      "axes": {
+        "data": "Dados",
+        "tech": "Tecnologia",
+        "talent": "Talento",
+        "proc": "Processos",
+        "cult": "Cultura"
+      },
+      "insightTitle": "Diagnóstico Preditivo de Maturidade",
+      "radarFootnote": "Cálculo pentagonal baseado na metodologia oficial TryAIGap.",
+      "cta": "Iniciar diagnóstico oficial para minha empresa",
+      "levels": {
+        "l1": "Nível 1: Inicial / Explorador (0-25%)",
+        "l1Desc": "Fase inicial. O foco prioritário deve ser organizar inventários de dados e capacitar a liderança.",
+        "l2": "Nível 2: Tático (26-50%)",
+        "l2Desc": "Projetos isolados. Recomenda-se criar um Comitê de IA e estabelecer políticas claras de uso.",
+        "l3": "Nível 3: Estratégico (51-75%)",
+        "l3Desc": "Maturidade sólida com processos integrados. O próximo passo é escalar MLOps e agentes autônomos.",
+        "l4": "Nível 4: Líder Transformador (76-100%)",
+        "l4Desc": "Empresa de ponta AI-Native com governança consolidada e alto retorno sobre investimento."
+      }
+    }
   },
   "terms": {
     "title": "Termos e Condições de Uso",

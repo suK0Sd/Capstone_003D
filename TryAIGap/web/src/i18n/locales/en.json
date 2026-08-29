@@ -242,7 +242,40 @@
       "privacy": "Privacy",
       "contact": "Contact"
     },
-    "ctaNote": "No credit card · Company email required"
+    "ctaNote": "No credit card · Company email required",
+    "demo": {
+      "title": "Interactive AI Maturity Simulator",
+      "sub": "Calibrate the 5 official dimensions of TryAIGap's Module 1 methodology to preview your readiness radar before starting the corporate assessment.",
+      "controlsHeading": "5 Dimensions of Module 1 (Foundations & Strategy)",
+      "controlsHint": "Drag sliders to simulate",
+      "dims": {
+        "data": "Data (Inventory, Quality & Privacy)",
+        "tech": "Technology (Infrastructure, APIs & MLOps)",
+        "talent": "Talent (Training & In-House Skills)",
+        "processes": "Processes (AI Committee & Quality Gates)",
+        "culture": "Culture (Data-Driven Decisions & Adoption)"
+      },
+      "axes": {
+        "data": "Data",
+        "tech": "Tech",
+        "talent": "Talent",
+        "proc": "Processes",
+        "cult": "Culture"
+      },
+      "insightTitle": "Predictive Maturity Diagnosis",
+      "radarFootnote": "Pentagonal calculation based on TryAIGap Module 1 algorithm.",
+      "cta": "Start Official Assessment for My Company",
+      "levels": {
+        "l1": "Level 1: Initial / Explorer (0-25%)",
+        "l1Desc": "Your organization is in early exploratory stages. Focus on foundational data hygiene and executive AI literacy before purchasing enterprise software.",
+        "l2": "Level 2: Opportunistic / Tactical (26-50%)",
+        "l2Desc": "Isolated pilots and shadow AI usage exist. Establish an AI Committee, formalize acceptable use policies, and standardize infrastructure.",
+        "l3": "Level 3: Systematic / Strategic (51-75%)",
+        "l3Desc": "Integrated processes and strong talent with productive AI workflows. The next milestone is scaling MLOps and autonomous departmental agents.",
+        "l4": "Level 4: AI Transformer Leader (76-100%)",
+        "l4Desc": "Leading AI-Native enterprise. Ingrained experimentation culture, robust governance, and measurable high-ROI business impact."
+      }
+    }
   },
   "terms": {
     "title": "Terms & Conditions of Use",

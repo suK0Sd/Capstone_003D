@@ -242,7 +242,40 @@
       "privacy": "Privacidad",
       "contact": "Contacto"
     },
-    "ctaNote": "Sin tarjeta de crédito · Email corporativo requerido"
+    "ctaNote": "Sin tarjeta de crédito · Email corporativo requerido",
+    "demo": {
+      "title": "Simulador Interactivo de Madurez en IA",
+      "sub": "Calibra las 5 dimensiones oficiales de la metodología TryAIGap (Módulo 1) para previsualizar tu radar de preparación antes de iniciar el diagnóstico empresarial.",
+      "controlsHeading": "5 Dimensiones del Módulo 1 (Fundamentos & Estrategia)",
+      "controlsHint": "Mueve los controles para simular",
+      "dims": {
+        "data": "Datos (Inventario, Calidad & Privacidad)",
+        "tech": "Tecnología (Infraestructura, APIs & MLOps)",
+        "talent": "Talento (Capacitación & Roles Internos)",
+        "processes": "Procesos (Comité de IA & Gates de Calidad)",
+        "culture": "Cultura (Decisiones Data-Driven & Adopción)"
+      },
+      "axes": {
+        "data": "Datos",
+        "tech": "Tecnología",
+        "talent": "Talento",
+        "proc": "Procesos",
+        "cult": "Cultura"
+      },
+      "insightTitle": "Diagnóstico Predictivo de Madurez",
+      "radarFootnote": "Cálculo pentagonal basado en el algoritmo del Módulo 1 de TryAIGap.",
+      "cta": "Comenzar diagnóstico oficial para mi empresa",
+      "levels": {
+        "l1": "Nivel 1: Inicial / Explorador (0-25%)",
+        "l1Desc": "Tu organización se encuentra en fase de exploración inicial. El foco crítico debe ser ordenar los inventarios de datos y capacitar a líderes antes de adquirir licencias costosas.",
+        "l2": "Nivel 2: Oportunista / Táctico (26-50%)",
+        "l2Desc": "Existen pilotos aislados y adopción de IA generativa informal. Se requiere crear un Comité de IA, definir políticas de uso y unificar la infraestructura.",
+        "l3": "Nivel 3: Sistemático / Estratégico (51-75%)",
+        "l3Desc": "Procesos y talento integrados con casos de uso productivos. El paso siguiente es escalar MLOps/LLMOps y orquestar agentes autónomos entre departamentos.",
+        "l4": "Nivel 4: Líder Transformador (76-100%)",
+        "l4Desc": "Organización de vanguardia AI-Native. Cultura de experimentación arraigada, gobernanza sólida y captura de valor cuantificable con alto ROI."
+      }
+    }
   },
   "terms": {
     "title": "Términos y Condiciones de Uso",

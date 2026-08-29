@@ -242,7 +242,40 @@
       "privacy": "Datenschutz",
       "contact": "Kontakt"
     },
-    "ctaNote": "Keine Kreditkarte · Geschäftliche E-Mail erforderlich"
+    "ctaNote": "Keine Kreditkarte · Geschäftliche E-Mail erforderlich",
+    "demo": {
+      "title": "Interaktiver KI-Reifegrad-Simulator",
+      "sub": "Kalibrieren Sie die 5 offiziellen Dimensionen der TryAIGap-Methodik (Modul 1), um Ihr Reifegrad-Radar in Echtzeit zu simulieren.",
+      "controlsHeading": "5 Dimensionen von Modul 1 (Grundlagen & Strategie)",
+      "controlsHint": "Schieberegler zum Simulieren bewegen",
+      "dims": {
+        "data": "Daten (Inventar, Qualität & Datenschutz)",
+        "tech": "Technologie (Infrastruktur, APIs & MLOps)",
+        "talent": "Talent (Schulung & interne Rollen)",
+        "processes": "Prozesse (KI-Komitee & Quality Gates)",
+        "culture": "Kultur (Datengetriebene Entscheidungen & Akzeptanz)"
+      },
+      "axes": {
+        "data": "Daten",
+        "tech": "Technologie",
+        "talent": "Talent",
+        "proc": "Prozesse",
+        "cult": "Kultur"
+      },
+      "insightTitle": "Prädiktive Reifegrad-Diagnose",
+      "radarFootnote": "Fünfeckige Berechnung basierend auf der TryAIGap Modul-1-Methodik.",
+      "cta": "Offizielles Assessment für mein Unternehmen starten",
+      "levels": {
+        "l1": "Stufe 1: Initial / Entdecker (0-25%)",
+        "l1Desc": "Anfangsphase. Konzentrieren Sie sich auf Datenhygiene und Führungskräfte-Schulung.",
+        "l2": "Stufe 2: Taktisch (26-50%)",
+        "l2Desc": "Isolierte Piloten im Einsatz. Es wird empfohlen, ein KI-Komitee und Richtlinien einzurichten.",
+        "l3": "Stufe 3: Strategisch (51-75%)",
+        "l3Desc": "Integrierte Geschäftsprozesse. Skalieren Sie MLOps und autonome Agenten.",
+        "l4": "Stufe 4: KI-Transformationsführer (76-100%)",
+        "l4Desc": "Führendes AI-Native-Unternehmen mit exzellenter Governance und nachweisbarem ROI."
+      }
+    }
   },
   "terms": {
     "title": "Allgemeine Geschäftsbedingungen",

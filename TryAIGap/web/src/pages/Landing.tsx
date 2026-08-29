@@ -1,11 +1,12 @@
-import { Link } from 'react-router';
+﻿import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { LandingInteractiveRadar } from '@/components/LandingInteractiveRadar';
 
 interface LandingStat {
   v: string;
@@ -63,22 +64,50 @@ export default function Landing() {
               </Button>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">{t('landing.ctaNote')}</p>
-            <p className="mt-8 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-              {t('landing.trustLabel')}
-            </p>
+            
+            {/* Compliance & Trust Frameworks */}
+            <div className="mt-10 space-y-3">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+                {t('landing.trustLabel')}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+                {[
+                  { name: 'EU AI Act', label: 'Regulation-Ready', icon: Scale },
+                  { name: 'ISO/IEC 42001', label: 'AI Management', icon: Award },
+                  { name: 'NIST AI RMF', label: 'Risk Framework', icon: ShieldCheck },
+                  { name: 'UK GDPR', label: 'Data Privacy', icon: Lock },
+                  { name: 'OECD AI', label: 'Ethics Principles', icon: Globe },
+                ].map((fw) => {
+                  const Icon = fw.icon;
+                  return (
+                    <div
+                      key={fw.name}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground shadow-xs transition-colors hover:border-primary/40 hover:text-foreground"
+                    >
+                      <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
+                      <span className="font-semibold text-foreground">{fw.name}</span>
+                      <span className="text-[10px] text-muted-foreground hidden sm:inline">· {fw.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
+
+        {/* Interactive Simulator / Demo */}
+        <LandingInteractiveRadar />
 
         {/* Stats */}
         <section className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-12 md:grid-cols-3">
           {Array.isArray(stats) &&
             stats.map((s) => (
-              <Card key={s.v}>
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-3xl text-brand-gradient">{s.v}</CardTitle>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">{s.l}</CardContent>
-              </Card>
+              <SpotlightCard key={s.v} className="flex flex-col justify-between">
+                <div>
+                  <p className="text-3xl font-extrabold text-brand-gradient tracking-tight">{s.v}</p>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.l}</p>
+                </div>
+              </SpotlightCard>
             ))}
         </section>
 
@@ -91,15 +120,15 @@ export default function Landing() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {Array.isArray(modules) &&
               modules.map((m) => (
-                <Card key={m.n} className="transition-shadow hover:shadow-md">
-                  <CardHeader className="pb-2">
-                    <span className="mb-1 inline-flex w-fit rounded-md bg-secondary px-2 py-0.5 text-xs font-bold text-secondary-foreground">
+                <SpotlightCard key={m.n} className="flex flex-col justify-between">
+                  <div>
+                    <span className="mb-2.5 inline-flex w-fit rounded-md bg-secondary/80 px-2.5 py-0.5 text-xs font-bold text-secondary-foreground border border-border/40">
                       {m.n}
                     </span>
-                    <CardTitle className="text-base">{m.t}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-sm text-muted-foreground">{m.d}</CardContent>
-                </Card>
+                    <h3 className="text-base font-semibold text-foreground tracking-tight">{m.t}</h3>
+                    <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">{m.d}</p>
+                  </div>
+                </SpotlightCard>
               ))}
           </div>
         </section>
