@@ -11,6 +11,8 @@ import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { LandingInteractiveRadar } from '@/components/LandingInteractiveRadar';
 import { LandingComparison } from '@/components/LandingComparison';
 import { LandingModuleDeliverables } from '@/components/LandingModuleDeliverables';
+import { LandingHowItWorks } from '@/components/LandingHowItWorks';
+import { LandingFaq } from '@/components/LandingFaq';
 
 interface LandingStat {
   v: string;
@@ -65,13 +67,14 @@ const gridReveal: Variants = {
 };
 
 const NAV_ITEMS = [
+  { id: 'how-it-works', labelKey: 'landing.navLinks.howItWorks' },
   { id: 'simulator', labelKey: 'landing.navLinks.simulator' },
   { id: 'comparison', labelKey: 'landing.navLinks.comparison' },
-  { id: 'impact', labelKey: 'landing.navLinks.impact' },
   { id: 'deliverables', labelKey: 'landing.navLinks.deliverables' },
+  { id: 'faq', labelKey: 'landing.navLinks.faq' },
 ];
 
-/** Public landing: adaptive morphing header (Full-width edge-to-edge at top -> Floating glass capsule on scroll). */
+/** Public landing: complete enterprise architecture with adaptive navbar, how it works, simulator, comparison, deliverables and FAQ. */
 export default function Landing() {
   const { t } = useTranslation();
   const stats = t('landing.stats', { returnObjects: true }) as LandingStat[];
@@ -118,11 +121,11 @@ export default function Landing() {
           initial={false}
           animate={{
             y: isScrolled ? 12 : 0,
-            width: isScrolled ? 'min(92%, 64rem)' : '100%',
+            width: isScrolled ? 'min(94%, 64rem)' : '100%',
             borderRadius: isScrolled ? '9999px' : '0px',
             height: isScrolled ? '3.5rem' : '4rem',
-            paddingLeft: isScrolled ? '1.25rem' : '1.5rem',
-            paddingRight: isScrolled ? '1.25rem' : '1.5rem',
+            paddingLeft: isScrolled ? '1rem' : '1.5rem',
+            paddingRight: isScrolled ? '1rem' : '1.5rem',
           }}
           transition={{
             duration: 0.35,
@@ -146,7 +149,7 @@ export default function Landing() {
           </div>
 
           {/* Center: Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 sm:gap-2">
+          <nav className="hidden lg:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
               return (
@@ -166,10 +169,10 @@ export default function Landing() {
           </nav>
 
           {/* Right: Controls & Actions */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-1.5">
             <LanguageSwitcher />
             <ThemeToggle />
-            <Button asChild size="sm" variant="ghost" className="hidden sm:inline-flex text-xs font-semibold h-8 px-3">
+            <Button asChild size="sm" variant="ghost" className="hidden sm:inline-flex text-xs font-semibold h-8 px-2.5">
               <Link to="/login">{t('landing.navLogin')}</Link>
             </Button>
             <Button asChild size="sm" className="brand-gradient border-0 text-white shadow-xs text-xs font-semibold h-8 px-3.5 rounded-full">
@@ -259,7 +262,12 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* 2. Interactive Simulator / Demo */}
+        {/* 2. How it Works in 3 Steps */}
+        <section id="how-it-works" className="scroll-mt-24">
+          <LandingHowItWorks />
+        </section>
+
+        {/* 3. Interactive Simulator / Demo */}
         <section id="simulator" className="scroll-mt-24">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
@@ -271,12 +279,12 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* 3. Impact Comparison ("Sin Método vs Con TryAIGap") */}
+        {/* 4. Impact Comparison ("Sin Método vs Con TryAIGap") */}
         <section id="comparison" className="scroll-mt-24">
           <LandingComparison />
         </section>
 
-        {/* 4. Stats with Staggered Scroll Reveal */}
+        {/* 5. Stats with Staggered Scroll Reveal */}
         <section id="impact" className="scroll-mt-24">
           <motion.div
             initial="hidden"
@@ -299,12 +307,17 @@ export default function Landing() {
           </motion.div>
         </section>
 
-        {/* 5. Interactive 7-Module Deliverables Selector */}
+        {/* 6. Interactive 7-Module Deliverables Selector */}
         <section id="deliverables" className="scroll-mt-24">
           <LandingModuleDeliverables />
         </section>
 
-        {/* 6. Final CTA */}
+        {/* 7. Frequently Asked Questions (FAQ Accordion) */}
+        <section id="faq" className="scroll-mt-24">
+          <LandingFaq />
+        </section>
+
+        {/* 8. Final CTA */}
         <motion.section
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -378,7 +378,38 @@
       "comparison": "Comparison",
       "impact": "Impact & ROI",
       "deliverables": "Deliverables M1-M7",
-      "backToTop": "Back to top"
+      "backToTop": "Back to top",
+      "howItWorks": "How it Works",
+      "faq": "FAQ"
+    },
+    "howItWorks": {
+      "badge": "Agile 3-Step Methodology",
+      "title": "How Does TryAIGap Work?",
+      "subtitle": "A structured, frictionless process to turn corporate uncertainty into a quantified action plan.",
+      "step1Title": "Guided Assessment & Delegation",
+      "step1Desc": "Complete the 5-dimension foundations questionnaire (~15 min) or invite your 7 departmental leaders via email.",
+      "step1Tag": "15-20 Minutes",
+      "step2Title": "Algorithmic Engine & Gap Detection",
+      "step2Desc": "TryAIGap's scoring engine computes your 5D maturity radar and generates your departmental heatmap.",
+      "step2Tag": "Instant Analysis",
+      "step3Title": "Executive Roadmap & Expert Advisory",
+      "step3Desc": "Download your board-ready A4 executive report and schedule tailored consulting sessions.",
+      "step3Tag": "Execution & ROI"
+    },
+    "faq": {
+      "badge": "Frequently Asked Questions",
+      "title": "Common Questions from Executives and Leaders",
+      "subtitle": "Everything you need to know before starting your AI maturity assessment with TryAIGap.",
+      "q1": "How long does it take to complete the corporate assessment?",
+      "a1": "The Module 1 Foundations questionnaire takes about 15 to 20 minutes. Departmental kits can be delegated in parallel to unit leaders.",
+      "q2": "How do you guarantee corporate data security and privacy?",
+      "a2": "We strictly comply with UK GDPR and EU AI Act standards. No customer responses are used to train third-party AI models. All data is encrypted in transit and at rest.",
+      "q3": "Do we need an in-house technical AI engineering team?",
+      "a3": "No. TryAIGap uses strategic business terminology designed for CEOs, COOs, CFOs, CMOs, CHROs, and Legal Counsel.",
+      "q4": "How does the platform complement human consultants?",
+      "a4": "The platform delivers immediate quantitative baselines and heatmaps. You can seamlessly add certified consulting sessions through our estimator for audit and change management.",
+      "q5": "What tangible deliverables does the board receive?",
+      "a5": "A board-ready executive PDF report with the 5D maturity radar, departmental heatmap, tech decision tree, and prioritized ROI portfolio."
     }
   },
   "terms": {

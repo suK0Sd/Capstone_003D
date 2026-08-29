@@ -378,7 +378,38 @@
       "comparison": "Comparativa",
       "impact": "Impacto & ROI",
       "deliverables": "Entregables M1-M7",
-      "backToTop": "Volver arriba"
+      "backToTop": "Volver arriba",
+      "howItWorks": "Cómo Funciona",
+      "faq": "FAQ"
+    },
+    "howItWorks": {
+      "badge": "Metodología Ágil en 3 Pasos",
+      "title": "¿Cómo Funciona TryAIGap?",
+      "subtitle": "Un proceso estructurado y sin fricción para transformar la incertidumbre en un plan de acción cuantificado.",
+      "step1Title": "Diagnóstico Guiado & Delegación",
+      "step1Desc": "Responde el assessment transversal de 5 dimensiones (~15 min) o invita por correo a los gerentes de tus 7 áreas clave.",
+      "step1Tag": "15-20 Minutos",
+      "step2Title": "Motor Algorítmico & Detección de Brechas",
+      "step2Desc": "El algoritmo de TryAIGap analiza tus respuestas, proyecta tu radar pentagonal 5D y genera tu mapa de calor departamental.",
+      "step2Tag": "Análisis Instantáneo",
+      "step3Title": "Hoja de Ruta & Acompañamiento Experto",
+      "step3Desc": "Obtén tu informe ejecutivo en PDF A4 listo para el directorio y agenda sesiones de consultoría personalizada.",
+      "step3Tag": "Ejecución & ROI"
+    },
+    "faq": {
+      "badge": "Preguntas Frecuentes",
+      "title": "Dudas Habituales de Líderes y Directores",
+      "subtitle": "Todo lo que necesitas saber antes de iniciar el diagnóstico de madurez en IA con TryAIGap.",
+      "q1": "¿Cuánto tiempo toma completar el diagnóstico empresarial?",
+      "a1": "El cuestionario transversal de Fundamentos (Módulo 1) toma aproximadamente 15 a 20 minutos. Las 7 áreas departamentales se pueden completar en paralelo invitando a los líderes de cada área.",
+      "q2": "¿Cómo garantizan la seguridad y privacidad de nuestros datos corporativos?",
+      "a2": "Operamos bajo estricto cumplimiento del UK GDPR y las directrices del EU AI Act. Cero datos o respuestas son utilizados para entrenar modelos de IA externos. Toda la información se transmite cifrada.",
+      "q3": "¿Es necesario contar con un equipo técnico de ingenieros en la empresa?",
+      "a3": "No. TryAIGap está redactado en lenguaje de negocios estratégico, diseñado para CEOs, gerentes de operaciones, finanzas, recursos humanos, marketing y directores legales.",
+      "q4": "¿Cómo se complementa la plataforma con los consultores humanos?",
+      "a4": "La plataforma provee el diagnóstico cuantitativo y la línea base inmediata. A través de nuestro cotizador, puedes contratar horas de acompañamiento con consultores certificados para auditar evidencias y liderar la gestión del cambio.",
+      "q5": "¿Qué entregables recibe la junta directiva al finalizar?",
+      "a5": "Un informe ejecutivo oficial en PDF A4 con el radar pentagonal de madurez, el mapa de calor por áreas, el árbol de decisión tecnológica y la matriz de iniciativas priorizadas por retorno de inversión."
     }
   },
   "terms": {
