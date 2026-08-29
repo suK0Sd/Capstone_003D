@@ -2,6 +2,7 @@
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Bot, Cpu, Database, Network, ShieldCheck, Sparkles, Users } from 'lucide-react';
+import { motion, type Variants } from 'motion/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,6 +21,41 @@ const DIMENSIONS: DimensionConfig[] = [
   { key: 'processes', icon: Network, defaultVal: 50 },
   { key: 'culture', icon: ShieldCheck, defaultVal: 65 },
 ];
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.09,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const radarVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.88 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 export function LandingInteractiveRadar() {
   const { t } = useTranslation();
@@ -119,9 +155,15 @@ export function LandingInteractiveRadar() {
     <section className="mx-auto w-full max-w-5xl px-4 py-8">
       <Card className="border border-border/80 shadow-lg bg-card/60 backdrop-blur-sm overflow-hidden">
         <CardHeader className="text-center pb-2">
-          <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full brand-gradient text-white shadow-md">
+          <motion.div
+            initial={{ scale: 0.6, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full brand-gradient text-white shadow-md"
+          >
             <Sparkles className="h-5 w-5" />
-          </div>
+          </motion.div>
           <CardTitle className="text-2xl md:text-3xl font-extrabold">
             {t('landing.demo.title')}
           </CardTitle>
@@ -132,8 +174,14 @@ export function LandingInteractiveRadar() {
 
         <CardContent className="p-6 md:p-8">
           <div className="grid gap-8 lg:grid-cols-12 items-center">
-            {/* Left Controls (5 Official Dimensions) */}
-            <div className="lg:col-span-7 space-y-4">
+            {/* Left Controls (5 Official Dimensions with Staggered Entrance) */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              className="lg:col-span-7 space-y-4"
+            >
               <div className="flex items-center justify-between border-b pb-2.5">
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                   {t('landing.demo.controlsHeading')}
@@ -147,7 +195,7 @@ export function LandingInteractiveRadar() {
                 const Icon = dim.icon;
                 const val = values[dim.key] ?? 0;
                 return (
-                  <div key={dim.key} className="space-y-1.5">
+                  <motion.div key={dim.key} variants={itemVariants} className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center gap-2 font-medium">
                         <Icon className="h-4 w-4 text-primary shrink-0" />
@@ -164,21 +212,30 @@ export function LandingInteractiveRadar() {
                       onValueChange={(v) => handleSliderChange(dim.key, v)}
                       className="cursor-pointer"
                     />
-                  </div>
+                  </motion.div>
                 );
               })}
 
-              <div className="rounded-lg bg-muted/50 p-3.5 border border-border/50 flex items-start gap-3 mt-3">
+              <motion.div
+                variants={itemVariants}
+                className="rounded-lg bg-muted/50 p-3.5 border border-border/50 flex items-start gap-3 mt-3"
+              >
                 <Bot className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div className="text-xs space-y-1">
                   <p className="font-semibold text-foreground">{t('landing.demo.insightTitle')}</p>
                   <p className="text-muted-foreground leading-relaxed">{levelInfo.desc}</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* Right Visualizer (Pentagonal Radar) */}
-            <div className="lg:col-span-5 flex flex-col items-center justify-center p-5 rounded-xl brand-gradient-soft border border-border/40 text-center">
+            {/* Right Visualizer (Pentagonal Radar with Fluid Motion) */}
+            <motion.div
+              variants={radarVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
+              className="lg:col-span-5 flex flex-col items-center justify-center p-5 rounded-xl brand-gradient-soft border border-border/40 text-center"
+            >
               {/* SVG Pentagonal Dynamic Radar */}
               <div className="relative w-68 h-68 flex items-center justify-center">
                 <svg viewBox="0 0 300 300" className="w-full h-full overflow-visible">
@@ -256,12 +313,12 @@ export function LandingInteractiveRadar() {
               </div>
 
               {/* Action Button */}
-              <Button asChild size="sm" className="mt-5 w-full brand-gradient border-0 text-white shadow-md">
+              <Button asChild size="sm" className="mt-5 w-full brand-gradient border-0 text-white shadow-md hover:opacity-95">
                 <Link to="/start">
                   {t('landing.demo.cta')} <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </CardContent>
       </Card>
