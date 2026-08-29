@@ -17,6 +17,8 @@ interface AuthState {
   status: AuthStatus;
   /** Exchange a magic-link token for a session. */
   verify: (token: string) => Promise<MeResponse>;
+  /** Set session tokens directly (e.g. from invitation acceptance). */
+  setSession: (token: string, refreshToken?: string) => Promise<void>;
   /** Revoke tokens server-side (best effort) and clear the local session. */
   logout: () => Promise<void>;
   /** Restore the session on reload via GET /auth/me. */
@@ -71,6 +73,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       .hydrate()
       .catch(() => undefined);
     return user;
+  },
+
+  async setSession(token, refreshToken) {
+    tokenStorage.set(token, refreshToken || '');
+    await get().hydrate();
   },
 
   async logout() {

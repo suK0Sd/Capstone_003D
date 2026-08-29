@@ -1575,5 +1575,24 @@
       "Solicita una revisión humana para calibrar scores y enriquecer el informe."
     ],
     "footer": "TryAIGap · Bridge the AI Gap"
+  },
+  "inviteAccept": {
+    "orgDefault": "Tu Organización",
+    "title": "Invitación de Equipo",
+    "subtitle": "Has sido invitado a unirte a {{org}} en tryAIGap para participar en la evaluación de madurez en Inteligencia Artificial.",
+    "labelEmail": "Correo electrónico (invitación vinculada)",
+    "labelName": "Tu nombre completo",
+    "placeholderName": "Ej. Ana Valenzuela",
+    "submitCta": "Aceptar Invitación y Entrar",
+    "submitting": "Aceptando invitación...",
+    "footerNote": "Al unirte, tendrás acceso para responder diagnósticos y colaborar con tu equipo.",
+    "invalidTitle": "Enlace no válido",
+    "invalidSub": "Este enlace de invitación no existe o ha sido revocado. Contacta al administrador de tu equipo.",
+    "alreadyAcceptedTitle": "Invitación ya aceptada",
+    "alreadyAcceptedSub": "Esta invitación ya fue utilizada previamente. Inicia sesión con tu correo para continuar.",
+    "alreadyAccepted": "Esta invitación ya fue aceptada previamente.",
+    "errorGeneric": "Ocurrió un error al procesar la invitación. Por favor intenta nuevamente.",
+    "backToLogin": "Ir al inicio de sesión",
+    "goToLogin": "Iniciar Sesión"
   }
 }

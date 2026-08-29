@@ -8,7 +8,10 @@ from app.api.deps import CurrentUser, get_current_user, get_db
 from app.schemas.team import (
     DelegateCreate,
     DelegateResponse,
+    InvitationAccept,
+    InvitationAcceptResponse,
     InvitationCreate,
+    InvitationInfo,
     InvitationResendResponse,
     InvitationResponse,
     TeamListResponse,
@@ -33,6 +36,23 @@ async def create_invitation(
     current: CurrentUser = Depends(get_current_user),
 ):
     return await team_service.create_invitation(db, current, payload)
+
+
+@router.get("/invitations/info/{token}", response_model=InvitationInfo)
+async def get_invitation_info(
+    token: str,
+    db: AsyncSession = Depends(get_db),
+):
+    return await team_service.get_invitation(db, token)
+
+
+@router.post("/invitations/info/{token}/accept", response_model=InvitationAcceptResponse)
+async def accept_invitation_token(
+    token: str,
+    payload: InvitationAccept = InvitationAccept(),
+    db: AsyncSession = Depends(get_db),
+):
+    return await team_service.accept_invitation(db, token, payload)
 
 
 @router.post("/invitations/{invitation_id}/resend", response_model=InvitationResendResponse)
@@ -67,3 +87,4 @@ async def delegate_question(
     current: CurrentUser = Depends(get_current_user),
 ):
     return await team_service.delegate_question(db, current, assessment_id, question_id, payload)
+

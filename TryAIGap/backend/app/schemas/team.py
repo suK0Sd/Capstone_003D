@@ -59,3 +59,24 @@ class DelegateResponse(BaseModel):
     question_id: uuid.UUID
     status: str
     sent_to: str
+
+
+class InvitationInfo(BaseModel):
+    invitation_id: uuid.UUID
+    full_name: str
+    email: str
+    organization_name: Optional[str] = None
+    area_key: Optional[str] = None
+    status: str
+    created_at: Optional[datetime] = None
+
+
+class InvitationAccept(BaseModel):
+    password: Optional[str] = None
+    full_name: Optional[str] = None
+
+
+class InvitationAcceptResponse(BaseModel):
+    token: str
+    user: dict
+

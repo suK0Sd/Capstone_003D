@@ -312,6 +312,26 @@ export interface InvitationResendResponse {
   status: string;
 }
 
+export interface InvitationInfo {
+  invitation_id: string;
+  full_name: string;
+  email: string;
+  organization_name?: string | null;
+  area_key?: string | null;
+  status: string; // sent|accepted|expired
+  created_at?: string | null;
+}
+
+export interface InvitationAcceptPayload {
+  password?: string;
+  full_name?: string;
+}
+
+export interface InvitationAcceptResponse {
+  token: string;
+  user: UserPublic;
+}
+
 export interface DelegateCreate {
   name: string;
   email: string;

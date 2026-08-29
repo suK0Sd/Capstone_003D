@@ -1576,5 +1576,24 @@
       "Fordern Sie eine menschliche Prüfung an, um Scores zu kalibrieren und den Bericht anzureichern."
     ],
     "footer": "TryAIGap · Bridge the AI Gap"
+  },
+  "inviteAccept": {
+    "orgDefault": "Ihre Organisation",
+    "title": "Teameinladung",
+    "subtitle": "Sie wurden eingeladen, {{org}} auf tryAIGap beizutreten, um an der KI-Reifegradbewertung teilzunehmen.",
+    "labelEmail": "E-Mail-Adresse (verknüpfte Einladung)",
+    "labelName": "Ihr vollständiger Name",
+    "placeholderName": "z.B. Max Mustermann",
+    "submitCta": "Einladung annehmen & Beitreten",
+    "submitting": "Einladung wird angenommen...",
+    "footerNote": "Mit dem Beitritt erhalten Sie Zugriff auf Diagnosen und können mit Ihrem Team zusammenarbeiten.",
+    "invalidTitle": "Ungültiger Einladungslink",
+    "invalidSub": "Dieser Einladungslink ist ungültig oder wurde widerrufen. Bitte wenden Sie sich an Ihren Administrator.",
+    "alreadyAcceptedTitle": "Einladung bereits angenommen",
+    "alreadyAcceptedSub": "Diese Einladung wurde bereits verwendet. Bitte melden Sie sich mit Ihrer E-Mail-Adresse an.",
+    "alreadyAccepted": "Diese Einladung wurde bereits angenommen.",
+    "errorGeneric": "Beim Verarbeiten der Einladung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+    "backToLogin": "Zurück zum Login",
+    "goToLogin": "Anmelden"
   }
 }

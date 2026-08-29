@@ -1575,5 +1575,24 @@
       "Request a human review to calibrate scores and enrich the report."
     ],
     "footer": "TryAIGap · Bridge the AI Gap"
+  },
+  "inviteAccept": {
+    "orgDefault": "Your Organization",
+    "title": "Team Invitation",
+    "subtitle": "You have been invited to join {{org}} on tryAIGap to take part in the AI Maturity Assessment.",
+    "labelEmail": "Email address (linked invitation)",
+    "labelName": "Your full name",
+    "placeholderName": "E.g. Jane Doe",
+    "submitCta": "Accept Invitation & Enter",
+    "submitting": "Accepting invitation...",
+    "footerNote": "By joining, you will gain access to answer assessments and collaborate with your team.",
+    "invalidTitle": "Invalid Invitation Link",
+    "invalidSub": "This invitation link is invalid or has been revoked. Please contact your organization administrator.",
+    "alreadyAcceptedTitle": "Invitation Already Accepted",
+    "alreadyAcceptedSub": "This invitation has already been used. Please log in with your email to continue.",
+    "alreadyAccepted": "This invitation has already been accepted.",
+    "errorGeneric": "An error occurred while processing the invitation. Please try again.",
+    "backToLogin": "Back to Login",
+    "goToLogin": "Log In"
   }
 }

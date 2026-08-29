@@ -21,7 +21,10 @@ import type {
   DocumentCreateResponse,
   DocumentListItem,
   DistributorCodeValidateResponse,
+  InvitationAcceptPayload,
+  InvitationAcceptResponse,
   InvitationCreate,
+  InvitationInfo,
   InvitationResponse,
   LeadCreate,
   LeadCreateResponse,
@@ -190,6 +193,21 @@ export function fetchTeam(): Promise<TeamListResponse> {
 
 export function createInvitation(payload: InvitationCreate): Promise<InvitationResponse> {
   return api<InvitationResponse>('/invitations', { method: 'POST', body: payload });
+}
+
+export function fetchInvitation(token: string): Promise<InvitationInfo> {
+  return api<InvitationInfo>(`/invitations/info/${token}`, { auth: false });
+}
+
+export function acceptInvitation(
+  token: string,
+  payload: InvitationAcceptPayload = {},
+): Promise<InvitationAcceptResponse> {
+  return api<InvitationAcceptResponse>(`/invitations/info/${token}/accept`, {
+    method: 'POST',
+    body: payload,
+    auth: false,
+  });
 }
 
 export function resendInvitation(invitationId: string) {

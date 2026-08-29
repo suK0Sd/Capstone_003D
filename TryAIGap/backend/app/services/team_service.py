@@ -13,10 +13,10 @@ from app.core.errors import APIError
 from app.core.security import generate_opaque_token, hash_token, now_utc, as_utc
 from app.integrations.email import send_email
 from app.models import (
-    Answer, Assessment, Delegation, Invitation, OrgMember, Question,
+    Answer, Assessment, Delegation, Invitation, Organization, OrgMember, Question,
     QuestionTranslation, User,
 )
-from app.schemas.team import DelegateCreate, InvitationCreate
+from app.schemas.team import DelegateCreate, InvitationAccept, InvitationCreate
 
 log = logging.getLogger("app.team")
 
@@ -302,3 +302,94 @@ async def answer_delegation(db: AsyncSession, token: str, value: int) -> dict:
     question = await db.get(Question, delegation.question_id)
     await db.flush()
     return {"status": "answered", "question_code": question.code if question else None}
+
+
+async def get_invitation(db: AsyncSession, token: str) -> dict:
+    token_hash = hash_token(token)
+    inv = (
+        await db.execute(select(Invitation).where(Invitation.token_hash == token_hash))
+    ).scalar_one_or_none()
+    if inv is None:
+        raise APIError(404, "RESOURCE_NOT_FOUND", "La invitación no es válida o ha sido eliminada.")
+
+    org = await db.get(Organization, inv.organization_id)
+    return {
+        "invitation_id": inv.id,
+        "full_name": inv.full_name,
+        "email": inv.email,
+        "organization_name": org.name if org else None,
+        "area_key": inv.area_key,
+        "status": inv.status,
+        "created_at": inv.created_at,
+    }
+
+
+async def accept_invitation(db: AsyncSession, token: str, payload: InvitationAccept) -> dict:
+    from app.services.auth_service import issue_tokens
+
+    token_hash = hash_token(token)
+    inv = (
+        await db.execute(select(Invitation).where(Invitation.token_hash == token_hash))
+    ).scalar_one_or_none()
+    if inv is None:
+        raise APIError(404, "RESOURCE_NOT_FOUND", "La invitación no es válida.")
+    if inv.status == "accepted":
+        raise APIError(409, "INVITE_ALREADY_ACCEPTED", "Esta invitación ya fue aceptada previamente.")
+
+    # Get or create user
+    user_q = await db.execute(select(User).where(User.email == inv.email))
+    user = user_q.scalar_one_or_none()
+    if user is None:
+        user = User(
+            email=inv.email,
+            full_name=payload.full_name or inv.full_name,
+            role="client",
+            status="active",
+        )
+        db.add(user)
+        await db.flush()
+    else:
+        if payload.full_name:
+            user.full_name = payload.full_name
+
+    # Link member
+    member_q = await db.execute(
+        select(OrgMember).where(
+            OrgMember.organization_id == inv.organization_id,
+            OrgMember.area_key == inv.area_key,
+        )
+    )
+    member = member_q.scalars().first()
+    if member is None:
+        member = OrgMember(
+            organization_id=inv.organization_id,
+            user_id=user.id,
+            role="leader",
+            area_key=inv.area_key,
+            status="active",
+        )
+        db.add(member)
+    else:
+        member.user_id = user.id
+        member.status = "active"
+
+    inv.status = "accepted"
+    await db.flush()
+
+    tokens = await issue_tokens(db, user)
+    org = await db.get(Organization, inv.organization_id)
+
+    return {
+        "token": tokens["access_token"],
+        "user": {
+            "id": str(user.id),
+            "email": user.email,
+            "full_name": user.full_name,
+            "role": user.role,
+            "organization": {
+                "id": str(org.id) if org else None,
+                "name": org.name if org else None,
+            } if org else None,
+        },
+    }
+

@@ -12,6 +12,7 @@ const Terms = lazy(() => import('@/pages/Terms'));
 const Login = lazy(() => import('@/pages/Login'));
 const AuthVerify = lazy(() => import('@/pages/AuthVerify'));
 const DelegateAnswer = lazy(() => import('@/pages/DelegateAnswer'));
+const InviteAccept = lazy(() => import('@/pages/InviteAccept'));
 const Catalog = lazy(() => import('@/pages/Catalog'));
 const Onboarding = lazy(() => import('@/pages/Onboarding'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
@@ -49,6 +50,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/auth/verify" element={<AuthVerify />} />
         <Route path="/delegate/:token" element={<DelegateAnswer />} />
+        <Route path="/invite/:token" element={<InviteAccept />} />
         <Route path="/catalog" element={<Catalog />} />
 
         {/* Protected */}

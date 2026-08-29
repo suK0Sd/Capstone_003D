@@ -1576,5 +1576,24 @@
       "Solicite uma revisão humana para calibrar os scores e enriquecer o relatório."
     ],
     "footer": "TryAIGap · Bridge the AI Gap"
+  },
+  "inviteAccept": {
+    "orgDefault": "Sua Organização",
+    "title": "Convite de Equipe",
+    "subtitle": "Você foi convidado para se juntar à {{org}} no tryAIGap para participar da avaliação de maturidade em Inteligência Artificial.",
+    "labelEmail": "E-mail (convite vinculado)",
+    "labelName": "Seu nome completo",
+    "placeholderName": "Ex. Maria Silva",
+    "submitCta": "Aceitar Convite e Entrar",
+    "submitting": "Aceitando convite...",
+    "footerNote": "Ao entrar, você terá acesso para responder diagnósticos e colaborar com sua equipe.",
+    "invalidTitle": "Link de convite inválido",
+    "invalidSub": "Este link de convite não existe ou foi revogado. Entre em contato com o administrador da equipe.",
+    "alreadyAcceptedTitle": "Convite já aceito",
+    "alreadyAcceptedSub": "Este convite já foi utilizado anteriormente. Faça login com seu e-mail para continuar.",
+    "alreadyAccepted": "Este convite já foi aceito anteriormente.",
+    "errorGeneric": "Ocorreu um erro ao processar o convite. Por favor tente novamente.",
+    "backToLogin": "Voltar para o login",
+    "goToLogin": "Entrar"
   }
 }
