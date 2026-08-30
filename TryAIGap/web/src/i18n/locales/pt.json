@@ -27,7 +27,19 @@
     "orInvite": "Recebeu um link de convite do seu consultor?",
     "paste": "Colar link de convite",
     "ctaDemo": "Ver demo do produto",
-    "legal": "Ao continuar, você aceita os Termos e a Política de Privacidade. Seus dados nunca são usados para treinar modelos de terceiros."
+    "legal": "Ao continuar, você aceita os Termos e a Política de Privacidade. Seus dados nunca são usados para treinar modelos de terceiros.",
+    "badge": "Acesso Seguro Passwordless",
+    "valueTitle": "Sua plataforma estratégica de IA empresarial",
+    "valueSub": "Acesse suas avaliações de maturidade, relatórios executivos e governança de IA sem senhas vulneráveis.",
+    "benefit1Title": "Segurança Criptográfica de Link Único",
+    "benefit1Desc": "Tokens efêmeros de uso único com expiração automática de 15 minutos e criptografia HMAC.",
+    "benefit2Title": "Continuidade de Diagnóstico M1 a M7",
+    "benefit2Desc": "Retome seus questionários, relatórios executivos em PDF e mapas de calor exatamente de onde parou.",
+    "benefit3Title": "Espaço de Consultores e Equipes",
+    "benefit3Desc": "Colaboração em tempo real para líderes de departamento e consultores seniores designados.",
+    "noAccount": "Não tem uma conta corporativa?",
+    "startFree": "Comece seu diagnóstico gratuito",
+    "submitting": "Enviando link..."
   },
   "onboarding": {
     "stepLabels": [
@@ -760,6 +772,12 @@
       "sub": "Dashboard com scores, heatmap, matriz Pain×Readiness e PDF para download.",
       "cta": "Ver",
       "meta": "Disponível com 70% do assessment"
+    },
+    "review": {
+      "title": "Revisão supervisionada",
+      "sub": "Sessão de 90 min com consultor sênior para calibrar scores e plano.",
+      "cta": "Agendar",
+      "meta": "Consultor sênior"
     }
   },
   "maturity": {

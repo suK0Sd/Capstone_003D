@@ -27,7 +27,19 @@
     "orInvite": "Got an invitation link from your consultant?",
     "paste": "Paste invitation link",
     "ctaDemo": "See product demo",
-    "legal": "By continuing you accept the Terms and Privacy Policy. Your data is never used to train third-party models."
+    "legal": "By continuing you accept the Terms and Privacy Policy. Your data is never used to train third-party models.",
+    "badge": "Passwordless Secure Access",
+    "valueTitle": "Your enterprise AI strategic platform",
+    "valueSub": "Access your maturity assessments, executive reports, and AI governance without vulnerable passwords.",
+    "benefit1Title": "Single-Use Cryptographic Security",
+    "benefit1Desc": "Ephemeral single-use tokens with automatic 15-minute expiration and HMAC encryption.",
+    "benefit2Title": "M1 to M7 Assessment Continuity",
+    "benefit2Desc": "Resume your questionnaires, executive PDF reports, and heatmaps exactly where you left off.",
+    "benefit3Title": "Consultants & Team Workspace",
+    "benefit3Desc": "Real-time collaboration for department leaders and assigned senior consultants.",
+    "noAccount": "Do not have a corporate account?",
+    "startFree": "Start your free assessment",
+    "submitting": "Sending link..."
   },
   "onboarding": {
     "stepLabels": [
@@ -760,6 +772,12 @@
       "sub": "Dashboard with scores, heat map, Pain×Readiness matrix and downloadable PDF.",
       "cta": "View",
       "meta": "Available at 70% of the assessment"
+    },
+    "review": {
+      "title": "Supervised Review",
+      "sub": "90-min session with senior consultant to calibrate scores and define plan.",
+      "cta": "Schedule",
+      "meta": "Senior consultant"
     }
   },
   "maturity": {

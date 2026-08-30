@@ -27,7 +27,19 @@
     "orInvite": "Einladungslink von Ihrem Berater erhalten?",
     "paste": "Einladungslink einfügen",
     "ctaDemo": "Produktdemo ansehen",
-    "legal": "Mit dem Fortfahren akzeptieren Sie die AGB und die Datenschutzerklärung. Ihre Daten werden niemals zum Training von Drittmodellen verwendet."
+    "legal": "Mit dem Fortfahren akzeptieren Sie die AGB und die Datenschutzerklärung. Ihre Daten werden niemals zum Training von Drittmodellen verwendet.",
+    "badge": "Sicherer passwortloser Zugang",
+    "valueTitle": "Ihre strategische Enterprise-KI-Plattform",
+    "valueSub": "Greifen Sie auf Ihre Reifegradbewertungen, Vorstandsberichte und KI-Governance ohne unsichere Passwörter zu.",
+    "benefit1Title": "Kryptografische Einmal-Link-Sicherheit",
+    "benefit1Desc": "Ephemere Einmal-Tokens mit automatischer 15-Minuten-Gültigkeit und HMAC-Verschlüsselung.",
+    "benefit2Title": "M1-bis-M7-Assessment-Kontinuität",
+    "benefit2Desc": "Setzen Sie Ihre Fragebögen, PDF-Vorstandsberichte und Heatmaps genau dort fort, wo Sie aufgehört haben.",
+    "benefit3Title": "Arbeitsbereich für Berater & Teams",
+    "benefit3Desc": "Echtzeit-Zusammenarbeit für Abteilungsleiter und zugewiesene Senior Consultants.",
+    "noAccount": "Sie haben noch kein Unternehmenskonto?",
+    "startFree": "Kostenlose Diagnose starten",
+    "submitting": "Link wird gesendet..."
   },
   "onboarding": {
     "stepLabels": [
@@ -760,6 +772,12 @@
       "sub": "Dashboard mit Scores, Heatmap, Pain×Readiness-Matrix und PDF-Download.",
       "cta": "Ansehen",
       "meta": "Verfügbar ab 70 % des Assessments"
+    },
+    "review": {
+      "title": "Betreute Überprüfung",
+      "sub": "90-minütige Sitzung mit Senior Consultant zur Kalibrierung und Aktionsplan.",
+      "cta": "Buchen",
+      "meta": "Senior Consultant"
     }
   },
   "maturity": {

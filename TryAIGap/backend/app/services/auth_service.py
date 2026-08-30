@@ -102,7 +102,7 @@ async def rotate_refresh_token(db: AsyncSession, refresh_token: str) -> dict:
     rt = result.scalar_one_or_none()
     if rt is None or rt.revoked_at is not None:
         raise APIError(401, "REFRESH_TOKEN_INVALID", "El refresh token no es válido.")
-    if rt.expires_at <= now_utc():
+    if as_utc(rt.expires_at) <= now_utc():
         raise APIError(410, "REFRESH_TOKEN_EXPIRED", "El refresh token expiró.")
 
     rt.revoked_at = now_utc()
