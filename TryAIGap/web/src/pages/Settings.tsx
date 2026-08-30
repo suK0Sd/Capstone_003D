@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { Construction, Moon, Sun } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Globe2, Moon, Palette, Sliders, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { SUPPORTED_LANGUAGES } from '@/i18n';
 import { useTheme } from '@/theme/theme-context';
 import { cn } from '@/lib/utils';
 
 /**
- * Preferences: language + theme are fully functional; legal/org data fields
- * are phase-2 stubs (PATCH /organizations/{id}).
+ * Preferences: language + theme are fully functional.
  */
 export default function Settings() {
   const { t, i18n } = useTranslation();
@@ -17,78 +15,97 @@ export default function Settings() {
   const current = (i18n.language ?? 'es').slice(0, 2);
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="mx-auto max-w-4xl space-y-8">
+      {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold">{t('settings.title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('settings.sub')}</p>
+        <div className="flex items-center gap-2 mb-1">
+          <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
+            <Sliders className="h-3 w-3" />
+            Preferencias de Usuario
+          </span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          {t('settings.title')}
+        </h1>
+        <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+          {t('settings.sub')}
+        </p>
       </div>
 
-      {/* Language */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">{t('settings.appLang')}</CardTitle>
-          <CardDescription>{t('settings.appLangDesc')}</CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-wrap gap-2" role="group" aria-label={t('common.language')}>
-          {SUPPORTED_LANGUAGES.map((lang) => (
-            <Button
-              key={lang.code}
-              variant={current === lang.code ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => void i18n.changeLanguage(lang.code)}
-              aria-pressed={current === lang.code}
-            >
-              {lang.name}
-            </Button>
-          ))}
-        </CardContent>
-      </Card>
-
-      {/* Theme */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">{t('settings.theme')}</CardTitle>
-        </CardHeader>
-        <CardContent className="flex gap-2" role="group" aria-label={t('common.theme')}>
-          <Button
-            variant={theme === 'light' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setTheme('light')}
-            aria-pressed={theme === 'light'}
-            className={cn(theme === 'light' && 'brand-gradient border-0 text-white')}
-          >
-            <Sun className="h-4 w-4" /> {t('settings.themeLight')}
-          </Button>
-          <Button
-            variant={theme === 'dark' ? 'default' : 'outline'}
-            size="sm"
-            onClick={() => setTheme('dark')}
-            aria-pressed={theme === 'dark'}
-            className={cn(theme === 'dark' && 'brand-gradient border-0 text-white')}
-          >
-            <Moon className="h-4 w-4" /> {t('settings.themeDark')}
-          </Button>
-        </CardContent>
-      </Card>
-
-      {/* Legal / org data — phase 2 */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <CardTitle className="text-base">{t('settings.legalTitle')}</CardTitle>
-            <Badge variant="secondary" className="gap-1">
-              <Construction className="h-3 w-3" />
-              {t('common.todo')}
-            </Badge>
+      <div className="grid gap-6 sm:grid-cols-2">
+        {/* Idioma */}
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 border-b border-border/60 pb-3">
+            <Globe2 className="h-4 w-4 text-primary" />
+            <div>
+              <h2 className="text-base font-bold text-foreground">{t('settings.appLang')}</h2>
+              <p className="text-xs text-muted-foreground">{t('settings.appLangDesc')}</p>
+            </div>
           </div>
-          <CardDescription>{t('settings.legalSub')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-xs text-muted-foreground">
-            <code className="rounded bg-muted px-1.5 py-0.5">PATCH /organizations/{'{id}'}</code>
-          </p>
-        </CardContent>
-      </Card>
+
+          <div className="grid grid-cols-2 gap-2.5" role="group" aria-label={t('common.language')}>
+            {SUPPORTED_LANGUAGES.map((lang) => (
+              <Button
+                key={lang.code}
+                variant="outline"
+                size="sm"
+                onClick={() => void i18n.changeLanguage(lang.code)}
+                aria-pressed={current === lang.code}
+                className={cn(
+                  'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
+                  current === lang.code
+                    ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
+                    : 'hover:bg-muted/40 text-foreground border-border/70',
+                )}
+              >
+                {lang.name}
+              </Button>
+            ))}
+          </div>
+        </SpotlightCard>
+
+        {/* Tema */}
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 border-b border-border/60 pb-3">
+            <Palette className="h-4 w-4 text-primary" />
+            <div>
+              <h2 className="text-base font-bold text-foreground">{t('settings.theme')}</h2>
+              <p className="text-xs text-muted-foreground">Alterna entre modo oscuro deep-tech y claro.</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5" role="group" aria-label={t('common.theme')}>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setTheme('light')}
+              aria-pressed={theme === 'light'}
+              className={cn(
+                'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
+                theme === 'light'
+                  ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
+                  : 'hover:bg-muted/40 text-foreground border-border/70',
+              )}
+            >
+              <Sun className="h-4 w-4 mr-1.5" /> {t('settings.themeLight')}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setTheme('dark')}
+              aria-pressed={theme === 'dark'}
+              className={cn(
+                'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
+                theme === 'dark'
+                  ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
+                  : 'hover:bg-muted/40 text-foreground border-border/70',
+              )}
+            >
+              <Moon className="h-4 w-4 mr-1.5" /> {t('settings.themeDark')}
+            </Button>
+          </div>
+        </SpotlightCard>
+      </div>
     </div>
   );
 }
