@@ -715,7 +715,7 @@
   "assistant": {
     "title": "Assistente TryAIGap",
     "sub": "IA no contexto do seu assessment · respostas indicativas",
-    "welcome": "Olá Max 👋 Sou seu assistente de IA do assessment. Posso ajudar a entender perguntas, priorizar áreas, comparar sua readiness com benchmarks ou resumir seu progresso. Por onde começamos?",
+    "welcome": "Olá Max, Sou seu assistente de IA do assessment. Posso ajudar a entender perguntas, priorizar áreas, comparar sua readiness com benchmarks ou resumir seu progresso. Por onde começamos?",
     "placeholder": "Digite sua pergunta...",
     "send": "Enviar",
     "suggestedLabel": "Prompts sugeridos",
@@ -842,37 +842,37 @@
   "areaList": {
     "ventas": {
       "name": "Vendas B2B",
-      "icon": "💼",
+      "icon": "Briefcase",
       "n": 16
     },
     "marketing": {
       "name": "Marketing & Demand Gen",
-      "icon": "📈",
+      "icon": "TrendingUp",
       "n": 16
     },
     "servicio": {
       "name": "Atendimento ao Cliente",
-      "icon": "🎧",
+      "icon": "Headphones",
       "n": 16
     },
     "finanzas": {
       "name": "Finanças & Administração",
-      "icon": "🧮",
+      "icon": "Calculator",
       "n": 16
     },
     "rrhh": {
       "name": "RH & Talento",
-      "icon": "👥",
+      "icon": "Users",
       "n": 16
     },
     "operaciones": {
       "name": "Operações de Planta",
-      "icon": "🏭",
+      "icon": "Factory",
       "n": 16
     },
     "legal": {
       "name": "Jurídico & Compliance",
-      "icon": "⚖️",
+      "icon": "Scale",
       "n": 16
     }
   },
@@ -991,7 +991,7 @@
     "evaluateConsultant": "Avaliar o consultor",
     "evaluated": "Avaliado",
     "rerate": "Alterar avaliação",
-    "avgRating": "★ {{n}}/5",
+    "avgRating": "{{n}}/5",
     "backToReview": "Voltar para \"Em revisão\"",
     "requestTitle": "Solicitar revisão humana",
     "requestCta": "Solicitar revisão",
@@ -1147,7 +1147,7 @@
     "preview": "Prévia da mensagem",
     "send": "Enviar ao WhatsApp do líder",
     "cancel": "Cancelar",
-    "sample": "Olá Margaret 👋 aqui é o agente TryAIGap. Pergunta 1 de 4 do Bloco A · Dados comerciais. Em uma escala de 1 a 5, onde você está? \"Temos um CRM corporativo único com adoção acima de 80%...\""
+    "sample": "Olá Margaret, aqui é o agente TryAIGap. Pergunta 1 de 4 do Bloco A · Dados comerciais. Em uma escala de 1 a 5, onde você está? \"Temos um CRM corporativo único com adoção acima de 80%...\""
   },
   "examples": {
     "org": {

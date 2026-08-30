@@ -197,6 +197,7 @@ export default function Login() {
                           <Input
                             id="login-email"
                             type="email"
+                            inputMode="email"
                             autoComplete="email"
                             autoFocus
                             required
@@ -211,7 +212,7 @@ export default function Login() {
                       </div>
 
                       {error && (
-                        <Alert variant="destructive" className="py-2.5">
+                        <Alert variant="destructive" role="alert" aria-live="polite" className="py-2.5">
                           <AlertDescription className="text-xs">{error}</AlertDescription>
                         </Alert>
                       )}

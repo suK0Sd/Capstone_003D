@@ -4,7 +4,7 @@
  * 1-5 scale + "No sé" + per-question delegation, debounced autosave,
  * freemium gating on the free plan (maturity module only).
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -251,6 +251,35 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
     setQIdx(0);
     setView('question');
   }
+
+  // Atajos de teclado accesibles (WCAG 2.2): teclas 1-5 seleccionan escala, flechas navegan
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (view !== 'question' || delegateOpen || paywallOpen) return;
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (e.key >= '1' && e.key <= '5') {
+        const val = parseInt(e.key, 10);
+        handleScale(val);
+      } else if (e.key === 'ArrowLeft') {
+        goPrev();
+      } else if (e.key === 'ArrowRight') {
+        goNext();
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [view, delegateOpen, paywallOpen, blockIdx, qIdx, question]);
 
   const levels = t('questionnaire.levels', { returnObjects: true }) as string[];
   const levelLabel = (score: number) =>

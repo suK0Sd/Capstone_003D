@@ -715,7 +715,7 @@
   "assistant": {
     "title": "TryAIGap Assistant",
     "sub": "AI in the context of your assessment · indicative answers",
-    "welcome": "Hi Max 👋 I’m your AI assessment assistant. I can help you understand questions, prioritize areas, compare your readiness with benchmarks, or summarize your progress. Where shall we start?",
+    "welcome": "Hi Max, I’m your AI assessment assistant. I can help you understand questions, prioritize areas, compare your readiness with benchmarks, or summarize your progress. Where shall we start?",
     "placeholder": "Type your question...",
     "send": "Send",
     "suggestedLabel": "Suggested prompts",
@@ -842,37 +842,37 @@
   "areaList": {
     "ventas": {
       "name": "Sales B2B",
-      "icon": "💼",
+      "icon": "Briefcase",
       "n": 16
     },
     "marketing": {
       "name": "Marketing & Demand Gen",
-      "icon": "📈",
+      "icon": "TrendingUp",
       "n": 16
     },
     "servicio": {
       "name": "Customer Service",
-      "icon": "🎧",
+      "icon": "Headphones",
       "n": 16
     },
     "finanzas": {
       "name": "Finance & Admin",
-      "icon": "🧮",
+      "icon": "Calculator",
       "n": 16
     },
     "rrhh": {
       "name": "HR & Talent",
-      "icon": "👥",
+      "icon": "Users",
       "n": 16
     },
     "operaciones": {
       "name": "Plant Operations",
-      "icon": "🏭",
+      "icon": "Factory",
       "n": 16
     },
     "legal": {
       "name": "Legal & Compliance",
-      "icon": "⚖️",
+      "icon": "Scale",
       "n": 16
     }
   },
@@ -991,7 +991,7 @@
     "evaluateConsultant": "Rate the consultant",
     "evaluated": "Rated",
     "rerate": "Change rating",
-    "avgRating": "★ {{n}}/5",
+    "avgRating": "{{n}}/5",
     "backToReview": "Back to \"Under review\"",
     "requestTitle": "Request human review",
     "requestCta": "Request review",
@@ -1147,7 +1147,7 @@
     "preview": "Message preview",
     "send": "Send to leader’s WhatsApp",
     "cancel": "Cancel",
-    "sample": "Hi Margaret 👋 this is the TryAIGap agent. Question 1 of 4 in Block A · Sales data. On a 1–5 scale, where are you? \"We have a single corporate CRM with >80% adoption...\""
+    "sample": "Hi Margaret, this is the TryAIGap agent. Question 1 of 4 in Block A · Sales data. On a 1–5 scale, where are you? \"We have a single corporate CRM with >80% adoption...\""
   },
   "examples": {
     "org": {

@@ -715,7 +715,7 @@
   "assistant": {
     "title": "TryAIGap-Assistent",
     "sub": "KI im Kontext Ihres Assessments · indikative Antworten",
-    "welcome": "Hallo Max 👋 Ich bin Ihr KI-Assessment-Assistent. Ich helfe Ihnen, Fragen zu verstehen, Bereiche zu priorisieren, Ihre Readiness mit Benchmarks zu vergleichen oder Ihren Fortschritt zusammenzufassen. Womit fangen wir an?",
+    "welcome": "Hallo Max, Ich bin Ihr KI-Assessment-Assistent. Ich helfe Ihnen, Fragen zu verstehen, Bereiche zu priorisieren, Ihre Readiness mit Benchmarks zu vergleichen oder Ihren Fortschritt zusammenzufassen. Womit fangen wir an?",
     "placeholder": "Ihre Frage eingeben...",
     "send": "Senden",
     "suggestedLabel": "Vorgeschlagene Prompts",
@@ -842,37 +842,37 @@
   "areaList": {
     "ventas": {
       "name": "Vertrieb B2B",
-      "icon": "💼",
+      "icon": "Briefcase",
       "n": 16
     },
     "marketing": {
       "name": "Marketing & Demand Gen",
-      "icon": "📈",
+      "icon": "TrendingUp",
       "n": 16
     },
     "servicio": {
       "name": "Kundenservice",
-      "icon": "🎧",
+      "icon": "Headphones",
       "n": 16
     },
     "finanzas": {
       "name": "Finanzen & Verwaltung",
-      "icon": "🧮",
+      "icon": "Calculator",
       "n": 16
     },
     "rrhh": {
       "name": "HR & Talent",
-      "icon": "👥",
+      "icon": "Users",
       "n": 16
     },
     "operaciones": {
       "name": "Produktionsbetrieb",
-      "icon": "🏭",
+      "icon": "Factory",
       "n": 16
     },
     "legal": {
       "name": "Recht & Compliance",
-      "icon": "⚖️",
+      "icon": "Scale",
       "n": 16
     }
   },
@@ -991,7 +991,7 @@
     "evaluateConsultant": "Berater bewerten",
     "evaluated": "Bewertet",
     "rerate": "Bewertung ändern",
-    "avgRating": "★ {{n}}/5",
+    "avgRating": "{{n}}/5",
     "backToReview": "Zurück zu „In Prüfung\"",
     "requestTitle": "Menschliche Prüfung anfordern",
     "requestCta": "Prüfung anfordern",
@@ -1147,7 +1147,7 @@
     "preview": "Nachrichtenvorschau",
     "send": "An WhatsApp des Verantwortlichen senden",
     "cancel": "Abbrechen",
-    "sample": "Hallo Margaret 👋 hier ist der TryAIGap-Agent. Frage 1 von 4 in Block A · Vertriebsdaten. Auf einer Skala von 1-5, wo stehen Sie? „Wir haben ein einziges Unternehmens-CRM mit >80 % Adoption...\""
+    "sample": "Hallo Margaret, hier ist der TryAIGap-Agent. Frage 1 von 4 in Block A · Vertriebsdaten. Auf einer Skala von 1-5, wo stehen Sie? „Wir haben ein einziges Unternehmens-CRM mit >80 % Adoption...\""
   },
   "examples": {
     "org": {

@@ -231,6 +231,25 @@ function ResultsBody({ results }: { results: ResultOut }) {
             </TableBody>
           </Table>
         </div>
+
+        {/* Leyenda Accesible de Intensidad (WCAG Data Visualization) */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-border/40 text-[11px] text-muted-foreground">
+          <span className="font-medium">Escala de Intensidad por Vector de Valor:</span>
+          <div className="flex flex-wrap items-center gap-3 font-medium">
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-muted border border-border" /> 1 - Bajo
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-primary/20 border border-primary/30" /> 2 - Oportunista
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-primary/50 border border-primary/40" /> 3 - Definido
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-3 w-3 rounded bg-primary/90 border border-primary" /> 4-5 - Alto / Crítico
+            </span>
+          </div>
+        </div>
       </SpotlightCard>
 
       {/* Prioridades Estratégicas y Recomendaciones */}
