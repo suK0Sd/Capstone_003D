@@ -1902,5 +1902,86 @@
     "errorGeneric": "An error occurred while processing the invitation. Please try again.",
     "backToLogin": "Back to Login",
     "goToLogin": "Log In"
+  },
+  "documents": {
+    "title": "Evidence Documents",
+    "sub": "Each document is associated with the question or area where it was uploaded.",
+    "uploadSuccess": "File {{name}} uploaded successfully.",
+    "uploadGenericError": "Error uploading file {{name}}.",
+    "uploadTooLarge": "File {{name}} exceeds the maximum allowed size (25 MB).",
+    "validationTooLarge": "File {{name}} exceeds the 1 GB client limit.",
+    "validationType": "Unsupported file format for {{name}}. Use PDF, DOCX, XLSX, PNG or JPG.",
+    "validationEmpty": "File {{name}} is empty."
+  },
+  "team": {
+    "title": "Team & Collaboration",
+    "sub": "Area leaders respond only to their domain via web or WhatsApp.",
+    "inviteCta": "Invite member",
+    "membersTitle": "Team Members",
+    "invitationsTitle": "Pending Invitations",
+    "thMember": "Member",
+    "thRole": "Role",
+    "thArea": "Assigned Area",
+    "thStatus": "Status",
+    "thEmail": "Email",
+    "thActions": "Actions",
+    "areaGeneral": "General (all areas)",
+    "linkCopied": "Invitation link for {{email}} copied to clipboard.",
+    "inviteSuccess": "Invitation sent successfully to {{email}}.",
+    "inviteGenericError": "Failed to send invitation.",
+    "inviteConflict": "A member or active invitation with this email already exists.",
+    "resendSuccess": "Invitation resent successfully.",
+    "resendError": "Failed to resend invitation.",
+    "revokeSuccess": "Invitation revoked successfully.",
+    "revokeError": "Failed to revoke invitation.",
+    "revokeConfirmTitle": "Revoke invitation?",
+    "revokeConfirmDesc": "The invitation link sent to {{email}} will be canceled.",
+    "revokeConfirmAction": "Revoke invitation",
+    "modalTitle": "Invite New Member or Area Leader",
+    "modalSub": "Send an access link to answer questionnaires or collaborate on the assessment.",
+    "formName": "Full name",
+    "formEmail": "Corporate email",
+    "formWhatsapp": "WhatsApp (optional)",
+    "formPhone": "Phone (optional)",
+    "formArea": "Assigned area",
+    "modalSend": "Send invitation",
+    "roles": {
+      "owner": "Owner / Admin",
+      "leader": "Area Leader",
+      "member": "Collaborator",
+      "viewer": "Viewer"
+    },
+    "memberStatus": {
+      "active": "Active",
+      "invited": "Invited",
+      "pending": "Pending",
+      "disabled": "Disabled"
+    },
+    "invStatus": {
+      "sent": "Sent",
+      "accepted": "Accepted",
+      "expired": "Expired"
+    }
+  },
+  "review": {
+    "title": "Consultant Supervised Review",
+    "sub": "A senior TryAIGap consultant reviews your answers, calibrates scores, and validates the executive report.",
+    "stages": [
+      "1. Requested & Scheduled",
+      "2. Session In Progress",
+      "3. Validation Completed"
+    ],
+    "chaptersTitle": "Validated Methodology Chapters",
+    "ratingTitle": "Consulting Session Rating",
+    "chapters": {
+      "m1": "Module 1: 5D Maturity & Strategic Alignment",
+      "m2": "Module 2: Area Diagnostics & Opportunity Map",
+      "m3": "Module 3: Innovation Portfolio & Two Horizons",
+      "m4": "Module 4: AI Decision Framework",
+      "m5": "Module 5: Functional Area Playbooks",
+      "m6": "Module 6: Technical Implementation & Change Management",
+      "m7": "Module 7: Center of Excellence (CoE) & Sustainability",
+      "overall": "Overall Executive Diagnostic"
+    }
   }
 }

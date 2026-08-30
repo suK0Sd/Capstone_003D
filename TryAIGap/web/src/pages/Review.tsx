@@ -2,18 +2,24 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { CalendarCheck2, CheckCircle2, Lock, Star, UserRound } from 'lucide-react';
-import { ApiError } from '@/api/client';
+import {
+  CalendarCheck2,
+  CheckCircle2,
+  Clock,
+  Lock,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  UserCheck,
+} from 'lucide-react';
 import { createReview, fetchReview, submitReviewRating } from '@/api';
 import type { ReviewOut } from '@/api/types';
 import { isRatingComplete } from '@/lib/reviewRating';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Skeleton } from '@/components/ui/skeleton';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { Textarea } from '@/components/ui/textarea';
 import { useAssessment } from '@/store/assessmentStore';
 import { cn } from '@/lib/utils';
@@ -33,7 +39,7 @@ function ScorePicker({
   idPrefix: string;
 }) {
   return (
-    <div className="flex gap-1" role="radiogroup">
+    <div className="flex gap-1.5" role="radiogroup">
       {[1, 2, 3, 4, 5].map((v) => (
         <button
           key={v}
@@ -44,10 +50,10 @@ function ScorePicker({
           aria-label={`${v} — ${labels[v - 1] ?? ''}`}
           onClick={() => onChange(v)}
           className={cn(
-            'flex h-9 w-9 items-center justify-center rounded-md border text-sm font-semibold transition-colors',
+            'flex h-9 w-9 items-center justify-center rounded-xl border text-xs font-bold transition-all cursor-pointer',
             value === v
-              ? 'border-primary bg-primary text-primary-foreground'
-              : 'hover:border-primary/60',
+              ? 'brand-gradient text-white shadow-md ring-2 ring-primary/30 border-0'
+              : 'border-border/70 bg-card/60 hover:border-primary/50 text-foreground hover:bg-muted/40',
           )}
         >
           {v}
@@ -58,12 +64,11 @@ function ScorePicker({
 }
 
 function ReviewStatus({ review, onRated }: { review: ReviewOut; onRated: (avg: number) => void }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const stages = t('review.stages', { returnObjects: true }) as string[];
   const scaleLabels = t('evaluation.labels', { returnObjects: true }) as string[];
 
-  const alreadyRated = localStorage.getItem(ratedKey(review.review_id)) !== null;
   const [ratingOpen, setRatingOpen] = useState(false);
   const [knowledge, setKnowledge] = useState<number | null>(null);
   const [friendliness, setFriendliness] = useState<number | null>(null);
@@ -94,312 +99,328 @@ function ReviewStatus({ review, onRated }: { review: ReviewOut; onRated: (avg: n
     onError: () => setRatingError(true),
   });
 
-  const dateFmt = new Intl.DateTimeFormat(i18n.language, { dateStyle: 'medium' });
   const storedAvg = Number(localStorage.getItem(ratedKey(review.review_id)) ?? Number.NaN);
 
   return (
-    <>
-      {/* Stage stepper */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">{t('review.status')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ol className="flex flex-wrap items-center gap-2">
-            {stages.map((label, i) => (
-              <li key={label} className="flex items-center gap-2">
-                <span
+    <div className="space-y-6">
+      {/* Stepper de 3 Fases de la Revisión */}
+      <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 md:p-8 shadow-sm space-y-6">
+        <div>
+          <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
+            Estado de la sesión
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-0.5">
+            Acompañamiento con Consultor Sénior
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {stages.map((st, i) => {
+            const active = i === currentStage;
+            const done = i < currentStage;
+            return (
+              <div
+                key={st}
+                className={cn(
+                  'rounded-xl border p-4 transition-all flex items-center gap-3',
+                  active
+                    ? 'border-primary bg-primary/10 shadow-sm ring-1 ring-primary/30'
+                    : done
+                      ? 'border-emerald-500/30 bg-emerald-500/5 text-foreground'
+                      : 'border-border/60 bg-card/40 opacity-60 text-muted-foreground',
+                )}
+              >
+                <div
                   className={cn(
-                    'flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm',
-                    i <= currentStage
-                      ? 'border-primary bg-primary/10 font-medium text-primary'
-                      : 'text-muted-foreground',
+                    'flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold shrink-0',
+                    active
+                      ? 'brand-gradient text-white'
+                      : done
+                        ? 'bg-emerald-500 text-white'
+                        : 'bg-muted text-muted-foreground',
                   )}
                 >
-                  {i <= currentStage && <CheckCircle2 className="h-3.5 w-3.5" />}
-                  {label}
-                </span>
-                {i < stages.length - 1 && <span className="text-muted-foreground">→</span>}
-              </li>
-            ))}
-          </ol>
-          <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
-            <UserRound className="h-4 w-4" />
-            {t('review.consultantLabel')}:{' '}
-            <span className="font-medium text-foreground">
-              {review.consultant ?? t('review.pendingAssign')}
-            </span>
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Chapters */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">{t('review.chapters')}</CardTitle>
-          <CardDescription>{t('review.validatedSub')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          {review.chapters.length === 0 ? (
-            <p className="text-sm text-muted-foreground">{t('review.noChapters')}</p>
-          ) : (
-            <ul className="space-y-3">
-              {review.chapters.map((c) => (
-                <li key={c.chapter_key} className="rounded-lg border p-3">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-medium">{c.chapter_key}</span>
-                    <Badge variant={c.validated ? 'default' : 'secondary'}>
-                      {c.validated ? t('review.validatedChip') : t('review.pendingChip')}
-                    </Badge>
-                  </div>
-                  {c.note && <p className="mt-1 text-sm text-muted-foreground">{c.note}</p>}
-                  {c.validated_at && (
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {t('review.validatedOn')} {dateFmt.format(new Date(c.validated_at))}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-          {review.chapters.length > 0 && (
-            <p className="mt-3 text-xs text-muted-foreground">
-              {validatedCount}/{review.chapters.length} · {t('review.validatedTitle')}
-            </p>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Rating */}
-      {currentStage === 2 && (
-        <Card>
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-primary" />
-              <CardTitle className="text-base">{t('evaluation.title')}</CardTitle>
-            </div>
-            <CardDescription>{t('evaluation.sub')}</CardDescription>
-          </CardHeader>
-          <CardContent>
-            {alreadyRated || ratedAvg !== null ? (
-              <Alert>
-                <AlertTitle>{t('evaluation.successTitle')}</AlertTitle>
-                <AlertDescription>
-                  {t('evaluation.successSub')}{' '}
-                  {t('review.avgRating', { n: ratedAvg ?? storedAvg })}
-                </AlertDescription>
-              </Alert>
-            ) : ratingOpen ? (
-              <form
-                className="space-y-5"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setRatingError(false);
-                  ratingMutation.mutate();
-                }}
-              >
+                  {done ? <CheckCircle2 className="h-4 w-4" /> : i + 1}
+                </div>
                 <div>
-                  <Label>{t('evaluation.q1Title')}</Label>
-                  <p className="mb-2 text-xs text-muted-foreground">{t('evaluation.q1Desc')}</p>
+                  <p className="text-xs font-bold text-foreground">{st}</p>
+                  <p className="text-[10px] text-muted-foreground">
+                    {i === 0 ? 'Agenda coordinada' : i === 1 ? 'Sesión de 90 min' : 'Resultados calibrados'}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Tarjeta de Consultor Asignado */}
+        <div className="rounded-xl border border-border/70 bg-card/50 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl brand-gradient text-white shadow-md text-lg font-bold">
+              {review.consultant ? review.consultant.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase() : 'CS'}
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">Consultor Sénior Asignado</p>
+              <h3 className="text-sm font-bold text-foreground">{review.consultant || 'Especialista TryAIGap'}</h3>
+              <p className="text-[11px] text-muted-foreground">consultoria@tryaigap.com</p>
+            </div>
+          </div>
+
+          <div className="text-left sm:text-right text-xs text-muted-foreground space-y-1">
+            <p className="flex items-center sm:justify-end gap-1.5">
+              <Clock className="h-3.5 w-3.5 text-primary" /> Duración: 90 minutos
+            </p>
+            <p className="flex items-center sm:justify-end gap-1.5">
+              <CalendarCheck2 className="h-3.5 w-3.5 text-primary" />
+              Sesión síncrona / Asíncrona
+            </p>
+          </div>
+        </div>
+      </SpotlightCard>
+
+      {/* Checklist de Capítulos Validados */}
+      <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm space-y-4">
+        <div className="flex items-center justify-between border-b border-border/60 pb-3">
+          <div>
+            <h2 className="text-base font-bold text-foreground">{t('review.chaptersTitle')}</h2>
+            <p className="text-xs text-muted-foreground">Revisión y calibración técnica de cada entregable metodológico.</p>
+          </div>
+          <Badge variant="secondary" className="text-xs font-semibold">
+            {validatedCount} de {review.chapters.length} validados
+          </Badge>
+        </div>
+
+        <div className="space-y-2.5">
+          {review.chapters.map((ch) => (
+            <div
+              key={ch.chapter_key}
+              className={cn(
+                'flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border p-3.5 text-xs transition-all',
+                ch.validated
+                  ? 'border-emerald-500/30 bg-emerald-500/5'
+                  : 'border-border/60 bg-card/40',
+              )}
+            >
+              <div className="space-y-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-foreground">
+                    {t(`review.chapters.${ch.chapter_key}`, { defaultValue: ch.chapter_key })}
+                  </span>
+                  {ch.validated ? (
+                    <Badge variant="outline" className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30 text-[10px]">
+                      Validado por consultor
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="text-[10px] text-muted-foreground">
+                      Pendiente de sesión
+                    </Badge>
+                  )}
+                </div>
+                {ch.note && (
+                  <p className="text-[11px] text-muted-foreground mt-1 bg-card/60 p-2 rounded-lg border border-border/40">
+                    <strong>Notas:</strong> {ch.note}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </SpotlightCard>
+
+      {/* Sección de Evaluación del Consultor */}
+      {(review.stage >= 2 || !Number.isNaN(storedAvg)) && (
+        <SpotlightCard className="rounded-2xl border border-primary/30 bg-card/90 p-6 md:p-8 shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-border/60 pb-3">
+            <div>
+              <h2 className="text-base font-bold text-foreground">{t('review.ratingTitle')}</h2>
+              <p className="text-xs text-muted-foreground">Tu retroalimentación nos ayuda a asegurar el más alto rigor de consultoría.</p>
+            </div>
+            {(!Number.isNaN(storedAvg) || ratedAvg !== null) && (
+              <Badge className="brand-gradient text-white border-0 text-xs px-2.5 py-1">
+                <Star className="h-3.5 w-3.5 mr-1 fill-white" />
+                {(ratedAvg ?? storedAvg).toFixed(1)} / 5.0
+              </Badge>
+            )}
+          </div>
+
+          {!ratingOpen && !ratedAvg && Number.isNaN(storedAvg) && (
+            <Button
+              onClick={() => setRatingOpen(true)}
+              className="brand-gradient text-white font-bold text-xs h-10 px-5 rounded-xl shadow-md cursor-pointer"
+            >
+              <Star className="h-3.5 w-3.5 mr-1.5" />
+              Evaluar sesión de consultoría
+            </Button>
+          )}
+
+          {ratingOpen && (
+            <div className="space-y-4 pt-2 text-xs">
+              {ratingError && (
+                <Alert variant="destructive" className="rounded-xl">
+                  <AlertDescription>Ocurrió un error al enviar la evaluación. Intenta nuevamente.</AlertDescription>
+                </Alert>
+              )}
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">Dominio metodológico</Label>
                   <ScorePicker
                     value={knowledge}
                     onChange={setKnowledge}
                     labels={scaleLabels}
-                    idPrefix="q1"
+                    idPrefix="score-knowledge"
                   />
                 </div>
-                <div>
-                  <Label>{t('evaluation.q2Title')}</Label>
-                  <p className="mb-2 text-xs text-muted-foreground">{t('evaluation.q2Desc')}</p>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">Claridad y trato</Label>
                   <ScorePicker
                     value={friendliness}
                     onChange={setFriendliness}
                     labels={scaleLabels}
-                    idPrefix="q2"
+                    idPrefix="score-friendliness"
                   />
                 </div>
-                <div>
-                  <Label>{t('evaluation.q3Title')}</Label>
-                  <p className="mb-2 text-xs text-muted-foreground">{t('evaluation.q3Desc')}</p>
+
+                <div className="space-y-1.5">
+                  <Label className="text-xs font-semibold">Utilidad de recomendaciones</Label>
                   <ScorePicker
                     value={methodology}
                     onChange={setMethodology}
                     labels={scaleLabels}
-                    idPrefix="q3"
+                    idPrefix="score-methodology"
                   />
                 </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="rating-comments">{t('evaluation.q4Title')}</Label>
-                  <Textarea
-                    id="rating-comments"
-                    value={comments}
-                    onChange={(e) => setComments(e.target.value)}
-                    placeholder={t('evaluation.q4Ph')}
-                    rows={3}
-                  />
-                </div>
-                {!isRatingComplete({ knowledge, friendliness, methodology }) && (
-                  <p className="text-sm text-muted-foreground">{t('evaluation.missing')}</p>
-                )}
-                {ratingError && (
-                  <Alert variant="destructive">
-                    <AlertDescription>{t('common.errorGeneric')}</AlertDescription>
-                  </Alert>
-                )}
-                <div className="flex justify-end gap-2">
-                  <Button type="button" variant="outline" onClick={() => setRatingOpen(false)}>
-                    {t('evaluation.cancel')}
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={
-                      !isRatingComplete({ knowledge, friendliness, methodology }) ||
-                      ratingMutation.isPending
-                    }
-                  >
-                    {ratingMutation.isPending ? t('common.loading') : t('evaluation.save')}
-                  </Button>
-                </div>
-              </form>
-            ) : (
-              <Button onClick={() => setRatingOpen(true)}>
-                <Star className="h-4 w-4" /> {t('review.rateCta')}
-              </Button>
-            )}
-          </CardContent>
-        </Card>
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="review-comments" className="text-xs font-semibold">Comentarios adicionales (opcional)</Label>
+                <Textarea
+                  id="review-comments"
+                  value={comments}
+                  onChange={(e) => setComments(e.target.value)}
+                  placeholder="Escribe comentarios sobre las recomendaciones o el plan de trabajo..."
+                  className="text-xs rounded-xl"
+                  rows={3}
+                />
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <Button
+                  size="sm"
+                  className="brand-gradient text-white font-bold text-xs h-9 px-4 rounded-xl shadow-md cursor-pointer"
+                  disabled={!isRatingComplete({ knowledge, friendliness, methodology }) || ratingMutation.isPending}
+                  onClick={() => ratingMutation.mutate()}
+                >
+                  <Sparkles className="h-3.5 w-3.5 mr-1.5" />
+                  {ratingMutation.isPending ? t('common.loading') : 'Enviar evaluación'}
+                </Button>
+                <Button variant="ghost" size="sm" onClick={() => setRatingOpen(false)} className="text-xs rounded-xl">
+                  {t('common.cancel')}
+                </Button>
+              </div>
+            </div>
+          )}
+        </SpotlightCard>
       )}
-    </>
+    </div>
   );
 }
 
-/** Human review: request, status tracking (polled), consultant rating. */
+/** Human review landing: booking or status + chapters + rating. */
 export default function Review() {
   const { t } = useTranslation();
-  const { assessment, status: assessmentStatus, reload } = useAssessment();
-  const [mode, setMode] = useState<'sync' | 'async'>('async');
-  const [requestError, setRequestError] = useState<'paywall' | 'conflict' | 'generic' | null>(null);
+  const { assessment } = useAssessment();
 
-  if (assessmentStatus === 'idle') void reload();
-
-  const storedId = assessment ? localStorage.getItem(reviewKey(assessment.id)) : null;
-  const [createdId, setCreatedId] = useState<string | null>(null);
-  const reviewId = createdId ?? storedId;
+  const existingReviewId = assessment ? localStorage.getItem(reviewKey(assessment.id)) : null;
 
   const reviewQuery = useQuery({
-    queryKey: ['review', reviewId],
-    queryFn: async () => {
-      try {
-        return await fetchReview(reviewId!);
-      } catch (e) {
-        // Stored review no longer exists → clear it and fall back to the form.
-        if (e instanceof ApiError && e.status === 404 && assessment) {
-          localStorage.removeItem(reviewKey(assessment.id));
-          return null;
-        }
-        throw e;
-      }
-    },
-    enabled: !!reviewId,
-    refetchInterval: (query) => ((query.state.data?.stage ?? 2) < 2 ? 5000 : false),
-    retry: 0,
+    queryKey: ['review', existingReviewId],
+    queryFn: () => fetchReview(existingReviewId!),
+    enabled: !!existingReviewId,
   });
 
   const createMutation = useMutation({
-    mutationFn: () => createReview({ assessment_id: assessment!.id, mode }),
-    onSuccess: (res) => {
-      if (assessment) localStorage.setItem(reviewKey(assessment.id), res.review_id);
-      setCreatedId(res.review_id);
-      setRequestError(null);
-    },
-    onError: (e) => {
-      if (e instanceof ApiError && e.status === 402) setRequestError('paywall');
-      else if (e instanceof ApiError && e.code === 'REVIEW_ALREADY_REQUESTED')
-        setRequestError('conflict');
-      else setRequestError('generic');
+    mutationFn: () =>
+      createReview({
+        assessment_id: assessment!.id,
+        mode: 'sync',
+      }),
+    onSuccess: (data) => {
+      localStorage.setItem(reviewKey(assessment!.id), data.review_id);
+      void reviewQuery.refetch();
     },
   });
 
-  const review = reviewQuery.data;
-
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold">{t('review.title')}</h1>
-        <p className="text-sm text-muted-foreground">{t('review.sub')}</p>
+    <div className="mx-auto max-w-6xl space-y-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
+              <ShieldCheck className="h-3 w-3" />
+              Módulo 7: Revisión Supervisada
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+            {t('review.title')}
+          </h1>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+            {t('review.sub')}
+          </p>
+        </div>
       </div>
 
-      {!assessment && (
-        <Alert>
-          <AlertDescription>
-            {t('common.noAssessment')}{' '}
-            <Button asChild variant="outline" size="sm" className="ml-2">
-              <Link to="/onboarding">{t('common.startDiagnostic')}</Link>
-            </Button>
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {reviewId && reviewQuery.isLoading && <Skeleton className="h-40 w-full" />}
-
-      {(!reviewId || reviewQuery.data === null) && assessment && !reviewQuery.isLoading && (
-        <Card>
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <CalendarCheck2 className="h-5 w-5 text-primary" />
-              <CardTitle className="text-base">{t('review.requestTitle')}</CardTitle>
+      {assessment?.plan === 'free' && (
+        <SpotlightCard className="rounded-2xl border border-primary/40 bg-card/90 p-6 md:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0">
+                <Lock className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-foreground">Acompañamiento exclusivo del Plan Pro</h3>
+                <p className="text-xs text-muted-foreground mt-0.5 max-w-lg">
+                  La sesión de 90 minutos con un consultor sénior para calibración y plan de acción directivo requiere el Plan Pro.
+                </p>
+              </div>
             </div>
-            <CardDescription>{t('review.modeLabel')}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <RadioGroup value={mode} onValueChange={(v) => setMode(v as 'sync' | 'async')}>
-              {(['async', 'sync'] as const).map((m) => (
-                <div key={m} className="flex items-start gap-3 rounded-lg border p-3">
-                  <RadioGroupItem value={m} id={`mode-${m}`} className="mt-0.5" />
-                  <div>
-                    <Label htmlFor={`mode-${m}`} className="font-medium">
-                      {t(`review.modes.${m}`)}
-                    </Label>
-                    <p className="text-sm text-muted-foreground">{t(`review.modesDesc.${m}`)}</p>
-                  </div>
-                </div>
-              ))}
-            </RadioGroup>
-
-            {requestError === 'paywall' && (
-              <Alert>
-                <Lock className="h-4 w-4" />
-                <AlertDescription>
-                  {t('review.needPro')}{' '}
-                  <Button asChild variant="outline" size="sm" className="ml-2">
-                    <Link to="/estimator">{t('common.upgrade')}</Link>
-                  </Button>
-                </AlertDescription>
-              </Alert>
-            )}
-            {requestError === 'conflict' && (
-              <Alert>
-                <AlertDescription>{t('review.requestedInfo')}</AlertDescription>
-              </Alert>
-            )}
-            {requestError === 'generic' && (
-              <Alert variant="destructive">
-                <AlertDescription>{t('common.errorGeneric')}</AlertDescription>
-              </Alert>
-            )}
-
-            <Button
-              className="brand-gradient border-0 text-white"
-              disabled={createMutation.isPending}
-              onClick={() => createMutation.mutate()}
-            >
-              {createMutation.isPending ? t('common.loading') : t('review.requestCta')}
+            <Button asChild className="brand-gradient text-white font-bold text-xs h-10 px-5 rounded-xl shadow-md cursor-pointer">
+              <Link to="/estimator">{t('dashboard.upgradeCta')}</Link>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </SpotlightCard>
       )}
 
-      {review && <ReviewStatus review={review} onRated={() => undefined} />}
+      {reviewQuery.data ? (
+        <ReviewStatus
+          review={reviewQuery.data}
+          onRated={() => void reviewQuery.refetch()}
+        />
+      ) : assessment?.plan !== 'free' ? (
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 md:p-8 text-center space-y-4">
+          <div className="flex justify-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl brand-gradient text-white shadow-lg">
+              <UserCheck className="h-7 w-7" />
+            </div>
+          </div>
+          <div className="space-y-1">
+            <h2 className="text-lg font-bold text-foreground">Solicita tu sesión de 90 minutos</h2>
+            <p className="text-xs text-muted-foreground max-w-md mx-auto">
+              Un consultor sénior TryAIGap revisará tus respuestas, calibrará tus puntuaciones y te entregará recomendaciones ejecutivas defendibles.
+            </p>
+          </div>
+          <Button
+            onClick={() => createMutation.mutate()}
+            disabled={createMutation.isPending}
+            className="brand-gradient text-white font-bold text-xs h-11 px-6 rounded-xl shadow-lg cursor-pointer"
+          >
+            <CalendarCheck2 className="h-4 w-4 mr-1.5" />
+            {createMutation.isPending ? t('common.loading') : 'Agendar sesión de revisión'}
+          </Button>
+        </SpotlightCard>
+      ) : null}
     </div>
   );
 }

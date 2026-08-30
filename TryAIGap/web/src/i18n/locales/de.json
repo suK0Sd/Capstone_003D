@@ -1903,5 +1903,86 @@
     "errorGeneric": "Beim Verarbeiten der Einladung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
     "backToLogin": "Zurück zum Login",
     "goToLogin": "Anmelden"
+  },
+  "documents": {
+    "title": "Nachweisdokumente",
+    "sub": "Jedes Dokument wird der jeweiligen Frage oder dem Bereich zugeordnet.",
+    "uploadSuccess": "Datei {{name}} erfolgreich hochgeladen.",
+    "uploadGenericError": "Fehler beim Hochladen der Datei {{name}}.",
+    "uploadTooLarge": "Datei {{name}} überschreitet die maximal zulässige Größe (25 MB).",
+    "validationTooLarge": "Datei {{name}} überschreitet das Limit von 1 GB.",
+    "validationType": "Nicht unterstütztes Format für {{name}}. Verwenden Sie PDF, DOCX, XLSX, PNG oder JPG.",
+    "validationEmpty": "Datei {{name}} ist leer."
+  },
+  "team": {
+    "title": "Team & Zusammenarbeit",
+    "sub": "Bereichsleiter antworten nur auf ihren Bereich über das Web oder WhatsApp.",
+    "inviteCta": "Mitglied einladen",
+    "membersTitle": "Teammitglieder",
+    "invitationsTitle": "Ausstehende Einladungen",
+    "thMember": "Mitglied",
+    "thRole": "Rolle",
+    "thArea": "Zugewiesener Bereich",
+    "thStatus": "Status",
+    "thEmail": "E-Mail",
+    "thActions": "Aktionen",
+    "areaGeneral": "Allgemein (alle Bereiche)",
+    "linkCopied": "Einladungslink für {{email}} in die Zwischenablage kopiert.",
+    "inviteSuccess": "Einladung erfolgreich an {{email}} gesendet.",
+    "inviteGenericError": "Fehler beim Senden der Einladung.",
+    "inviteConflict": "Ein Mitglied oder eine aktive Einladung mit dieser E-Mail existiert bereits.",
+    "resendSuccess": "Einladung erfolgreich erneut gesendet.",
+    "resendError": "Fehler beim erneuten Senden der Einladung.",
+    "revokeSuccess": "Einladung erfolgreich widerrufen.",
+    "revokeError": "Fehler beim Widerrufen der Einladung.",
+    "revokeConfirmTitle": "Einladung widerrufen?",
+    "revokeConfirmDesc": "Der an {{email}} gesendete Einladungslink wird storniert.",
+    "revokeConfirmAction": "Einladung widerrufen",
+    "modalTitle": "Neues Mitglied oder Bereichsleiter einladen",
+    "modalSub": "Senden Sie einen Zugangslink zur Beantwortung von Fragebögen.",
+    "formName": "Vollständiger Name",
+    "formEmail": "Geschäftliche E-Mail",
+    "formWhatsapp": "WhatsApp (optional)",
+    "formPhone": "Telefon (optional)",
+    "formArea": "Zugewiesener Bereich",
+    "modalSend": "Einladung senden",
+    "roles": {
+      "owner": "Inhaber / Admin",
+      "leader": "Bereichsleiter",
+      "member": "Mitarbeiter",
+      "viewer": "Beobachter"
+    },
+    "memberStatus": {
+      "active": "Aktiv",
+      "invited": "Eingeladen",
+      "pending": "Ausstehend",
+      "disabled": "Deaktiviert"
+    },
+    "invStatus": {
+      "sent": "Gesendet",
+      "accepted": "Angenommen",
+      "expired": "Abgelaufen"
+    }
+  },
+  "review": {
+    "title": "Supervidierte Beraterprüfung",
+    "sub": "Ein leitender Berater von TryAIGap prüft Ihre Antworten, kalibriert Scores und validiert den Abschlussbericht.",
+    "stages": [
+      "1. Angefordert & Geplant",
+      "2. Sitzung läuft",
+      "3. Validierung abgeschlossen"
+    ],
+    "chaptersTitle": "Validierte Methodikkapitel",
+    "ratingTitle": "Bewertung der Beratung",
+    "chapters": {
+      "m1": "Modul 1: 5D-Reife & Strategische Ausrichtung",
+      "m2": "Modul 2: Bereichsdiagnose & Chancen-Map",
+      "m3": "Modul 3: Innovationsportfolio & Zwei Horizonte",
+      "m4": "Modul 4: KI-Entscheidungsrahmen",
+      "m5": "Modul 5: Rezepte nach Funktionsbereich",
+      "m6": "Modul 6: Technische Implementierung & Change Management",
+      "m7": "Modul 7: Center of Excellence (CoE) & Nachhaltigkeit",
+      "overall": "Allgemeine Vorstandsdiagnose"
+    }
   }
 }

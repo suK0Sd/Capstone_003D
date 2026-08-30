@@ -1903,5 +1903,86 @@
     "errorGeneric": "Ocorreu um erro ao processar o convite. Por favor tente novamente.",
     "backToLogin": "Voltar para o login",
     "goToLogin": "Entrar"
+  },
+  "documents": {
+    "title": "Documentos de Evidência",
+    "sub": "Cada documento fica associado à pergunta ou área de onde foi enviado.",
+    "uploadSuccess": "Arquivo {{name}} enviado com sucesso.",
+    "uploadGenericError": "Erro ao enviar o arquivo {{name}}.",
+    "uploadTooLarge": "O arquivo {{name}} excede o tamanho máximo permitido (25 MB).",
+    "validationTooLarge": "O arquivo {{name}} ultrapassa o limite de 1 GB.",
+    "validationType": "Formato de {{name}} não suportado. Use PDF, DOCX, XLSX, PNG ou JPG.",
+    "validationEmpty": "O arquivo {{name}} está vazio."
+  },
+  "team": {
+    "title": "Equipe e Colaboração",
+    "sub": "Líder por área. Cada um responde apenas à sua seção, via web ou WhatsApp.",
+    "inviteCta": "Convidar membro",
+    "membersTitle": "Membros da Equipe",
+    "invitationsTitle": "Convites Pendentes",
+    "thMember": "Membro",
+    "thRole": "Função",
+    "thArea": "Área Atribuída",
+    "thStatus": "Status",
+    "thEmail": "E-mail",
+    "thActions": "Ações",
+    "areaGeneral": "Geral (todas as áreas)",
+    "linkCopied": "Link de convite para {{email}} copiado para a área de transferência.",
+    "inviteSuccess": "Convite enviado com sucesso para {{email}}.",
+    "inviteGenericError": "Erro ao enviar o convite.",
+    "inviteConflict": "Já existe um membro ou convite ativo com este e-mail.",
+    "resendSuccess": "Convite reenviado com sucesso.",
+    "resendError": "Erro ao reenviar o convite.",
+    "revokeSuccess": "Convite revogado com sucesso.",
+    "revokeError": "Erro ao revocar o convite.",
+    "revokeConfirmTitle": "Revogar convite?",
+    "revokeConfirmDesc": "O link de convite enviado para {{email}} será cancelado.",
+    "revokeConfirmAction": "Revogar convite",
+    "modalTitle": "Convidar Novo Membro ou Líder de Área",
+    "modalSub": "Envie um link de acesso para responder questionários ou colaborar no diagnóstico.",
+    "formName": "Nome completo",
+    "formEmail": "E-mail corporativo",
+    "formWhatsapp": "WhatsApp (opcional)",
+    "formPhone": "Telefone (opcional)",
+    "formArea": "Área atribuída",
+    "modalSend": "Enviar convite",
+    "roles": {
+      "owner": "Proprietário / Admin",
+      "leader": "Líder de Área",
+      "member": "Colaborador",
+      "viewer": "Visualizador"
+    },
+    "memberStatus": {
+      "active": "Ativo",
+      "invited": "Convidado",
+      "pending": "Pendente",
+      "disabled": "Desativado"
+    },
+    "invStatus": {
+      "sent": "Enviado",
+      "accepted": "Aceito",
+      "expired": "Expirado"
+    }
+  },
+  "review": {
+    "title": "Revisão Supervisionada por Consultores",
+    "sub": "Um consultor sênior TryAIGap revisa suas respostas, calibra pontuações e valida o relatório executivo.",
+    "stages": [
+      "1. Solicitada e Agendada",
+      "2. Sessão em Andamento",
+      "3. Validação Concluída"
+    ],
+    "chaptersTitle": "Capítulos da Metodologia Validados",
+    "ratingTitle": "Avaliação da Consultoria",
+    "chapters": {
+      "m1": "Módulo 1: Maturidade 5D e Alinhamento Estratégico",
+      "m2": "Módulo 2: Diagnóstico de Áreas e Mapa de Oportunidades",
+      "m3": "Módulo 3: Portfólio de Inovação e Dois Horizontes",
+      "m4": "Módulo 4: Estrutura de Decisão de IA",
+      "m5": "Módulo 5: Receitas por Área Funcional",
+      "m6": "Módulo 6: Implementação Técnica e Gestão de Mudança",
+      "m7": "Módulo 7: Centro de Excelência (CoE) e Sustentabilidade",
+      "overall": "Diagnóstico Executivo Geral"
+    }
   }
 }

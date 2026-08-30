@@ -1902,5 +1902,86 @@
     "errorGeneric": "Ocurrió un error al procesar la invitación. Por favor intenta nuevamente.",
     "backToLogin": "Ir al inicio de sesión",
     "goToLogin": "Iniciar Sesión"
+  },
+  "documents": {
+    "title": "Documentos de evidencia",
+    "sub": "Cada documento queda asociado a la pregunta o área desde donde se subió.",
+    "uploadSuccess": "Archivo {{name}} subido con éxito.",
+    "uploadGenericError": "Error al subir el archivo {{name}}.",
+    "uploadTooLarge": "El archivo {{name}} excede el tamaño máximo permitido (25 MB).",
+    "validationTooLarge": "El archivo {{name}} supera el límite de 1 GB.",
+    "validationType": "Formato de {{name}} no permitido. Usa PDF, DOCX, XLSX, PNG o JPG.",
+    "validationEmpty": "El archivo {{name}} está vacío."
+  },
+  "team": {
+    "title": "Equipo y colaboración",
+    "sub": "Líder por área. Cada uno responde solo lo suyo, vía web o WhatsApp.",
+    "inviteCta": "Invitar miembro",
+    "membersTitle": "Miembros del Equipo",
+    "invitationsTitle": "Invitaciones Pendientes",
+    "thMember": "Miembro",
+    "thRole": "Rol",
+    "thArea": "Área Asignada",
+    "thStatus": "Estado",
+    "thEmail": "Correo",
+    "thActions": "Acciones",
+    "areaGeneral": "General (todas las áreas)",
+    "linkCopied": "Enlace de invitación para {{email}} copiado al portapapeles.",
+    "inviteSuccess": "Invitación enviada exitosamente a {{email}}.",
+    "inviteGenericError": "Error al enviar la invitación.",
+    "inviteConflict": "Ya existe un miembro o invitación activa con este correo.",
+    "resendSuccess": "Invitación reenviada correctamente.",
+    "resendError": "Error al reenviar la invitación.",
+    "revokeSuccess": "Invitación revocada correctamente.",
+    "revokeError": "Error al revocar la invitación.",
+    "revokeConfirmTitle": "¿Revocar invitación?",
+    "revokeConfirmDesc": "Se cancelará el enlace de invitación enviado a {{email}}.",
+    "revokeConfirmAction": "Revocar invitación",
+    "modalTitle": "Invitar nuevo miembro o líder de área",
+    "modalSub": "Envía un enlace de acceso para responder cuestionarios o colaborar en el assessment.",
+    "formName": "Nombre completo",
+    "formEmail": "Correo corporativo",
+    "formWhatsapp": "WhatsApp (opcional)",
+    "formPhone": "Teléfono fijo (opcional)",
+    "formArea": "Área asignada para responder",
+    "modalSend": "Enviar invitación",
+    "roles": {
+      "owner": "Propietario / Admin",
+      "leader": "Líder de Área",
+      "member": "Colaborador",
+      "viewer": "Lector"
+    },
+    "memberStatus": {
+      "active": "Activo",
+      "invited": "Invitado",
+      "pending": "Pendiente",
+      "disabled": "Desactivado"
+    },
+    "invStatus": {
+      "sent": "Enviada",
+      "accepted": "Aceptada",
+      "expired": "Expirada"
+    }
+  },
+  "review": {
+    "title": "Revisión supervisada por consultores",
+    "sub": "Un consultor sénior TryAIGap revisa tus respuestas, calibra scores y valida el informe ejecutivo.",
+    "stages": [
+      "1. Solicitada y Agendada",
+      "2. Sesión en Curso",
+      "3. Validación Completada"
+    ],
+    "chaptersTitle": "Capítulos de la Metodología Validados",
+    "ratingTitle": "Calificación del Acompañamiento",
+    "chapters": {
+      "m1": "Módulo 1: Madurez 5D y Alineación Estratégica",
+      "m2": "Módulo 2: Diagnóstico de Áreas y Matriz de Oportunidades",
+      "m3": "Módulo 3: Portafolio de Innovación y Dos Horizontes",
+      "m4": "Módulo 4: Marco de Decisión de IA",
+      "m5": "Módulo 5: Recetas por Área Funcional",
+      "m6": "Módulo 6: Implementación Técnica y Adopción Humana",
+      "m7": "Módulo 7: Centro de Excelencia (CoE) y Sostenibilidad",
+      "overall": "Diagnóstico Ejecutivo General"
+    }
   }
 }
