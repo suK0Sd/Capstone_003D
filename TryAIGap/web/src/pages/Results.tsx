@@ -22,6 +22,7 @@ const ReportPdfActions = lazy(() => import('@/pdf/ReportPdf'));
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { CountUp } from '@/components/ui/count-up';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
@@ -110,7 +111,7 @@ function ResultsBody({ results }: { results: ResultOut }) {
             </div>
             <div className="flex items-baseline gap-3">
               <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
-                {results.maturity.average.toFixed(1)}
+                <CountUp to={results.maturity.average} decimals={1} />
                 <span className="text-lg sm:text-xl font-medium text-muted-foreground"> / 5.0</span>
               </h2>
               <span className="text-sm font-semibold text-muted-foreground">Puntuación Global de Madurez</span>

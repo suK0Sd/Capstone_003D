@@ -23,6 +23,7 @@ import {
 import { fetchAreas, fetchDocuments, fetchTeam } from '@/api';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { CountUp } from '@/components/ui/count-up';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
@@ -206,7 +207,7 @@ export default function Dashboard() {
               <>
                 <div className="flex items-baseline gap-2">
                   <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                    {maturityPct}%
+                    <CountUp to={maturityPct} suffix="%" />
                   </span>
                   <span className="text-[11px] text-muted-foreground">M1 Madurez</span>
                 </div>
@@ -235,7 +236,7 @@ export default function Dashboard() {
             ) : (
               <>
                 <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                  {teamSize ?? 1}
+                  <CountUp to={teamSize ?? 1} />
                 </span>
                 <p className="mt-2 text-[11px] text-muted-foreground">
                   Líderes departamentales asignados
@@ -261,7 +262,7 @@ export default function Dashboard() {
             ) : (
               <>
                 <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                  {docCount ?? 0}
+                  <CountUp to={docCount ?? 0} />
                 </span>
                 <p className="mt-2 text-[11px] text-muted-foreground">
                   Documentos y políticas adjuntas
@@ -287,7 +288,7 @@ export default function Dashboard() {
             ) : (
               <>
                 <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                  {days ?? 0}{' '}
+                  <CountUp to={days ?? 0} />{' '}
                   <span className="text-sm font-normal text-muted-foreground">
                     {t('dashboard.daysUnit')}
                   </span>

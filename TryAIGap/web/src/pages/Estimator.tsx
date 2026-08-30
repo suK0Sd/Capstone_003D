@@ -48,6 +48,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { CountUp } from '@/components/ui/count-up';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -553,7 +554,7 @@ export default function Estimator() {
                 <div className="flex items-baseline justify-between pt-1">
                   <span className="text-sm font-bold text-muted-foreground">{t('estimator2.cartTotal')}</span>
                   <span className="text-2xl font-extrabold text-foreground tracking-tight">
-                    {money(quote.total)}
+                    <CountUp to={quote.total} prefix={pricingQuery.data?.currency === 'EUR' ? '€' : '$'} />
                   </span>
                 </div>
 
