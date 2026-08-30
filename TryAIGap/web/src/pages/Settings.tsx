@@ -47,15 +47,15 @@ export default function Settings() {
             {SUPPORTED_LANGUAGES.map((lang) => (
               <Button
                 key={lang.code}
-                variant="outline"
+                variant={current === lang.code ? 'default' : 'outline'}
                 size="sm"
                 onClick={() => void i18n.changeLanguage(lang.code)}
                 aria-pressed={current === lang.code}
                 className={cn(
                   'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
                   current === lang.code
-                    ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
-                    : 'hover:bg-muted/40 text-foreground border-border/70',
+                    ? 'brand-gradient text-white border-0 shadow-md'
+                    : 'hover:bg-muted/40 text-foreground border-border/80',
                 )}
               >
                 {lang.name}
@@ -76,29 +76,29 @@ export default function Settings() {
 
           <div className="grid grid-cols-2 gap-2.5" role="group" aria-label={t('common.theme')}>
             <Button
-              variant="outline"
+              variant={theme === 'light' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setTheme('light')}
               aria-pressed={theme === 'light'}
               className={cn(
                 'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
                 theme === 'light'
-                  ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
-                  : 'hover:bg-muted/40 text-foreground border-border/70',
+                  ? 'brand-gradient text-white border-0 shadow-md'
+                  : 'hover:bg-muted/40 text-foreground border-border/80',
               )}
             >
               <Sun className="h-4 w-4 mr-1.5" /> {t('settings.themeLight')}
             </Button>
             <Button
-              variant="outline"
+              variant={theme === 'dark' ? 'default' : 'outline'}
               size="sm"
               onClick={() => setTheme('dark')}
               aria-pressed={theme === 'dark'}
               className={cn(
                 'h-10 text-xs font-bold rounded-xl transition-all cursor-pointer',
                 theme === 'dark'
-                  ? 'brand-gradient text-white border-0 shadow-md ring-2 ring-primary/30'
-                  : 'hover:bg-muted/40 text-foreground border-border/70',
+                  ? 'brand-gradient text-white border-0 shadow-md'
+                  : 'hover:bg-muted/40 text-foreground border-border/80',
               )}
             >
               <Moon className="h-4 w-4 mr-1.5" /> {t('settings.themeDark')}

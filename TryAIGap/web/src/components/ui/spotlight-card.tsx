@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,8 +13,8 @@ export const SpotlightCard = React.forwardRef<HTMLDivElement, SpotlightCardProps
     {
       children,
       className,
-      spotlightColor = 'rgba(37, 99, 235, 0.10)',
-      borderGlowColor = 'rgba(6, 182, 212, 0.45)',
+      spotlightColor = 'rgba(37, 99, 235, 0.08)',
+      borderGlowColor,
       ...props
     },
     ref
@@ -40,29 +40,16 @@ export const SpotlightCard = React.forwardRef<HTMLDivElement, SpotlightCardProps
         }}
         onMouseMove={handleMouseMove}
         className={cn(
-          'group relative rounded-xl border border-border/80 bg-card p-6 shadow-xs transition-all duration-300 hover:shadow-lg hover:border-primary/40 overflow-hidden',
+          'group relative rounded-2xl border border-border/80 bg-card p-6 shadow-xs transition-all duration-300 hover:border-primary/40 hover:shadow-md overflow-hidden',
           className
         )}
         {...props}
       >
-        {/* Subtle Ambient Radial Highlight */}
+        {/* Subtle Ambient Radial Highlight following cursor smoothly */}
         <div
-          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
-            background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${spotlightColor}, transparent 80%)`,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Interactive Border Glow */}
-        <div
-          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(200px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${borderGlowColor}, transparent 80%)`,
-            mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-            maskComposite: 'exclude',
-            WebkitMaskComposite: 'xor',
-            padding: '1.5px',
+            background: `radial-gradient(400px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), ${spotlightColor}, transparent 70%)`,
           }}
           aria-hidden="true"
         />
