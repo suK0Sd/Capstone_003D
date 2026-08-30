@@ -12,18 +12,27 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  CheckCircle2,
+  Cpu,
+  Database,
+  Eye,
+  GitBranch,
+  HelpCircle,
   Lock,
   Paperclip,
+  Save,
+  Sparkles,
   UserPlus,
+  Users,
 } from 'lucide-react';
 import { fetchQuestionnaire } from '@/api';
 import type { QuestionnaireOut } from '@/api/types';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '@/components/ui/skeleton';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { DelegateDialog } from '@/components/questionnaire/DelegateDialog';
 import { MaturityRadar } from '@/components/questionnaire/MaturityRadar';
 import { useQuestionnaireAnswers } from '@/hooks/useQuestionnaireAnswers';
@@ -77,6 +86,15 @@ interface QuestionnaireEngineProps {
   module: 'maturity' | 'area';
   areaKey?: string;
   moduleLabel: string;
+}
+
+function getDimensionIcon(dim: string) {
+  const d = dim.toLowerCase();
+  if (d.includes('dato') || d.includes('data')) return Database;
+  if (d.includes('tecno') || d.includes('tech')) return Cpu;
+  if (d.includes('talento') || d.includes('talent')) return Users;
+  if (d.includes('proceso') || d.includes('process') || d.includes('operac')) return GitBranch;
+  return Sparkles;
 }
 
 export function QuestionnaireEngine({ module, areaKey, moduleLabel }: QuestionnaireEngineProps) {
@@ -142,17 +160,17 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
 
   if (qQuery.isLoading || answersLoading) {
     return (
-      <div className="space-y-4">
-        <Skeleton className="h-6 w-64" />
-        <Skeleton className="h-40 w-full" />
-        <Skeleton className="h-12 w-full" />
+      <div className="space-y-6">
+        <Skeleton className="h-10 w-72 rounded-xl" />
+        <Skeleton className="h-64 w-full rounded-2xl" />
+        <Skeleton className="h-14 w-full rounded-xl" />
       </div>
     );
   }
 
   if (qQuery.error || blocks.length === 0) {
     return (
-      <Alert variant="destructive">
+      <Alert variant="destructive" className="rounded-xl">
         <AlertDescription>{t('common.errorGeneric')}</AlertDescription>
       </Alert>
     );
@@ -247,181 +265,273 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
           ? t('questionnaire.saveError')
           : null;
 
+  const progressPct = Math.round((ordinal() / Math.max(total, 1)) * 100);
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {/* Freemium banner (maturity, free plan) */}
       {isFreeMaturity && (
-        <Card className="border-dashed border-primary">
-          <CardContent className="flex flex-wrap items-center justify-between gap-3 p-3">
-            <div className="flex items-center gap-2">
-              <Badge variant="secondary">{t('freemium.chip')}</Badge>
-              <span className="text-xs text-muted-foreground">
-                {Math.min(answered, FREE_MATURITY_LIMIT)}/{FREE_MATURITY_LIMIT}{' '}
-                {t('freemium.counter')}
-              </span>
-            </div>
-            <Button asChild size="sm" className="brand-gradient border-0 text-white">
-              <Link to="/estimator">
-                <Lock className="h-3.5 w-3.5" /> {t('freemium.upgrade')}
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl border border-dashed border-primary/50 bg-primary/5 p-3.5 flex flex-wrap items-center justify-between gap-3 shadow-xs">
+          <div className="flex items-center gap-2.5">
+            <Badge variant="secondary" className="text-[11px] font-semibold">
+              {t('freemium.chip')}
+            </Badge>
+            <span className="text-xs text-muted-foreground">
+              {Math.min(answered, FREE_MATURITY_LIMIT)}/{FREE_MATURITY_LIMIT}{' '}
+              {t('freemium.counter')}
+            </span>
+          </div>
+          <Button asChild size="sm" className="brand-gradient border-0 text-white text-xs h-8 rounded-lg">
+            <Link to="/estimator">
+              <Lock className="h-3.5 w-3.5 mr-1" /> {t('freemium.upgrade')}
+            </Link>
+          </Button>
+        </div>
       )}
 
       {/* Paywall alert (limit hit interactively or by the server) */}
       {(paywallOpen || paywallHit || (limitReached && view === 'question' && !stored)) && (
-        <Alert className="border-primary">
+        <Alert className="border-primary bg-card/90 rounded-2xl shadow-md">
           <AlertDescription className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-sm">
-              <span className="font-semibold">{t('paywall.eyebrow')}. </span>
-              {t('freemium.limitReached', { limit: FREE_MATURITY_LIMIT })}
+            <span className="text-xs sm:text-sm">
+              <strong className="text-foreground">{t('paywall.eyebrow')}. </strong>
+              <span className="text-muted-foreground">
+                {t('freemium.limitReached', { limit: FREE_MATURITY_LIMIT })}
+              </span>
             </span>
-            <Button asChild size="sm" className="brand-gradient border-0 text-white">
+            <Button asChild size="sm" className="brand-gradient border-0 text-white rounded-lg text-xs h-8">
               <Link to="/estimator">{t('paywall.cta')}</Link>
             </Button>
           </AlertDescription>
         </Alert>
       )}
 
-      {/* Block chips with per-block scores */}
-      <div className="flex flex-wrap gap-1.5">
+      {/* Selector de Bloques y Dimensiones con Iconos y Scores */}
+      <div className="flex flex-wrap gap-2 items-center">
         {blocks.map((b, i) => {
           const s = averageScore(answers, b.questions.map((q) => q.id));
           const current = i === blockIdx && view === 'question';
+          const blockAnswered = b.questions.every((q) => !!answers[q.id]);
+          const Icon = getDimensionIcon(b.dim);
+
           return (
             <button
               key={b.id}
               type="button"
               onClick={() => gotoBlock(i)}
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
-                current ? 'border-primary bg-accent/20 text-primary' : 'hover:bg-accent/10',
+                'group inline-flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-semibold transition-all cursor-pointer',
+                current
+                  ? 'border-primary bg-primary/15 text-primary shadow-sm ring-1 ring-primary/30'
+                  : blockAnswered
+                    ? 'border-border/80 bg-card/80 text-foreground hover:border-primary/40'
+                    : 'border-border/60 bg-card/40 text-muted-foreground hover:bg-muted/40 hover:text-foreground',
               )}
             >
-              <span className={cn('h-1.5 w-1.5 rounded-full', current ? 'bg-primary' : 'bg-muted-foreground/50')} />
-              {b.dim} · {s ? s.toFixed(1) : '—'}
+              <Icon className={cn('h-3.5 w-3.5 shrink-0', current ? 'text-primary' : 'text-muted-foreground')} />
+              <span>{b.dim}</span>
+              <span
+                className={cn(
+                  'rounded-full px-1.5 py-0.2 text-[10px] font-bold',
+                  s ? 'bg-primary/20 text-primary' : 'bg-muted text-muted-foreground',
+                )}
+              >
+                {s ? s.toFixed(1) : '—'}
+              </span>
+              {blockAnswered && <Check className="h-3 w-3 text-primary ml-0.5" />}
             </button>
           );
         })}
+
         <button
           type="button"
           onClick={() => setView('module')}
           className={cn(
-            'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
-            view === 'module' ? 'border-primary bg-accent/20 text-primary' : 'hover:bg-accent/10',
+            'inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-semibold transition-all cursor-pointer ml-auto',
+            view === 'module'
+              ? 'border-primary bg-primary/15 text-primary ring-1 ring-primary/30'
+              : 'border-border/60 bg-card/40 text-muted-foreground hover:text-foreground hover:bg-muted/40',
           )}
         >
+          <Eye className="h-3.5 w-3.5" />
           {t('maturity.viewSummary')}
         </button>
       </div>
 
+      {/* VISTA 1: PREGUNTA ACTIVA */}
       {view === 'question' && question && (
-        <Card>
-          <CardContent className="p-6 md:p-8">
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 md:p-8 shadow-xl backdrop-blur-xl">
+          {/* Header de Pregunta con Progreso */}
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/50 pb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] font-extrabold uppercase tracking-wider text-primary px-2.5 py-0.5 rounded-full bg-primary/10 border border-primary/20">
+                {question.code}
+              </span>
+              <span className="text-xs font-bold text-foreground">
                 {moduleLabel} · {block.title}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {t('questionnaire.progress', { n: ordinal(), t: total })}
-              </p>
+              </span>
             </div>
-            <Progress value={(ordinal() / total) * 100} className="mt-2 h-1.5" />
+            <div className="flex items-center gap-3">
+              <span className="text-xs font-semibold text-muted-foreground">
+                {t('questionnaire.progress', { n: ordinal(), t: total })} ({progressPct}%)
+              </span>
+            </div>
+          </div>
 
-            <h2 className="mt-6 text-lg font-semibold leading-7">{question.text}</h2>
-            <p className="mt-1 text-xs text-muted-foreground">{t('questionnaire.scaleHelp')}</p>
+          <Progress value={progressPct} className="mt-2 h-1.5 bg-muted/60" />
 
-            <div className="mt-5 grid grid-cols-5 gap-2">
-              {[1, 2, 3, 4, 5].map((v) => (
+          {/* Texto de la Pregunta */}
+          <div className="mt-6 space-y-2">
+            <h2 className="text-lg md:text-xl font-bold tracking-tight text-foreground leading-relaxed">
+              {question.text}
+            </h2>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {t('questionnaire.scaleHelp')}
+            </p>
+          </div>
+
+          {/* Escala de Evaluación 1 a 5 con Tarjetas Interactivas */}
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-5 gap-3">
+            {[1, 2, 3, 4, 5].map((v) => {
+              const active = stored?.state === 'answered' && stored.value === v;
+              const scaleLabels = t('questionnaire.scale', { returnObjects: true }) as string[];
+              const labelText = scaleLabels?.[v - 1] ?? `Nivel ${v}`;
+
+              return (
                 <button
                   key={v}
                   type="button"
                   onClick={() => handleScale(v)}
-                  aria-pressed={stored?.state === 'answered' && stored.value === v}
+                  aria-pressed={active}
                   className={cn(
-                    'flex flex-col items-center gap-1 rounded-md border py-3 transition-colors',
-                    stored?.state === 'answered' && stored.value === v
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'hover:border-primary/60 hover:bg-accent/10',
+                    'group relative flex flex-col items-center justify-between rounded-xl border p-4 text-center transition-all cursor-pointer',
+                    active
+                      ? 'border-primary bg-primary/15 shadow-md ring-2 ring-primary/40'
+                      : 'border-border/70 bg-card/60 hover:border-primary/50 hover:bg-muted/40',
                   )}
                 >
-                  <span className="text-lg font-bold">{v}</span>
-                  <span className="px-1 text-center text-[10px] leading-tight opacity-80">
-                    {(t('questionnaire.scale', { returnObjects: true }) as string[])[v - 1]}
+                  <div className="flex items-center justify-center">
+                    <span
+                      className={cn(
+                        'flex h-10 w-10 items-center justify-center rounded-xl text-lg font-extrabold transition-colors',
+                        active ? 'brand-gradient text-white shadow-md' : 'bg-muted text-foreground group-hover:bg-primary/20 group-hover:text-primary',
+                      )}
+                    >
+                      {v}
+                    </span>
+                  </div>
+                  <span className="mt-2.5 text-xs font-medium text-muted-foreground group-hover:text-foreground leading-tight">
+                    {labelText}
                   </span>
+                  {active && (
+                    <div className="absolute top-2 right-2">
+                      <CheckCircle2 className="h-4 w-4 text-primary" />
+                    </div>
+                  )}
                 </button>
-              ))}
-            </div>
+              );
+            })}
+          </div>
 
+          {/* Badges de Estado Especial ("No sé" o "Delegado") */}
+          <div className="mt-4 flex flex-wrap items-center gap-2">
             {stored?.state === 'idk' && (
-              <Badge variant="secondary" className="mt-3">
-                {t('questionnaire.idkMarked')}
+              <Badge variant="secondary" className="bg-amber-500/10 text-amber-500 border-amber-500/20 text-xs py-1 px-2.5">
+                <HelpCircle className="h-3.5 w-3.5 mr-1" /> {t('questionnaire.idkMarked')}
               </Badge>
             )}
             {stored?.state === 'delegated' && (
-              <Badge variant="secondary" className="mt-3">
+              <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 text-xs py-1 px-2.5">
+                <Users className="h-3.5 w-3.5 mr-1" />
                 {t('questionnaire.delegatedTo', {
                   name: delegatedNames[question.id] ?? '—',
                 })}
               </Badge>
             )}
+          </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Button asChild variant="outline" size="sm">
-                <Link to="/documents">
-                  <Paperclip className="h-3.5 w-3.5" /> {t('questionnaire.attach')}
-                </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  if (guardFree(question)) setDelegateOpen(true);
-                }}
-              >
-                <UserPlus className="h-3.5 w-3.5" /> {t('questionnaire.delegate')}
-              </Button>
-              <Button variant="ghost" size="sm" onClick={handleIdk}>
-                {t('questionnaire.idk')}
-              </Button>
-            </div>
+          {/* Barra de Herramientas de Pregunta (Adjuntar, Delegar, No sé) */}
+          <div className="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-border/50">
+            <Button asChild variant="outline" size="sm" className="text-xs h-9 rounded-xl cursor-pointer">
+              <Link to="/documents">
+                <Paperclip className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" />
+                {t('questionnaire.attach')}
+              </Link>
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                if (guardFree(question)) setDelegateOpen(true);
+              }}
+              className="text-xs h-9 rounded-xl cursor-pointer"
+            >
+              <UserPlus className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" />
+              {t('questionnaire.delegate')}
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={handleIdk}
+              className="text-xs h-9 text-muted-foreground hover:text-foreground cursor-pointer"
+            >
+              <HelpCircle className="h-3.5 w-3.5 mr-1.5" />
+              {t('questionnaire.idk')}
+            </Button>
+          </div>
 
-            <div className="mt-6 flex items-center justify-between border-t pt-4">
-              <Button
-                variant="ghost"
-                onClick={goPrev}
-                disabled={blockIdx === 0 && qIdx === 0}
-              >
-                <ArrowLeft className="h-4 w-4" /> {t('questionnaire.back')}
-              </Button>
-              <div className="flex items-center gap-3">
-                {saveIndicator && (
-                  <span
-                    className={cn(
-                      'text-xs',
-                      saveStatus === 'error' ? 'text-destructive' : 'text-muted-foreground',
-                    )}
-                  >
-                    {saveIndicator}
-                  </span>
-                )}
-                <Button variant="outline" onClick={() => navigate('/dashboard')}>
-                  {t('questionnaire.saveExit')}
-                </Button>
-                <Button
-                  onClick={goNext}
-                  disabled={!stored}
-                  className="brand-gradient border-0 text-white"
+          {/* Navegación y Guardado */}
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border/60">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={goPrev}
+              disabled={blockIdx === 0 && qIdx === 0}
+              className="text-xs h-10 px-4 rounded-xl cursor-pointer"
+            >
+              <ArrowLeft className="h-3.5 w-3.5 mr-1.5" />
+              {t('questionnaire.back')}
+            </Button>
+
+            <div className="flex items-center gap-3">
+              {saveIndicator && (
+                <span
+                  className={cn(
+                    'text-xs font-semibold flex items-center gap-1',
+                    saveStatus === 'error' ? 'text-destructive' : 'text-muted-foreground',
+                  )}
                 >
-                  {t('questionnaire.next')} <ArrowRight className="h-4 w-4" />
-                </Button>
-              </div>
+                  <Save className="h-3 w-3" />
+                  {saveIndicator}
+                </span>
+              )}
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/dashboard')}
+                className="text-xs h-10 rounded-xl text-muted-foreground hover:text-foreground cursor-pointer"
+              >
+                {t('questionnaire.saveExit')}
+              </Button>
+              <Button
+                type="button"
+                onClick={goNext}
+                disabled={!stored}
+                className="brand-gradient text-white font-semibold text-xs h-10 px-5 rounded-xl shadow-md cursor-pointer"
+              >
+                {t('questionnaire.next')}
+                <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+              </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </SpotlightCard>
       )}
 
+      {/* VISTA 2: RESUMEN DE BLOQUE / DIMENSIÓN */}
       {view === 'block' && (
         <BlockSummary
           block={block}
@@ -433,6 +543,7 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
         />
       )}
 
+      {/* VISTA 3: RESUMEN GLOBAL DEL MÓDULO */}
       {view === 'module' && (
         <ModuleSummary
           module={module}
@@ -444,6 +555,7 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
         />
       )}
 
+      {/* Modal de Delegación */}
       {question && assessment && (
         <DelegateDialog
           open={delegateOpen}
@@ -474,52 +586,59 @@ function BlockSummary({
 }) {
   const { t } = useTranslation();
   const score = averageScore(answers, block.questions.map((q) => q.id));
+
   return (
-    <Card className="mx-auto max-w-3xl">
-      <CardContent className="p-6 md:p-8">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+    <SpotlightCard className="mx-auto max-w-3xl rounded-2xl border border-border/80 bg-card/90 p-6 md:p-8 shadow-xl">
+      <div className="space-y-1">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
           {t('questionnaire.blockComplete')} · {block.title}
-        </p>
-        <h2 className="mt-2 text-2xl font-bold">
-          {block.dim} · {score.toFixed(1)}/5
+        </span>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
+          {block.dim} · <span className="text-primary">{score.toFixed(1)}/5</span>
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
-          {t('questionnaire.prelimLevel')}: <span className="font-semibold">{levelLabel(score)}</span>
+        <p className="text-xs sm:text-sm text-muted-foreground">
+          {t('questionnaire.prelimLevel')}: <strong className="text-foreground">{levelLabel(score)}</strong>
         </p>
+      </div>
 
-        <ul className="mt-4 divide-y">
-          {block.questions.map((q) => {
-            const a = answers[q.id];
-            return (
-              <li key={q.id} className="flex items-center justify-between gap-4 py-2.5">
-                <span className="text-sm">
-                  <span className="font-medium">{q.code}</span> · {q.text}
-                </span>
-                <Badge variant={a ? 'secondary' : 'outline'} className="shrink-0">
-                  {a?.state === 'answered' && typeof a.value === 'number'
-                    ? `${a.value}/5`
-                    : a?.state === 'idk'
-                      ? t('questionnaire.idkShort')
-                      : a?.state === 'delegated'
-                        ? t('questionnaire.delegate')
-                        : '—'}
-                </Badge>
-              </li>
-            );
-          })}
-        </ul>
+      <ul className="mt-6 divide-y divide-border/50 rounded-xl border border-border/60 bg-card/40 p-2">
+        {block.questions.map((q) => {
+          const a = answers[q.id];
+          return (
+            <li key={q.id} className="flex items-center justify-between gap-4 p-3 text-xs">
+              <span className="text-muted-foreground">
+                <strong className="text-foreground">{q.code}</strong> · {q.text}
+              </span>
+              <Badge
+                variant={a ? 'secondary' : 'outline'}
+                className={cn(
+                  'shrink-0 text-xs px-2.5 py-0.5 font-bold',
+                  a?.state === 'answered' && 'bg-primary/15 text-primary border-primary/30',
+                )}
+              >
+                {a?.state === 'answered' && typeof a.value === 'number'
+                  ? `${a.value} / 5`
+                  : a?.state === 'idk'
+                    ? t('questionnaire.idkShort')
+                    : a?.state === 'delegated'
+                      ? t('questionnaire.delegate')
+                      : '—'}
+              </Badge>
+            </li>
+          );
+        })}
+      </ul>
 
-        <div className="mt-6 flex items-center justify-between">
-          <Button variant="outline" onClick={onEdit}>
-            <ArrowLeft className="h-4 w-4" /> {t('questionnaire.editAnswers')}
-          </Button>
-          <Button onClick={onContinue} className="brand-gradient border-0 text-white">
-            {isLast ? t('questionnaire.seeModuleSummary') : t('questionnaire.continueBlock')}{' '}
-            <ArrowRight className="h-4 w-4" />
-          </Button>
-        </div>
-      </CardContent>
-    </Card>
+      <div className="mt-8 flex items-center justify-between pt-4 border-t border-border/60">
+        <Button variant="outline" size="sm" onClick={onEdit} className="text-xs h-10 px-4 rounded-xl cursor-pointer">
+          <ArrowLeft className="h-3.5 w-3.5 mr-1.5" /> {t('questionnaire.editAnswers')}
+        </Button>
+        <Button onClick={onContinue} className="brand-gradient text-white font-semibold text-xs h-10 px-5 rounded-xl shadow-md cursor-pointer">
+          {isLast ? t('questionnaire.seeModuleSummary') : t('questionnaire.continueBlock')}{' '}
+          <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
+        </Button>
+      </div>
+    </SpotlightCard>
   );
 }
 
@@ -548,61 +667,66 @@ function ModuleSummary({
   }));
 
   return (
-    <Card className="mx-auto max-w-4xl border-primary/40">
-      <CardContent className="p-6 md:p-8">
-        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+    <SpotlightCard className="mx-auto max-w-4xl rounded-2xl border border-primary/40 bg-card/90 p-6 md:p-8 shadow-2xl">
+      <div className="space-y-1">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
           {t('questionnaire.moduleComplete')} · {moduleLabel}
-        </p>
-        <h2 className="mt-2 text-3xl font-extrabold">
-          {score.toFixed(1)}/5 · {levelLabel(score)}
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+          {score.toFixed(1)}/5 · <span className="text-primary">{levelLabel(score)}</span>
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="text-xs sm:text-sm text-muted-foreground">
           {t('questionnaire.answeredCount', { answered, total: allQids.length })}
         </p>
+      </div>
 
-        {module === 'maturity' && (
-          <div className="mt-6">
-            <h3 className="mb-2 text-sm font-semibold">{t('maturity.radarTitle')}</h3>
-            <MaturityRadar data={radarData} />
-          </div>
-        )}
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {blocks.map((b) => {
-            const s = averageScore(answers, b.questions.map((q) => q.id));
-            return (
-              <Card key={b.id}>
-                <CardContent className="p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    {b.dim}
-                  </p>
-                  <p className="mt-1 text-xl font-bold">{s ? s.toFixed(1) : '—'}/5</p>
-                  <p className="text-xs text-muted-foreground">{levelLabel(s)}</p>
-                  <Progress value={(s / 5) * 100} className="mt-2 h-1.5" />
-                </CardContent>
-              </Card>
-            );
-          })}
+      {module === 'maturity' && (
+        <div className="mt-8 rounded-2xl border border-border/70 bg-card/50 p-6">
+          <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-muted-foreground text-center">
+            {t('maturity.radarTitle')}
+          </h3>
+          <MaturityRadar data={radarData} />
         </div>
+      )}
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-          <Button variant="outline" onClick={onReview}>
-            <ArrowLeft className="h-4 w-4" /> {t('questionnaire.editAnswers')}
+      {/* Grid de Dimensiones y Scores */}
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {blocks.map((b) => {
+          const s = averageScore(answers, b.questions.map((q) => q.id));
+          const Icon = getDimensionIcon(b.dim);
+          return (
+            <div key={b.id} className="rounded-xl border border-border/70 bg-card/60 p-4 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-foreground">
+                <Icon className="h-4 w-4 text-primary" />
+                <span className="truncate">{b.dim}</span>
+              </div>
+              <div className="flex items-baseline justify-between">
+                <span className="text-xl font-extrabold text-foreground">{s ? s.toFixed(1) : '—'}/5</span>
+                <span className="text-[11px] text-muted-foreground">{levelLabel(s)}</span>
+              </div>
+              <Progress value={(s / 5) * 100} className="h-1.5 bg-muted/60" />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center justify-between gap-3 pt-6 border-t border-border/60">
+        <Button variant="outline" size="sm" onClick={onReview} className="text-xs h-10 px-4 rounded-xl cursor-pointer">
+          <ArrowLeft className="h-3.5 w-3.5 mr-1.5" /> {t('questionnaire.editAnswers')}
+        </Button>
+        <div className="flex items-center gap-3">
+          <Button asChild variant="outline" size="sm" className="text-xs h-10 px-4 rounded-xl cursor-pointer">
+            <Link to="/areas">
+              {module === 'area' ? t('questionnaire.backAreas') : t('questionnaire.continueAreas')}
+            </Link>
           </Button>
-          <div className="flex gap-2">
-            <Button asChild variant="outline">
-              <Link to="/areas">
-                {module === 'area' ? t('questionnaire.backAreas') : t('questionnaire.continueAreas')}
-              </Link>
-            </Button>
-            <Button asChild className="brand-gradient border-0 text-white">
-              <Link to="/results">
-                {t('questionnaire.seeResults')} <Check className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+          <Button asChild size="sm" className="brand-gradient text-white font-semibold text-xs h-10 px-5 rounded-xl shadow-md cursor-pointer">
+            <Link to="/results">
+              {t('questionnaire.seeResults')} <Check className="h-3.5 w-3.5 ml-1.5" />
+            </Link>
+          </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </SpotlightCard>
   );
 }
