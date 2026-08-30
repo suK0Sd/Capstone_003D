@@ -66,7 +66,24 @@
     "leadersSub": "In dieser Phase optional — Einladung später über Team möglich.",
     "inviteName": "Name",
     "inviteEmail": "E-Mail",
-    "inviteAdd": "Einladung hinzufügen"
+    "inviteAdd": "Einladung hinzufügen",
+    "stepNames": [
+      "1. Profil",
+      "2. Regulierung",
+      "3. Bereiche",
+      "4. Team"
+    ],
+    "selectAll": "Alle auswählen",
+    "clearAll": "Auswahl aufheben",
+    "areasCount": "{{selected}} von {{total}} Bereichen aktiviert",
+    "frameworkTip": "Ausgewählte Rahmenwerke kalibrieren Risikowarnungen und Governance-Anforderungen.",
+    "timeEst": "Geschätzte Dauer: ~{{mins}} Min.",
+    "leaderBadge": "Zugewiesener Leiter",
+    "remove": "Entfernen",
+    "copyLink": "Link kopieren",
+    "linkCopied": "Kopiert!",
+    "noLeaders": "Noch keine Teamleiter hinzugefügt. Sie können Ihr Team später im Bereich Team einladen.",
+    "selectRecommended": "Empfohlene auswählen"
   },
   "dashboard": {
     "welcome": "Willkommen zurück",

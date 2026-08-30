@@ -66,7 +66,24 @@
     "leadersSub": "Optional at this stage — you can invite them later from Team.",
     "inviteName": "Name",
     "inviteEmail": "Email",
-    "inviteAdd": "Add invitation"
+    "inviteAdd": "Add invitation",
+    "stepNames": [
+      "1. Profile",
+      "2. Regulation",
+      "3. Areas",
+      "4. Team"
+    ],
+    "selectAll": "Select all",
+    "clearAll": "Clear selection",
+    "areasCount": "{{selected}} of {{total}} areas activated",
+    "frameworkTip": "Selected frameworks automatically calibrate risk alerts and governance requirements.",
+    "timeEst": "Estimated time: ~{{mins}} min",
+    "leaderBadge": "Assigned Leader",
+    "remove": "Remove",
+    "copyLink": "Copy link",
+    "linkCopied": "Copied!",
+    "noLeaders": "No team leaders added yet. You can invite your team later from the Team section.",
+    "selectRecommended": "Select recommended"
   },
   "dashboard": {
     "welcome": "Welcome back",

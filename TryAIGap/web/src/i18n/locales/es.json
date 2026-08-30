@@ -66,7 +66,24 @@
     "leadersSub": "Opcional en esta fase — podrás invitarlos desde Equipo.",
     "inviteName": "Nombre",
     "inviteEmail": "Email",
-    "inviteAdd": "Añadir invitación"
+    "inviteAdd": "Añadir invitación",
+    "stepNames": [
+      "1. Perfil",
+      "2. Regulación",
+      "3. Áreas",
+      "4. Equipo"
+    ],
+    "selectAll": "Seleccionar todas",
+    "clearAll": "Limpiar selección",
+    "areasCount": "{{selected}} de {{total}} áreas activadas",
+    "frameworkTip": "Los marcos seleccionados calibran automáticamente las alertas de riesgo y requisitos de gobernanza.",
+    "timeEst": "Tiempo estimado: ~{{mins}} min",
+    "leaderBadge": "Líder Asignado",
+    "remove": "Eliminar",
+    "copyLink": "Copiar enlace",
+    "linkCopied": "¡Copiado!",
+    "noLeaders": "Aún no has agregado líderes. Puedes invitar a tu equipo más adelante desde la sección Equipo.",
+    "selectRecommended": "Seleccionar recomendados"
   },
   "dashboard": {
     "welcome": "Bienvenido de vuelta",
