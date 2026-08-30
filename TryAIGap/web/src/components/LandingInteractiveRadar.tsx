@@ -172,21 +172,21 @@ export function LandingInteractiveRadar() {
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="p-6 md:p-8">
-          <div className="grid gap-8 lg:grid-cols-12 items-center">
+        <CardContent className="p-4 sm:p-6 md:p-8">
+          <div className="grid gap-6 lg:gap-8 lg:grid-cols-12 items-center">
             {/* Left Controls (5 Official Dimensions with Staggered Entrance) */}
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
-              className="lg:col-span-7 space-y-4"
+              className="lg:col-span-7 space-y-4 min-w-0"
             >
-              <div className="flex items-center justify-between border-b pb-2.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-border/60 pb-2.5">
+                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   {t('landing.demo.controlsHeading')}
                 </span>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-[11px] sm:text-xs text-muted-foreground/90">
                   {t('landing.demo.controlsHint')}
                 </span>
               </div>
@@ -196,12 +196,16 @@ export function LandingInteractiveRadar() {
                 const val = values[dim.key] ?? 0;
                 return (
                   <motion.div key={dim.key} variants={itemVariants} className="space-y-1.5">
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-2 font-medium">
+                    <div className="flex items-center justify-between gap-2 text-sm">
+                      <div className="flex items-center gap-2 font-medium min-w-0 flex-1">
                         <Icon className="h-4 w-4 text-primary shrink-0" />
-                        <span className="text-xs sm:text-sm">{t(`landing.demo.dims.${dim.key}`)}</span>
+                        <span className="text-xs sm:text-sm font-semibold text-foreground truncate sm:whitespace-normal">
+                          {t(`landing.demo.dims.${dim.key}`)}
+                        </span>
                       </div>
-                      <span className="font-bold tabular-nums text-primary text-xs sm:text-sm">{val}%</span>
+                      <span className="font-bold tabular-nums text-primary text-xs sm:text-sm shrink-0">
+                        {val}%
+                      </span>
                     </div>
                     <Slider
                       value={[val]}
@@ -218,11 +222,11 @@ export function LandingInteractiveRadar() {
 
               <motion.div
                 variants={itemVariants}
-                className="rounded-lg bg-muted/50 p-3.5 border border-border/50 flex items-start gap-3 mt-3"
+                className="rounded-xl bg-muted/40 p-3.5 border border-border/50 flex items-start gap-3 mt-3"
               >
                 <Bot className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <div className="text-xs space-y-1">
-                  <p className="font-semibold text-foreground">{t('landing.demo.insightTitle')}</p>
+                  <p className="font-bold text-foreground">{t('landing.demo.insightTitle')}</p>
                   <p className="text-muted-foreground leading-relaxed">{levelInfo.desc}</p>
                 </div>
               </motion.div>
@@ -234,16 +238,16 @@ export function LandingInteractiveRadar() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
-              className="lg:col-span-5 flex flex-col items-center justify-center p-5 rounded-xl brand-gradient-soft border border-border/40 text-center"
+              className="lg:col-span-5 flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl brand-gradient-soft border border-border/40 text-center w-full"
             >
               {/* SVG Pentagonal Dynamic Radar */}
-              <div className="relative w-68 h-68 flex items-center justify-center">
-                <svg viewBox="0 0 300 300" className="w-full h-full overflow-visible">
+              <div className="relative w-full max-w-[260px] sm:max-w-[280px] aspect-square flex items-center justify-center">
+                <svg viewBox="-30 -30 360 360" className="w-full h-full">
                   {/* Concentric Pentagons (25%, 50%, 75%, 100%) */}
-                  <polygon points={getPentagonPoints(0.25)} fill="none" stroke="currentColor" strokeOpacity="0.1" strokeDasharray="3 3" />
-                  <polygon points={getPentagonPoints(0.5)} fill="none" stroke="currentColor" strokeOpacity="0.15" strokeDasharray="3 3" />
-                  <polygon points={getPentagonPoints(0.75)} fill="none" stroke="currentColor" strokeOpacity="0.2" strokeDasharray="3 3" />
-                  <polygon points={getPentagonPoints(1.0)} fill="none" stroke="currentColor" strokeOpacity="0.25" />
+                  <polygon points={getPentagonPoints(0.25)} fill="none" stroke="currentColor" strokeOpacity="0.12" strokeDasharray="3 3" />
+                  <polygon points={getPentagonPoints(0.5)} fill="none" stroke="currentColor" strokeOpacity="0.18" strokeDasharray="3 3" />
+                  <polygon points={getPentagonPoints(0.75)} fill="none" stroke="currentColor" strokeOpacity="0.22" strokeDasharray="3 3" />
+                  <polygon points={getPentagonPoints(1.0)} fill="none" stroke="currentColor" strokeOpacity="0.3" />
 
                   {/* 5 Axes from center to outer vertices */}
                   {angles.map((ang, i) => (
@@ -254,14 +258,14 @@ export function LandingInteractiveRadar() {
                       x2={center + maxR * Math.cos(ang)}
                       y2={center + maxR * Math.sin(ang)}
                       stroke="currentColor"
-                      strokeOpacity="0.2"
+                      strokeOpacity="0.25"
                     />
                   ))}
 
                   {/* Dynamic Filled Polygon */}
                   <polygon
                     points={dynamicPoints}
-                    className="fill-[#2563EB]/20 stroke-[#06B6D4] stroke-2 transition-all duration-300 ease-out"
+                    className="fill-[#2563EB]/25 stroke-[#06B6D4] stroke-2 transition-all duration-300 ease-out"
                   />
 
                   {/* Vertex Dots */}
@@ -279,19 +283,19 @@ export function LandingInteractiveRadar() {
                   })}
 
                   {/* 5 Axis Labels positioned around the pentagon */}
-                  <text x="150" y="32" textAnchor="middle" className="text-[11px] fill-foreground font-semibold">
+                  <text x="150" y="32" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
                     {t('landing.demo.axes.data')}
                   </text>
-                  <text x="268" y="122" textAnchor="start" className="text-[11px] fill-foreground font-semibold">
+                  <text x="268" y="122" textAnchor="start" className="text-[12px] fill-foreground font-bold">
                     {t('landing.demo.axes.tech')}
                   </text>
-                  <text x="220" y="270" textAnchor="middle" className="text-[11px] fill-foreground font-semibold">
+                  <text x="220" y="270" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
                     {t('landing.demo.axes.talent')}
                   </text>
-                  <text x="80" y="270" textAnchor="middle" className="text-[11px] fill-foreground font-semibold">
+                  <text x="80" y="270" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
                     {t('landing.demo.axes.proc')}
                   </text>
-                  <text x="32" y="122" textAnchor="end" className="text-[11px] fill-foreground font-semibold">
+                  <text x="32" y="122" textAnchor="end" className="text-[12px] fill-foreground font-bold">
                     {t('landing.demo.axes.cult')}
                   </text>
                 </svg>
