@@ -1,4 +1,4 @@
-﻿import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { CheckCircle2, XCircle, TrendingDown, TrendingUp, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
@@ -8,7 +8,14 @@ export function LandingComparison() {
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-16">
-      <div className="text-center max-w-2xl mx-auto mb-10">
+      {/* Encabezado con entrada suave */}
+      <motion.div
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center max-w-2xl mx-auto mb-10"
+      >
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
           <Zap className="h-3.5 w-3.5" />
           {t('landing.comparison.badge')}
@@ -19,15 +26,15 @@ export function LandingComparison() {
         <p className="mt-2 text-sm md:text-base text-muted-foreground">
           {t('landing.comparison.subtitle')}
         </p>
-      </div>
+      </motion.div>
 
       <div className="grid gap-6 md:grid-cols-2 items-stretch">
         {/* Left Column: Without Method (Status Quo) */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
           <div className="h-full rounded-2xl border border-destructive/30 bg-destructive/5 p-6 md:p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="space-y-4">
@@ -69,10 +76,10 @@ export function LandingComparison() {
 
         {/* Right Column: With TryAIGap Method */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
+          initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
         >
           <SpotlightCard
             spotlightColor="rgba(37, 99, 235, 0.15)"

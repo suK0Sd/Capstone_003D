@@ -410,6 +410,91 @@
       "a4": "La plataforma provee el diagnóstico cuantitativo y la línea base inmediata. A través de nuestro cotizador, puedes contratar horas de acompañamiento con consultores certificados para auditar evidencias y liderar la gestión del cambio.",
       "q5": "¿Qué entregables recibe la junta directiva al finalizar?",
       "a5": "Un informe ejecutivo oficial en PDF A4 con el radar pentagonal de madurez, el mapa de calor por áreas, el árbol de decisión tecnológica y la matriz de iniciativas priorizadas por retorno de inversión."
+    },
+    "footerCorp": {
+      "colMethodTitle": "Metodologia",
+      "methodLinks": [
+        {
+          "label": "Módulo M1: Diagnóstico 5D",
+          "href": "#simulator"
+        },
+        {
+          "label": "Módulo M2: Mapa de Oportunidades",
+          "href": "#deliverables"
+        },
+        {
+          "label": "Módulo M3: Portfólio de Inovação",
+          "href": "#deliverables"
+        },
+        {
+          "label": "Módulo M7: Centro de Excelência",
+          "href": "#deliverables"
+        }
+      ],
+      "colComplianceTitle": "Conformidade",
+      "complianceLinks": [
+        {
+          "label": "EU AI Act",
+          "href": "https://artificialintelligenceact.eu/",
+          "external": true
+        },
+        {
+          "label": "ISO/IEC 42001",
+          "href": "https://www.iso.org/standard/81230.html",
+          "external": true
+        },
+        {
+          "label": "NIST AI RMF",
+          "href": "https://www.nist.gov/itl/ai-risk-management-framework",
+          "external": true
+        },
+        {
+          "label": "UK GDPR",
+          "href": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/",
+          "external": true
+        }
+      ],
+      "colPlatformTitle": "Plataforma",
+      "platformLinks": [
+        {
+          "label": "Diagnóstico Interativo 5D",
+          "href": "#simulator"
+        },
+        {
+          "label": "Estimador Estratégico",
+          "to": "/start"
+        },
+        {
+          "label": "Consola do Consultor",
+          "to": "/login"
+        },
+        {
+          "label": "Catálogo de Receitas",
+          "to": "/catalog"
+        }
+      ],
+      "colLegalTitle": "Legal & Suporte",
+      "legalLinks": [
+        {
+          "label": "Termos e Condições",
+          "to": "/terms"
+        },
+        {
+          "label": "Política de Privacidade",
+          "to": "/terms"
+        },
+        {
+          "label": "Central de Ajuda / FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Contato de Suporte",
+          "href": "mailto:suporte@tryaigap.com"
+        }
+      ],
+      "tagline": "Metodologia proprietária · Regulation-Ready · Dados no Reino Unido",
+      "copy": "© 2026 TryAIGap. Todos os direitos reservados.",
+      "madeWith": "Construído com rigor metodológico para o mundo corporativo."
     }
   },
   "terms": {

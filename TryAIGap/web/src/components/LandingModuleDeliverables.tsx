@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -41,17 +41,30 @@ export function LandingModuleDeliverables() {
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-16">
-      <div className="text-center max-w-2xl mx-auto mb-10">
+      {/* Encabezado con entrada suave */}
+      <motion.div
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center max-w-2xl mx-auto mb-10"
+      >
         <h2 className="text-2xl font-bold md:text-3xl tracking-tight text-foreground">
           {t('landing.deliverables.title')}
         </h2>
         <p className="mt-2 text-sm md:text-base text-muted-foreground">
           {t('landing.deliverables.subtitle')}
         </p>
-      </div>
+      </motion.div>
 
-      {/* Interactive Tabs Header */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+      {/* Interactive Tabs Header — entrada suave retrasada */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="flex flex-wrap items-center justify-center gap-2 mb-8"
+      >
         {MODULES.map((mod) => {
           const Icon = mod.icon;
           const isActive = mod.id === activeTab;
@@ -70,7 +83,7 @@ export function LandingModuleDeliverables() {
             </button>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* Active Tab Content Card */}
       <AnimatePresence mode="wait">

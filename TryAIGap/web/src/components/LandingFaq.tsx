@@ -1,5 +1,6 @@
-﻿import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { HelpCircle } from 'lucide-react';
+import { motion } from 'motion/react';
 import {
   Accordion,
   AccordionContent,
@@ -20,7 +21,14 @@ export function LandingFaq() {
 
   return (
     <section className="mx-auto w-full max-w-4xl px-4 py-16">
-      <div className="text-center max-w-2xl mx-auto mb-10">
+      {/* Encabezado con entrada suave */}
+      <motion.div
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center max-w-2xl mx-auto mb-10"
+      >
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
           <HelpCircle className="h-3.5 w-3.5" />
           {t('landing.faq.badge')}
@@ -31,9 +39,16 @@ export function LandingFaq() {
         <p className="mt-2 text-sm md:text-base text-muted-foreground">
           {t('landing.faq.subtitle')}
         </p>
-      </div>
+      </motion.div>
 
-      <div className="rounded-2xl border border-border/80 bg-card p-6 md:p-8 shadow-sm">
+      {/* Acordeón con entrada suave retrasada */}
+      <motion.div
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        className="rounded-2xl border border-border/80 bg-card p-6 md:p-8 shadow-sm"
+      >
         <Accordion type="single" collapsible className="w-full space-y-2">
           {FAQ_ITEMS.map((item) => (
             <AccordionItem
@@ -50,7 +65,7 @@ export function LandingFaq() {
             </AccordionItem>
           ))}
         </Accordion>
-      </div>
+      </motion.div>
     </section>
   );
 }

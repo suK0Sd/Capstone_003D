@@ -1,7 +1,7 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, ArrowUp, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowUp, ArrowUpRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
@@ -17,6 +17,13 @@ import { LandingFaq } from '@/components/LandingFaq';
 interface LandingStat {
   v: string;
   l: string;
+}
+
+interface FooterLinkItem {
+  label: string;
+  href?: string;
+  to?: string;
+  external?: boolean;
 }
 
 const containerVariants: Variants = {
@@ -185,12 +192,23 @@ export default function Landing() {
       {/* Main Content Landmark with Top Spacer */}
       <main className="flex-1 pt-16">
         {/* 1. Hero with Staggered Entrance */}
-        <section className="brand-gradient-soft">
+        <section className="brand-gradient-soft relative overflow-hidden">
+          {/* Malla de puntos decorativa (Dot Grid — estilo Linear/Supabase) */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.18]"
+            style={{
+              backgroundImage: 'radial-gradient(circle, hsl(var(--primary) / 0.55) 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+              maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+            }}
+            aria-hidden="true"
+          />
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="mx-auto max-w-5xl px-4 py-16 text-center md:py-24"
+            className="relative mx-auto max-w-5xl px-4 py-16 text-center md:py-24"
           >
             <motion.p
               variants={itemFadeUp}
@@ -285,26 +303,37 @@ export default function Landing() {
         </section>
 
         {/* 5. Stats with Staggered Scroll Reveal */}
-        <section id="impact" className="scroll-mt-24">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={gridReveal}
-            className="mx-auto grid w-full max-w-5xl gap-4 px-4 py-12 md:grid-cols-3"
-          >
-            {Array.isArray(stats) &&
-              stats.map((s) => (
-                <motion.div key={s.v} variants={itemFadeUp} className="h-full">
-                  <SpotlightCard className="flex h-full flex-col justify-between">
-                    <div>
-                      <p className="text-3xl font-extrabold text-brand-gradient tracking-tight">{s.v}</p>
-                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.l}</p>
-                    </div>
-                  </SpotlightCard>
-                </motion.div>
-              ))}
-          </motion.div>
+        <section id="impact" className="scroll-mt-24 bg-muted/20">
+          <div className="mx-auto max-w-5xl px-4 py-12">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-center text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-6"
+            >
+              {t('landing.trustLabel')}
+            </motion.p>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={gridReveal}
+              className="grid w-full gap-4 md:grid-cols-3"
+            >
+              {Array.isArray(stats) &&
+                stats.map((s) => (
+                  <motion.div key={s.v} variants={itemFadeUp} className="h-full">
+                    <SpotlightCard className="flex h-full flex-col justify-between">
+                      <div>
+                        <p className="text-3xl font-extrabold text-brand-gradient tracking-tight">{s.v}</p>
+                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.l}</p>
+                      </div>
+                    </SpotlightCard>
+                  </motion.div>
+                ))}
+            </motion.div>
+          </div>
         </section>
 
         {/* 6. Interactive 7-Module Deliverables Selector */}
@@ -337,8 +366,122 @@ export default function Landing() {
         </motion.section>
       </main>
 
-      <footer className="border-t px-4 py-6 text-center text-xs text-muted-foreground">
-        {t('landing.footer')}
+      <footer className="border-t bg-background/50">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-5xl px-4 py-12"
+        >
+          {/* Grilla de 4 columnas */}
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 mb-10">
+            {/* Columna 1: Metodología */}
+            <div>
+              <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-foreground">
+                {t('landing.footerCorp.colMethodTitle')}
+              </h4>
+              <ul className="space-y-2">
+                {((t('landing.footerCorp.methodLinks', { returnObjects: true }) as FooterLinkItem[]) || []).map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                    >
+                      <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Columna 2: Cumplimiento */}
+            <div>
+              <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-foreground">
+                {t('landing.footerCorp.colComplianceTitle')}
+              </h4>
+              <ul className="space-y-2">
+                {((t('landing.footerCorp.complianceLinks', { returnObjects: true }) as FooterLinkItem[]) || []).map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                    >
+                      <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                      <ArrowUpRight className="h-3 w-3 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-150" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Columna 3: Plataforma */}
+            <div>
+              <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-foreground">
+                {t('landing.footerCorp.colPlatformTitle')}
+              </h4>
+              <ul className="space-y-2">
+                {((t('landing.footerCorp.platformLinks', { returnObjects: true }) as FooterLinkItem[]) || []).map((item) => (
+                  <li key={item.label}>
+                    {item.to ? (
+                      <Link
+                        to={item.to}
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                      >
+                        <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                      >
+                        <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {/* Columna 4: Legal & Soporte */}
+            <div>
+              <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-foreground">
+                {t('landing.footerCorp.colLegalTitle')}
+              </h4>
+              <ul className="space-y-2">
+                {((t('landing.footerCorp.legalLinks', { returnObjects: true }) as FooterLinkItem[]) || []).map((item) => (
+                  <li key={item.label}>
+                    {item.to ? (
+                      <Link
+                        to={item.to}
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                      >
+                        <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={item.href}
+                        className="text-xs text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1 group py-0.5"
+                      >
+                        <span className="group-hover:translate-x-0.5 transition-transform duration-150">{item.label}</span>
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Línea divisoria + brand bottom */}
+          <div className="border-t border-border/50 pt-6 flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+            <div className="flex items-center gap-2">
+              <BrandLogo compact />
+            </div>
+            <div className="text-center sm:text-right space-y-0.5">
+              <p className="text-[11px] text-muted-foreground">{t('landing.footerCorp.tagline')}</p>
+              <p className="text-[11px] text-muted-foreground">{t('landing.footerCorp.copy')}</p>
+            </div>
+          </div>
+        </motion.div>
       </footer>
 
       {/* Modern Executive Floating Pill "Scroll to Top" Indicator */}

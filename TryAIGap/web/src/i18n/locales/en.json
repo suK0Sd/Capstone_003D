@@ -410,6 +410,91 @@
       "a4": "The platform delivers immediate quantitative baselines and heatmaps. You can seamlessly add certified consulting sessions through our estimator for audit and change management.",
       "q5": "What tangible deliverables does the board receive?",
       "a5": "A board-ready executive PDF report with the 5D maturity radar, departmental heatmap, tech decision tree, and prioritized ROI portfolio."
+    },
+    "footerCorp": {
+      "colMethodTitle": "Methodology",
+      "methodLinks": [
+        {
+          "label": "Module M1: 5D Assessment",
+          "href": "#simulator"
+        },
+        {
+          "label": "Module M2: Opportunity Map",
+          "href": "#deliverables"
+        },
+        {
+          "label": "Module M3: Innovation Portfolio",
+          "href": "#deliverables"
+        },
+        {
+          "label": "Module M7: Centre of Excellence",
+          "href": "#deliverables"
+        }
+      ],
+      "colComplianceTitle": "Compliance",
+      "complianceLinks": [
+        {
+          "label": "EU AI Act",
+          "href": "https://artificialintelligenceact.eu/",
+          "external": true
+        },
+        {
+          "label": "ISO/IEC 42001",
+          "href": "https://www.iso.org/standard/81230.html",
+          "external": true
+        },
+        {
+          "label": "NIST AI RMF",
+          "href": "https://www.nist.gov/itl/ai-risk-management-framework",
+          "external": true
+        },
+        {
+          "label": "UK GDPR",
+          "href": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/",
+          "external": true
+        }
+      ],
+      "colPlatformTitle": "Platform",
+      "platformLinks": [
+        {
+          "label": "Interactive 5D Diagnosis",
+          "href": "#simulator"
+        },
+        {
+          "label": "Strategic Estimator",
+          "to": "/start"
+        },
+        {
+          "label": "Consultant Console",
+          "to": "/login"
+        },
+        {
+          "label": "Playbook Catalog",
+          "to": "/catalog"
+        }
+      ],
+      "colLegalTitle": "Legal & Support",
+      "legalLinks": [
+        {
+          "label": "Terms of Service",
+          "to": "/terms"
+        },
+        {
+          "label": "Privacy Policy",
+          "to": "/terms"
+        },
+        {
+          "label": "Help Centre & FAQ",
+          "href": "#faq"
+        },
+        {
+          "label": "Support Contact",
+          "href": "mailto:support@tryaigap.com"
+        }
+      ],
+      "tagline": "Proprietary Methodology · Regulation-Ready · UK Data Residency",
+      "copy": "© 2026 TryAIGap. All rights reserved.",
+      "madeWith": "Built with methodological rigour for the enterprise world."
     }
   },
   "terms": {

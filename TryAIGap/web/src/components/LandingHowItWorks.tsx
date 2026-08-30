@@ -55,7 +55,14 @@ export function LandingHowItWorks() {
 
   return (
     <section className="mx-auto w-full max-w-5xl px-4 py-16">
-      <div className="text-center max-w-2xl mx-auto mb-12">
+      {/* Encabezado con entrada suave */}
+      <motion.div
+        initial={{ opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="text-center max-w-2xl mx-auto mb-12"
+      >
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-3">
           {t('landing.howItWorks.badge')}
         </span>
@@ -65,7 +72,7 @@ export function LandingHowItWorks() {
         <p className="mt-2 text-sm md:text-base text-muted-foreground">
           {t('landing.howItWorks.subtitle')}
         </p>
-      </div>
+      </motion.div>
 
       <motion.div
         variants={gridVariants}
