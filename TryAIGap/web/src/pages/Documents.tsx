@@ -367,7 +367,7 @@ export default function Documents() {
                   const Icon = KIND_ICONS[kind] ?? FileIcon;
 
                   return (
-                    <TableRow key={doc.id} className="hover:bg-muted/30 text-xs">
+                    <TableRow key={doc.id} className="hover:bg-muted/30 text-xs content-auto">
                       <TableCell className="font-semibold text-foreground flex items-center gap-2">
                         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
                           <Icon className="h-4 w-4" />

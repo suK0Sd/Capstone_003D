@@ -131,7 +131,10 @@ export default function Estimator() {
     configs[key] ?? { area_key: key, active: false, review: false, sessions: 0 };
 
   function patchArea(key: string, patch: Partial<QuoteAreaConfig>) {
-    setConfigs((prev) => ({ ...prev, [key]: { ...cfgFor(key), ...patch } }));
+    setConfigs((prev) => {
+      const current = prev[key] ?? { area_key: key, active: false, review: false, sessions: 0 };
+      return { ...prev, [key]: { ...current, ...patch } };
+    });
   }
 
   const pricing = pricingQuery.data;

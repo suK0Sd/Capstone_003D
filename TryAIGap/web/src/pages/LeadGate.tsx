@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   ArrowLeft, 
   ArrowRight, 
+  CheckCircle2,
   FileText, 
   Layers, 
   Radar, 
@@ -32,6 +33,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import {
+  isCorporateEmail,
   mapLeadApiError,
   validateLead,
   type LeadField,
@@ -228,15 +230,23 @@ export default function LeadGate() {
                     <Label htmlFor="lg-email" className="text-xs font-semibold">
                       {t('leadgate.email')} <span className="text-primary">*</span>
                     </Label>
-                    <Input
-                      id="lg-email"
-                      type="email"
-                      value={values.company_email}
-                      onChange={(e) => set('company_email', e.target.value)}
-                      placeholder="nombre@empresa.com"
-                      aria-invalid={!!fieldErrors.company_email}
-                      className="bg-background/50 h-9 text-xs sm:text-sm"
-                    />
+                    <div className="relative">
+                      <Input
+                        id="lg-email"
+                        type="email"
+                        value={values.company_email}
+                        onChange={(e) => set('company_email', e.target.value)}
+                        placeholder="nombre@empresa.com"
+                        aria-invalid={!!fieldErrors.company_email}
+                        className={cn(
+                          "bg-background/50 h-9 text-xs sm:text-sm",
+                          isCorporateEmail(values.company_email) && "border-emerald-500/60 pr-8"
+                        )}
+                      />
+                      {isCorporateEmail(values.company_email) && (
+                        <CheckCircle2 className="absolute right-2.5 top-2.5 h-4 w-4 text-emerald-500 pointer-events-none" />
+                      )}
+                    </div>
                     {fieldErrors.company_email ? (
                       <p className="text-xs text-destructive">
                         {t(fieldErrors.company_email)}{' '}

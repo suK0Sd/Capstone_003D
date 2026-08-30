@@ -145,4 +145,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 200px;
+  }
 }
