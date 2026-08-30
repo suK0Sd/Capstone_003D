@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import brandLogo from '@/assets/brand-logo.jpg';
+import brandLogo from '@/assets/brand-logo.png';
 import { cn } from '@/lib/utils';
 
 interface BrandLogoProps {
