@@ -17,6 +17,10 @@ export function BrandLogo({ withTagline = false, compact = false, className }: B
       <img
         src={brandLogo}
         alt="tryAIGap"
+        width={compact ? 28 : 36}
+        height={compact ? 28 : 36}
+        loading="eager"
+        decoding="async"
         className={cn('rounded-md object-cover', compact ? 'h-7 w-7' : 'h-9 w-9')}
       />
       <span className="flex flex-col leading-none">

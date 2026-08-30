@@ -1,12 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router';
+import Landing from '@/pages/Landing';
 import { RequireAuth } from '@/components/RequireAuth';
 import { RequireRole } from '@/components/RequireRole';
 import { RouteError } from '@/components/RouteError';
 import { AppShell } from '@/layouts/AppShell';
 
-// Route-level code splitting (dynamic imports for lean initial bundle)
-const Landing = lazy(() => import('@/pages/Landing'));
+// Route-level code splitting for internal/secondary pages
 const LeadGate = lazy(() => import('@/pages/LeadGate'));
 const Terms = lazy(() => import('@/pages/Terms'));
 const Login = lazy(() => import('@/pages/Login'));
