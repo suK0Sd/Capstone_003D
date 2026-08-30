@@ -1,7 +1,7 @@
 {
-  "appName": "YourBrand",
+  "appName": "TryAIGap",
   "appSub": "AI Assessment",
-  "poweredBy": "Baseado na metodologia YourBrand de 7 módulos",
+  "poweredBy": "Baseado na metodologia TryAIGap de 7 módulos",
   "dataResidency": "Dados no Reino Unido · Conforme UK GDPR",
   "nav": {
     "group_main": "Diagnóstico",
@@ -21,7 +21,7 @@
   },
   "login": {
     "title": "Diagnostique sua IA com método.",
-    "sub": "Um assessment guiado, opcionalmente supervisionado por consultores YourBrand, baseado em uma metodologia de 7 módulos.",
+    "sub": "Um assessment guiado, opcionalmente supervisionado por consultores TryAIGap, baseado em uma metodologia de 7 módulos.",
     "email": "Seu e-mail corporativo",
     "send": "Enviar magic link",
     "orInvite": "Recebeu um link de convite do seu consultor?",
@@ -95,10 +95,10 @@
   },
   "landing": {
     "navLogin": "Entrar",
-    "eyebrow": "Metodologia YourBrand · 7 módulos · agnóstica de setor",
+    "eyebrow": "Metodologia TryAIGap · 7 módulos · agnóstica de setor",
     "h1Pre": "O momento da IA é agora.",
     "h1Em": "Fazer bem não é óbvio.",
-    "sub": "Entre 70% e 85% dos projetos de IA empresarial não entregam o valor esperado. A causa raramente é a tecnologia — é o método. Esta plataforma traduz a metodologia usada pelos consultores YourBrand em um assessment guiado, opcionalmente supervisionado, que sua organização pode percorrer em semanas em vez de meses.",
+    "sub": "Entre 70% e 85% dos projetos de IA empresarial não entregam o valor esperado. A causa raramente é a tecnologia — é o método. Esta plataforma traduz a metodologia usada pelos consultores TryAIGap em um assessment guiado, opcionalmente supervisionado, que sua organização pode percorrer em semanas em vez de meses.",
     "ctaPrimary": "Comece grátis",
     "ctaSecondary": "Ver a metodologia",
     "trustLabel": "Compatível com",
@@ -205,7 +205,7 @@
         "name": "Diagnóstico estratégico",
         "price": "A partir de US$ 19.400",
         "priceNote": "4 semanas",
-        "meta": "M1 + M2 + M3 com a equipe YourBrand",
+        "meta": "M1 + M2 + M3 com a equipe TryAIGap",
         "features": [
           "Diagnóstico de maturidade com consultor sênior",
           "Mapa de oportunidades documentado e priorizado",
@@ -236,7 +236,7 @@
     "finalTitle": "O investimento que sua organização fizer em IA nos próximos 18 meses definirá em grande parte sua posição competitiva pelos próximos cinco anos.",
     "finalSub": "Assim como a forma de fazê-lo. Comece com um assessment guiado e descubra onde sua organização está no mapa.",
     "finalCta": "Comece grátis",
-    "footer": "© 2026 YourBrand · Metodologia proprietária · Dados no Reino Unido",
+    "footer": "© 2026 TryAIGap · Metodologia proprietária · Dados no Reino Unido",
     "footerLinks": {
       "terms": "Termos e Condições",
       "privacy": "Privacidade",
@@ -500,15 +500,15 @@
   "terms": {
     "title": "Termos e Condições de Uso",
     "lastUpdated": "Última atualização: 5 de maio de 2026",
-    "intro": "Estes Termos e Condições (os \"Termos\") regulam o uso do serviço YourBrand AI Assessment (o \"Serviço\") fornecido pela YourBrand Ltd. (\"YourBrand\"). Ao criar uma conta, contratar o Serviço ou efetuar o pagamento, o cliente (\"Cliente\") declara ter lido, compreendido e aceitado estes Termos em sua totalidade.",
+    "intro": "Estes Termos e Condições (os \"Termos\") regulam o uso do serviço TryAIGap AI Assessment (o \"Serviço\") fornecido pela TryAIGap Ltd. (\"TryAIGap\"). Ao criar uma conta, contratar o Serviço ou efetuar o pagamento, o cliente (\"Cliente\") declara ter lido, compreendido e aceitado estes Termos em sua totalidade.",
     "sections": [
       {
         "h": "1. Natureza do Serviço",
-        "p": "O Serviço é uma plataforma web que aplica a metodologia YourBrand de implementação de IA em sete módulos. Inclui questionários estruturados, geração automatizada de diagnósticos, dashboard de resultados, relatório executivo e, opcionalmente, sessões de revisão e acompanhamento com consultores YourBrand. O Serviço é fornecido \"TAL COMO ESTÁ\" (AS IS) sob o modelo de Software como Serviço (SaaS)."
+        "p": "O Serviço é uma plataforma web que aplica a metodologia TryAIGap de implementação de IA em sete módulos. Inclui questionários estruturados, geração automatizada de diagnósticos, dashboard de resultados, relatório executivo e, opcionalmente, sessões de revisão e acompanhamento com consultores TryAIGap. O Serviço é fornecido \"TAL COMO ESTÁ\" (AS IS) sob o modelo de Software como Serviço (SaaS)."
       },
       {
         "h": "2. Licença de uso da metodologia e propriedade intelectual",
-        "p": "A metodologia, os questionários, as matrizes de scoring, os templates, os catálogos de casos de uso, os textos do whitepaper e todo material derivado são propriedade intelectual exclusiva da YourBrand e/ou de seus licenciantes. Ao contratar o Serviço, a YourBrand concede ao Cliente uma licença não exclusiva, intransferível, revogável e limitada à duração do contrato, exclusivamente para uso interno do Cliente. É proibido reproduzir, copiar, redistribuir, vender, sublicenciar, traduzir ou criar obras derivadas de qualquer elemento da metodologia, bem como usar a metodologia para prestar serviços de consultoria a terceiros. A marca \"YourBrand\" e a metodologia YourBrand estão protegidas por direitos autorais."
+        "p": "A metodologia, os questionários, as matrizes de scoring, os templates, os catálogos de casos de uso, os textos do whitepaper e todo material derivado são propriedade intelectual exclusiva da TryAIGap e/ou de seus licenciantes. Ao contratar o Serviço, a TryAIGap concede ao Cliente uma licença não exclusiva, intransferível, revogável e limitada à duração do contrato, exclusivamente para uso interno do Cliente. É proibido reproduzir, copiar, redistribuir, vender, sublicenciar, traduzir ou criar obras derivadas de qualquer elemento da metodologia, bem como usar a metodologia para prestar serviços de consultoria a terceiros. A marca \"TryAIGap\" e a metodologia TryAIGap estão protegidas por direitos autorais."
       },
       {
         "h": "3. Política de não reembolso",
@@ -516,31 +516,31 @@
       },
       {
         "h": "4. Confidencialidade",
-        "p": "Cada parte compromete-se a manter confidencial toda informação não pública recebida da outra parte, seja oral, escrita, eletrônica ou em qualquer outro suporte, incluindo respostas ao questionário, documentos de evidência, planos estratégicos, dados financeiros e resultados do diagnóstico. A obrigação de confidencialidade permanece vigente durante a relação contratual e por cinco (5) anos após seu término. A YourBrand implementa controles administrativos, físicos e técnicos para proteger as informações do Cliente, incluindo criptografia em trânsito e em repouso, segregação lógica de dados e acesso pelo princípio do menor privilégio."
+        "p": "Cada parte compromete-se a manter confidencial toda informação não pública recebida da outra parte, seja oral, escrita, eletrônica ou em qualquer outro suporte, incluindo respostas ao questionário, documentos de evidência, planos estratégicos, dados financeiros e resultados do diagnóstico. A obrigação de confidencialidade permanece vigente durante a relação contratual e por cinco (5) anos após seu término. A TryAIGap implementa controles administrativos, físicos e técnicos para proteger as informações do Cliente, incluindo criptografia em trânsito e em repouso, segregação lógica de dados e acesso pelo princípio do menor privilégio."
       },
       {
         "h": "5. Tratamento de dados pessoais",
-        "p": "Quando o Serviço envolver o tratamento de dados pessoais, o Cliente atua como Controlador (Controller) e a YourBrand como Operadora (Processor). O tratamento é realizado conforme o UK GDPR, o Data Protection Act 2018 e, quando aplicável, o GDPR da UE. Os dados são hospedados em infraestrutura localizada no Reino Unido. O Cliente é responsável por obter todos os consentimentos necessários das pessoas cujos dados sejam carregados na plataforma. Um Acordo de Tratamento de Dados (DPA) está disponível mediante solicitação."
+        "p": "Quando o Serviço envolver o tratamento de dados pessoais, o Cliente atua como Controlador (Controller) e a TryAIGap como Operadora (Processor). O tratamento é realizado conforme o UK GDPR, o Data Protection Act 2018 e, quando aplicável, o GDPR da UE. Os dados são hospedados em infraestrutura localizada no Reino Unido. O Cliente é responsável por obter todos os consentimentos necessários das pessoas cujos dados sejam carregados na plataforma. Um Acordo de Tratamento de Dados (DPA) está disponível mediante solicitação."
       },
       {
         "h": "6. Ausência de garantia de adequação ou resultados",
-        "p": "O Serviço é fornecido sem garantias de qualquer natureza, expressas ou implícitas, incluindo, sem limitação, garantias de comercialização, adequação a um propósito específico, não violação, exatidão, integridade, ausência de erros ou continuidade. A YourBrand não garante que o Serviço satisfaça necessidades específicas do Cliente, nem que a aplicação da metodologia produza resultados financeiros, operacionais, regulatórios ou estratégicos determinados. O Serviço é de natureza consultiva e indicativa; toda decisão de negócio e toda implementação prática derivada de seu uso são responsabilidade exclusiva do Cliente. As faixas de retorno mencionadas em materiais comerciais são indicativas e não constituem promessa de desempenho."
+        "p": "O Serviço é fornecido sem garantias de qualquer natureza, expressas ou implícitas, incluindo, sem limitação, garantias de comercialização, adequação a um propósito específico, não violação, exatidão, integridade, ausência de erros ou continuidade. A TryAIGap não garante que o Serviço satisfaça necessidades específicas do Cliente, nem que a aplicação da metodologia produza resultados financeiros, operacionais, regulatórios ou estratégicos determinados. O Serviço é de natureza consultiva e indicativa; toda decisão de negócio e toda implementação prática derivada de seu uso são responsabilidade exclusiva do Cliente. As faixas de retorno mencionadas em materiais comerciais são indicativas e não constituem promessa de desempenho."
       },
       {
         "h": "7. Limitação de responsabilidade",
-        "p": "Na máxima medida permitida pela lei aplicável, a responsabilidade acumulada total da YourBrand por qualquer reclamação decorrente ou relacionada a estes Termos ou ao Serviço ficará limitada ao valor efetivamente pago pelo Cliente à YourBrand nos doze (12) meses anteriores ao evento que originou a reclamação. Em nenhum caso a YourBrand será responsável por danos indiretos, incidentais, consequenciais, especiais, exemplares ou punitivos, lucros cessantes, perda de receitas, perda de oportunidade de negócio, perda de dados ou custos de substituição, ainda que tenha sido advertida da possibilidade de tais danos."
+        "p": "Na máxima medida permitida pela lei aplicável, a responsabilidade acumulada total da TryAIGap por qualquer reclamação decorrente ou relacionada a estes Termos ou ao Serviço ficará limitada ao valor efetivamente pago pelo Cliente à TryAIGap nos doze (12) meses anteriores ao evento que originou a reclamação. Em nenhum caso a TryAIGap será responsável por danos indiretos, incidentais, consequenciais, especiais, exemplares ou punitivos, lucros cessantes, perda de receitas, perda de oportunidade de negócio, perda de dados ou custos de substituição, ainda que tenha sido advertida da possibilidade de tais danos."
       },
       {
         "h": "8. Disponibilidade do Serviço",
-        "p": "A YourBrand fará esforços razoáveis para manter o Serviço disponível, mas não garante disponibilidade ininterrupta. Podem ocorrer interrupções programadas para manutenção, atualizações ou eventos de força maior. O Serviço pode ser modificado, suspenso ou descontinuado, total ou parcialmente, a qualquer momento, com aviso razoável quando viável."
+        "p": "A TryAIGap fará esforços razoáveis para manter o Serviço disponível, mas não garante disponibilidade ininterrupta. Podem ocorrer interrupções programadas para manutenção, atualizações ou eventos de força maior. O Serviço pode ser modificado, suspenso ou descontinuado, total ou parcialmente, a qualquer momento, com aviso razoável quando viável."
       },
       {
         "h": "9. Suspensão e rescisão",
-        "p": "A YourBrand poderá suspender ou encerrar o acesso do Cliente ao Serviço em caso de violação material destes Termos, uso indevido, tentativa de engenharia reversa, violação dos direitos de propriedade intelectual ou inadimplência. Qualquer das partes poderá rescindir a relação por violação material da outra, mediante notificação prévia de trinta (30) dias, durante os quais a causa da rescisão poderá ser sanada. A rescisão não gera obrigação de reembolso conforme a cláusula 3."
+        "p": "A TryAIGap poderá suspender ou encerrar o acesso do Cliente ao Serviço em caso de violação material destes Termos, uso indevido, tentativa de engenharia reversa, violação dos direitos de propriedade intelectual ou inadimplência. Qualquer das partes poderá rescindir a relação por violação material da outra, mediante notificação prévia de trinta (30) dias, durante os quais a causa da rescisão poderá ser sanada. A rescisão não gera obrigação de reembolso conforme a cláusula 3."
       },
       {
         "h": "10. Modificação dos Termos",
-        "p": "A YourBrand poderá atualizar estes Termos a qualquer momento. As modificações materiais serão notificadas com pelo menos trinta (30) dias de antecedência através da plataforma ou por e-mail ao Cliente. O uso continuado do Serviço após a data efetiva da modificação constitui aceitação dos novos Termos."
+        "p": "A TryAIGap poderá atualizar estes Termos a qualquer momento. As modificações materiais serão notificadas com pelo menos trinta (30) dias de antecedência através da plataforma ou por e-mail ao Cliente. O uso continuado do Serviço após a data efetiva da modificação constitui aceitação dos novos Termos."
       },
       {
         "h": "11. Lei aplicável e jurisdição",
@@ -548,15 +548,20 @@
       },
       {
         "h": "12. Disposições gerais",
-        "p": "Se alguma disposição destes Termos for considerada inválida ou inexequível, as demais disposições permanecerão em pleno vigor. O não exercício de um direito pela YourBrand não implica renúncia ao mesmo. O Cliente não poderá ceder estes Termos sem consentimento prévio e por escrito da YourBrand. Estes Termos, juntamente com a Política de Privacidade e, quando aplicável, o DPA, constituem o acordo integral entre as partes com respeito ao objeto do Serviço."
+        "p": "Se alguma disposição destes Termos for considerada inválida ou inexequível, as demais disposições permanecerão em pleno vigor. O não exercício de um direito pela TryAIGap não implica renúncia ao mesmo. O Cliente não poderá ceder estes Termos sem consentimento prévio e por escrito da TryAIGap. Estes Termos, juntamente com a Política de Privacidade e, quando aplicável, o DPA, constituem o acordo integral entre as partes com respeito ao objeto do Serviço."
       },
       {
         "h": "13. Contato",
-        "p": "Para qualquer dúvida sobre estes Termos, entre em contato com a equipe jurídica da YourBrand em legal@yourbrand.example ou no endereço registrado do responsável pelo tratamento."
+        "p": "Para qualquer dúvida sobre estes Termos, entre em contato com a equipe jurídica da TryAIGap em legal@yourbrand.example ou no endereço registrado do responsável pelo tratamento."
       }
     ],
     "back": "Voltar",
-    "iAccept": "Li e aceito os Termos"
+    "iAccept": "Li e aceito os Termos",
+    "badge": "Documento Legal e Termos de Serviço",
+    "tocTitle": "Índice de Cláusulas",
+    "print": "Imprimir documento",
+    "backToStart": "Voltar ao cadastro",
+    "govBadge": "Válido para Jurisdição UK e UE"
   },
   "settings": {
     "title": "Configuração inicial",
@@ -603,7 +608,7 @@
     "baseDesc": "Acesso completo: M1 + M2 + M5, questionários, dashboard, assistente de IA, relatório em PDF.",
     "baseIncluded": "Sempre incluído",
     "finalReportTitle": "Validação do relatório final por consultor",
-    "finalReportDesc": "Um consultor YourBrand revisa, calibra e enriquece seu relatório executivo antes da entrega.",
+    "finalReportDesc": "Um consultor TryAIGap revisa, calibra e enriquece seu relatório executivo antes da entrega.",
     "areasTitle": "Áreas funcionais do assessment",
     "areasSub": "Ative as áreas que deseja avaliar e escolha quanto suporte humano adicionar.",
     "activate": "Ativar área",
@@ -649,7 +654,7 @@
     "cardCvc": "CVC",
     "billingEmail": "E-mail de faturamento",
     "distributorTitle": "Código de distribuidor",
-    "distributorDesc": "Chegou através de um parceiro YourBrand? Aplique seu código e ganhe 10% de desconto.",
+    "distributorDesc": "Chegou através de um parceiro TryAIGap? Aplique seu código e ganhe 10% de desconto.",
     "distributorPh": "ex.: ALLX-PARTNER-2026",
     "apply": "Aplicar",
     "remove": "Remover",
@@ -658,7 +663,7 @@
     "payCta": "Pagar US$ {{amount}}",
     "securedBy": "Processado pela Stripe · 100% seguro · conforme PCI-DSS",
     "successTitle": "Pagamento confirmado",
-    "successSub": "Bem-vindo ao YourBrand AI Assessment! Enviamos a fatura para seu e-mail. Seu pacote já está ativo.",
+    "successSub": "Bem-vindo ao TryAIGap AI Assessment! Enviamos a fatura para seu e-mail. Seu pacote já está ativo.",
     "goHome": "Ir para o início",
     "stripeNote": "Demo: qualquer dado funciona. Em produção, este é um Stripe Element seguro.",
     "simBadge": "Simulação",
@@ -679,7 +684,7 @@
     "missingPayment": "Não encontramos o pagamento desta sessão."
   },
   "assistant": {
-    "title": "Assistente YourBrand",
+    "title": "Assistente TryAIGap",
     "sub": "IA no contexto do seu assessment · respostas indicativas",
     "welcome": "Olá Max 👋 Sou seu assistente de IA do assessment. Posso ajudar a entender perguntas, priorizar áreas, comparar sua readiness com benchmarks ou resumir seu progresso. Por onde começamos?",
     "placeholder": "Digite sua pergunta...",
@@ -926,7 +931,7 @@
   },
   "review": {
     "title": "Revisão humana",
-    "sub": "Um consultor YourBrand revisa seu assessment, calibra os scores e deixa recomendações por escrito.",
+    "sub": "Um consultor TryAIGap revisa seu assessment, calibra os scores e deixa recomendações por escrito.",
     "status": "Status atual",
     "stages": [
       "Self-service",
@@ -975,7 +980,7 @@
     "q2Title": "Cordialidade e trato",
     "q2Desc": "Quão respeitoso, acessível e empático foi o consultor durante a revisão?",
     "q3Title": "Domínio da metodologia",
-    "q3Desc": "Quanto domínio demonstrou da metodologia YourBrand de 7 módulos?",
+    "q3Desc": "Quanto domínio demonstrou da metodologia TryAIGap de 7 módulos?",
     "q4Title": "Comentários (opcional)",
     "q4Ph": "Algo a destacar, uma sugestão ou um comentário livre…",
     "labels": [
@@ -989,7 +994,7 @@
     "save": "Enviar avaliação",
     "missing": "Avalie as três dimensões para enviar.",
     "successTitle": "Obrigado pela sua avaliação!",
-    "successSub": "Nós a compartilhamos com o consultor e com a equipe de qualidade da YourBrand.",
+    "successSub": "Nós a compartilhamos com o consultor e com a equipe de qualidade da TryAIGap.",
     "done": "Fechar"
   },
   "cases": {
@@ -1107,7 +1112,7 @@
     "preview": "Prévia da mensagem",
     "send": "Enviar ao WhatsApp do líder",
     "cancel": "Cancelar",
-    "sample": "Olá Margaret 👋 aqui é o agente YourBrand. Pergunta 1 de 4 do Bloco A · Dados comerciais. Em uma escala de 1 a 5, onde você está? \"Temos um CRM corporativo único com adoção acima de 80%...\""
+    "sample": "Olá Margaret 👋 aqui é o agente TryAIGap. Pergunta 1 de 4 do Bloco A · Dados comerciais. Em uma escala de 1 a 5, onde você está? \"Temos um CRM corporativo único com adoção acima de 80%...\""
   },
   "examples": {
     "org": {
@@ -1147,7 +1152,7 @@
     "teamRole": "Líder",
     "teamRoleUnassigned": "Não atribuído",
     "consultant": "P. Holloway",
-    "consultantOrg": "P. Holloway · YourBrand",
+    "consultantOrg": "P. Holloway · TryAIGap",
     "sessionDate": "12 mai 2026 · 15:00 BST",
     "sessionMeta": "P. Holloway · 60 min · Google Meet",
     "residencyCity": "Reino Unido (Londres · AWS eu-west-2)",
@@ -1604,7 +1609,7 @@
     ],
     "terms": "Aceito os",
     "cta": "Começar diagnóstico grátis",
-    "back": "← Voltar",
+    "back": "Voltar",
     "goLogin": "Ir para entrar",
     "submitting": "Criando sua conta…",
     "errors": {
@@ -1612,7 +1617,20 @@
       "emailInvalid": "Insira um e-mail válido.",
       "alreadyExists": "Já existe uma conta com este e-mail.",
       "terms": "Você deve aceitar os termos e condições."
-    }
+    },
+    "badge": "Módulo 1 · Diagnóstico Guiado Freemium",
+    "valueTitle": "Por que diagnosticar com o TryAIGap?",
+    "valueSub": "Metodologia estruturada em 7 módulos para transformar incerteza em plano de ação quantificado.",
+    "benefit1Title": "Radar Pentagonal 5D",
+    "benefit1Desc": "Linha de base instantânea em Dados, Tecnologia, Talento, Processos e Cultura.",
+    "benefit2Title": "Mapa de Calor por 7 Áreas",
+    "benefit2Desc": "Priorização de oportunidades em Vendas, Marketing, TI, Operações, Finanças e RH.",
+    "benefit3Title": "Relatório Executivo em PDF A4",
+    "benefit3Desc": "Documento formal pronto para diretoria com árvore de decisão tecnológica.",
+    "securityBadge": "UK GDPR · EU AI Act Compliant",
+    "securityDesc": "Seus dados corporativos residem no Reino Unido e nunca treinam IAs de terceiros.",
+    "alreadyHaveAccount": "Já tem uma conta corporativa?",
+    "loginLink": "Entrar"
   },
   "paywall": {
     "eyebrow": "Prévia gratuita concluída",
@@ -1673,7 +1691,7 @@
       "done": "Validado",
       "stalled": "Parado"
     },
-    "back": "← Voltar aos clientes",
+    "back": "Voltar aos clientes",
     "detail": "Detalhe do cliente",
     "dims": "Dimensões de maturidade",
     "actions": "Ações",

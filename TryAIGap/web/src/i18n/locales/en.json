@@ -1,7 +1,7 @@
 {
-  "appName": "YourBrand",
+  "appName": "TryAIGap",
   "appSub": "AI Assessment",
-  "poweredBy": "Powered by the YourBrand 7-module methodology",
+  "poweredBy": "Powered by the TryAIGap 7-module methodology",
   "dataResidency": "Data in UK · UK GDPR-ready",
   "nav": {
     "group_main": "Diagnostic",
@@ -21,7 +21,7 @@
   },
   "login": {
     "title": "Diagnose your AI with method.",
-    "sub": "A guided assessment, optionally supervised by YourBrand consultants, based on a 7-module methodology.",
+    "sub": "A guided assessment, optionally supervised by TryAIGap consultants, based on a 7-module methodology.",
     "email": "Your work email",
     "send": "Send magic link",
     "orInvite": "Got an invitation link from your consultant?",
@@ -95,10 +95,10 @@
   },
   "landing": {
     "navLogin": "Sign in",
-    "eyebrow": "YourBrand methodology · 7 modules · sector-agnostic",
+    "eyebrow": "TryAIGap methodology · 7 modules · sector-agnostic",
     "h1Pre": "The moment for AI is now.",
     "h1Em": "Doing it well is not obvious.",
-    "sub": "Between 70% and 85% of enterprise AI projects fail to deliver expected value. The cause is rarely technology — it is method. This platform turns the methodology used by YourBrand consultants into a guided, optionally supervised assessment your organization can complete in weeks instead of months.",
+    "sub": "Between 70% and 85% of enterprise AI projects fail to deliver expected value. The cause is rarely technology — it is method. This platform turns the methodology used by TryAIGap consultants into a guided, optionally supervised assessment your organization can complete in weeks instead of months.",
     "ctaPrimary": "Start for free",
     "ctaSecondary": "See the methodology",
     "trustLabel": "Compatible with",
@@ -205,7 +205,7 @@
         "name": "Strategic diagnostic",
         "price": "From US$ 19,400",
         "priceNote": "4 weeks",
-        "meta": "M1 + M2 + M3 with YourBrand team",
+        "meta": "M1 + M2 + M3 with TryAIGap team",
         "features": [
           "Maturity diagnostic with senior consultant",
           "Documented and prioritized opportunity map",
@@ -236,7 +236,7 @@
     "finalTitle": "The investment your organization makes in AI over the next 18 months will largely define its competitive position for the next five years.",
     "finalSub": "So will how you make it. Start with a guided assessment and find out where your organization sits on the map.",
     "finalCta": "I want to hire the consulting service now",
-    "footer": "© 2026 YourBrand · Proprietary methodology · Data in UK",
+    "footer": "© 2026 TryAIGap · Proprietary methodology · Data in UK",
     "footerLinks": {
       "terms": "Terms & Conditions",
       "privacy": "Privacy",
@@ -500,15 +500,15 @@
   "terms": {
     "title": "Terms & Conditions of Use",
     "lastUpdated": "Last updated: 5 May 2026",
-    "intro": "These Terms & Conditions (the \"Terms\") govern the use of the YourBrand AI Assessment service (the \"Service\") provided by YourBrand Ltd. (\"YourBrand\"). By creating an account, contracting the Service or making payment, the customer (\"Customer\") confirms having read, understood and accepted these Terms in full.",
+    "intro": "These Terms & Conditions (the \"Terms\") govern the use of the TryAIGap AI Assessment service (the \"Service\") provided by TryAIGap Ltd. (\"TryAIGap\"). By creating an account, contracting the Service or making payment, the customer (\"Customer\") confirms having read, understood and accepted these Terms in full.",
     "sections": [
       {
         "h": "1. Nature of the Service",
-        "p": "The Service is a web-based platform that applies the YourBrand seven-module AI implementation methodology. It includes structured questionnaires, automated diagnostic generation, a results dashboard, an executive report and, optionally, review and support sessions with YourBrand consultants. The Service is provided \"AS IS\" under a Software-as-a-Service (SaaS) model."
+        "p": "The Service is a web-based platform that applies the TryAIGap seven-module AI implementation methodology. It includes structured questionnaires, automated diagnostic generation, a results dashboard, an executive report and, optionally, review and support sessions with TryAIGap consultants. The Service is provided \"AS IS\" under a Software-as-a-Service (SaaS) model."
       },
       {
         "h": "2. License to use the methodology and intellectual property",
-        "p": "The methodology, questionnaires, scoring matrices, templates, use-case catalogs, whitepaper text and all derivative material are the exclusive intellectual property of YourBrand and/or its licensors. By contracting the Service, YourBrand grants Customer a non-exclusive, non-transferable, revocable license, limited to the duration of the contract, exclusively for Customer’s internal use. Customer is prohibited from reproducing, copying, redistributing, selling, sublicensing, translating or creating derivative works of any element of the methodology, as well as from using the methodology to provide consulting services to third parties. The \"YourBrand\" trademark and the YourBrand methodology are protected by copyright."
+        "p": "The methodology, questionnaires, scoring matrices, templates, use-case catalogs, whitepaper text and all derivative material are the exclusive intellectual property of TryAIGap and/or its licensors. By contracting the Service, TryAIGap grants Customer a non-exclusive, non-transferable, revocable license, limited to the duration of the contract, exclusively for Customer’s internal use. Customer is prohibited from reproducing, copying, redistributing, selling, sublicensing, translating or creating derivative works of any element of the methodology, as well as from using the methodology to provide consulting services to third parties. The \"TryAIGap\" trademark and the TryAIGap methodology are protected by copyright."
       },
       {
         "h": "3. No-refund policy",
@@ -516,31 +516,31 @@
       },
       {
         "h": "4. Confidentiality",
-        "p": "Each party undertakes to keep confidential all non-public information received from the other party, whether oral, written, electronic or in any other medium, including questionnaire answers, evidentiary documents, strategic plans, financial data and diagnostic results. The confidentiality obligation remains in force during the contractual relationship and for five (5) years after its termination. YourBrand implements administrative, physical and technical controls to protect Customer information, including encryption in transit and at rest, logical data segregation and least-privilege access."
+        "p": "Each party undertakes to keep confidential all non-public information received from the other party, whether oral, written, electronic or in any other medium, including questionnaire answers, evidentiary documents, strategic plans, financial data and diagnostic results. The confidentiality obligation remains in force during the contractual relationship and for five (5) years after its termination. TryAIGap implements administrative, physical and technical controls to protect Customer information, including encryption in transit and at rest, logical data segregation and least-privilege access."
       },
       {
         "h": "5. Personal data processing",
-        "p": "Where the Service involves processing of personal data, Customer acts as Data Controller and YourBrand as Data Processor. Processing is carried out in accordance with UK GDPR, the Data Protection Act 2018 and, where applicable, EU GDPR. Data is hosted in infrastructure located in the United Kingdom. Customer is responsible for obtaining all necessary consents from individuals whose data is uploaded to the platform. A Data Processing Agreement (DPA) is available on request."
+        "p": "Where the Service involves processing of personal data, Customer acts as Data Controller and TryAIGap as Data Processor. Processing is carried out in accordance with UK GDPR, the Data Protection Act 2018 and, where applicable, EU GDPR. Data is hosted in infrastructure located in the United Kingdom. Customer is responsible for obtaining all necessary consents from individuals whose data is uploaded to the platform. A Data Processing Agreement (DPA) is available on request."
       },
       {
         "h": "6. No warranty of fitness or outcomes",
-        "p": "The Service is provided without warranties of any kind, express or implied, including without limitation warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, completeness, error-free operation or continuity. YourBrand does not guarantee that the Service will satisfy specific Customer needs, nor that applying the methodology will produce specific financial, operational, regulatory or strategic outcomes. The Service is advisory and indicative; every business decision and practical implementation derived from its use are the exclusive responsibility of Customer. Return ranges mentioned in commercial materials are indicative and do not constitute a performance promise."
+        "p": "The Service is provided without warranties of any kind, express or implied, including without limitation warranties of merchantability, fitness for a particular purpose, non-infringement, accuracy, completeness, error-free operation or continuity. TryAIGap does not guarantee that the Service will satisfy specific Customer needs, nor that applying the methodology will produce specific financial, operational, regulatory or strategic outcomes. The Service is advisory and indicative; every business decision and practical implementation derived from its use are the exclusive responsibility of Customer. Return ranges mentioned in commercial materials are indicative and do not constitute a performance promise."
       },
       {
         "h": "7. Limitation of liability",
-        "p": "To the maximum extent permitted by applicable law, YourBrand’s total cumulative liability for any claim arising out of or relating to these Terms or the Service shall be limited to the amount actually paid by Customer to YourBrand in the twelve (12) months preceding the event giving rise to the claim. Under no circumstances shall YourBrand be liable for indirect, incidental, consequential, special, exemplary or punitive damages, lost profits, lost revenues, loss of business opportunity, loss of data or replacement costs, even if advised of the possibility of such damages."
+        "p": "To the maximum extent permitted by applicable law, TryAIGap’s total cumulative liability for any claim arising out of or relating to these Terms or the Service shall be limited to the amount actually paid by Customer to TryAIGap in the twelve (12) months preceding the event giving rise to the claim. Under no circumstances shall TryAIGap be liable for indirect, incidental, consequential, special, exemplary or punitive damages, lost profits, lost revenues, loss of business opportunity, loss of data or replacement costs, even if advised of the possibility of such damages."
       },
       {
         "h": "8. Service availability",
-        "p": "YourBrand will use reasonable efforts to keep the Service available, but does not guarantee uninterrupted availability. Scheduled maintenance interruptions, updates or force majeure events may occur. The Service may be modified, suspended or discontinued, in whole or in part, at any time, with reasonable notice when feasible."
+        "p": "TryAIGap will use reasonable efforts to keep the Service available, but does not guarantee uninterrupted availability. Scheduled maintenance interruptions, updates or force majeure events may occur. The Service may be modified, suspended or discontinued, in whole or in part, at any time, with reasonable notice when feasible."
       },
       {
         "h": "9. Suspension and termination",
-        "p": "YourBrand may suspend or terminate Customer’s access to the Service in case of material breach of these Terms, misuse, attempted reverse engineering, infringement of intellectual property rights or non-payment. Either party may terminate the relationship for material breach by the other, with thirty (30) days’ prior written notice during which the cause of termination may be remedied. Termination does not give rise to a refund obligation pursuant to clause 3."
+        "p": "TryAIGap may suspend or terminate Customer’s access to the Service in case of material breach of these Terms, misuse, attempted reverse engineering, infringement of intellectual property rights or non-payment. Either party may terminate the relationship for material breach by the other, with thirty (30) days’ prior written notice during which the cause of termination may be remedied. Termination does not give rise to a refund obligation pursuant to clause 3."
       },
       {
         "h": "10. Modification of the Terms",
-        "p": "YourBrand may update these Terms at any time. Material modifications will be notified at least thirty (30) days in advance via the platform or by email to Customer. Continued use of the Service after the effective date of the modification constitutes acceptance of the new Terms."
+        "p": "TryAIGap may update these Terms at any time. Material modifications will be notified at least thirty (30) days in advance via the platform or by email to Customer. Continued use of the Service after the effective date of the modification constitutes acceptance of the new Terms."
       },
       {
         "h": "11. Governing law and jurisdiction",
@@ -548,15 +548,20 @@
       },
       {
         "h": "12. General provisions",
-        "p": "If any provision of these Terms is held invalid or unenforceable, the remaining provisions shall remain in full force. Failure by YourBrand to exercise any right does not constitute a waiver thereof. Customer may not assign these Terms without YourBrand’s prior written consent. These Terms, together with the Privacy Policy and, where applicable, the DPA, constitute the entire agreement between the parties with respect to the subject matter of the Service."
+        "p": "If any provision of these Terms is held invalid or unenforceable, the remaining provisions shall remain in full force. Failure by TryAIGap to exercise any right does not constitute a waiver thereof. Customer may not assign these Terms without TryAIGap’s prior written consent. These Terms, together with the Privacy Policy and, where applicable, the DPA, constitute the entire agreement between the parties with respect to the subject matter of the Service."
       },
       {
         "h": "13. Contact",
-        "p": "For any question about these Terms please contact the YourBrand legal team at legal@yourbrand.example or at the registered address of the data controller."
+        "p": "For any question about these Terms please contact the TryAIGap legal team at legal@yourbrand.example or at the registered address of the data controller."
       }
     ],
     "back": "Back",
-    "iAccept": "I have read and accept the Terms"
+    "iAccept": "I have read and accept the Terms",
+    "badge": "Legal Framework & Service Terms",
+    "tocTitle": "Contract Index",
+    "print": "Print document",
+    "backToStart": "Back to registration",
+    "govBadge": "Valid for UK & EU Jurisdiction"
   },
   "settings": {
     "title": "Initial settings",
@@ -603,7 +608,7 @@
     "baseDesc": "Full access: M1 + M2 + M5, questionnaires, dashboard, AI assistant, PDF report.",
     "baseIncluded": "Always included",
     "finalReportTitle": "Consultant validation of the final report",
-    "finalReportDesc": "An YourBrand consultant reviews, calibrates and enriches your executive report before delivery.",
+    "finalReportDesc": "An TryAIGap consultant reviews, calibrates and enriches your executive report before delivery.",
     "areasTitle": "Functional areas of the assessment",
     "areasSub": "Activate the areas you want to assess and choose how much human support to add.",
     "activate": "Activate area",
@@ -649,7 +654,7 @@
     "cardCvc": "CVC",
     "billingEmail": "Billing email",
     "distributorTitle": "Distributor code",
-    "distributorDesc": "Came through an YourBrand partner? Apply your code and get 10% off.",
+    "distributorDesc": "Came through an TryAIGap partner? Apply your code and get 10% off.",
     "distributorPh": "e.g. ALLX-PARTNER-2026",
     "apply": "Apply",
     "remove": "Remove",
@@ -658,7 +663,7 @@
     "payCta": "Pay US$ {{amount}}",
     "securedBy": "Processed by Stripe · 100% secure · PCI-DSS compliant",
     "successTitle": "Payment confirmed",
-    "successSub": "Welcome to YourBrand AI Assessment! We sent the invoice to your email. Your package is now active.",
+    "successSub": "Welcome to TryAIGap AI Assessment! We sent the invoice to your email. Your package is now active.",
     "goHome": "Go to home",
     "stripeNote": "Demo: any data works. In production this is a secure Stripe Element.",
     "simBadge": "Simulation",
@@ -679,7 +684,7 @@
     "missingPayment": "We could not find the payment for this session."
   },
   "assistant": {
-    "title": "YourBrand Assistant",
+    "title": "TryAIGap Assistant",
     "sub": "AI in the context of your assessment · indicative answers",
     "welcome": "Hi Max 👋 I’m your AI assessment assistant. I can help you understand questions, prioritize areas, compare your readiness with benchmarks, or summarize your progress. Where shall we start?",
     "placeholder": "Type your question...",
@@ -926,7 +931,7 @@
   },
   "review": {
     "title": "Human review",
-    "sub": "An YourBrand consultant reviews your assessment, calibrates scores and leaves written recommendations.",
+    "sub": "An TryAIGap consultant reviews your assessment, calibrates scores and leaves written recommendations.",
     "status": "Current status",
     "stages": [
       "Self-service",
@@ -975,7 +980,7 @@
     "q2Title": "Friendliness & manners",
     "q2Desc": "How respectful, accessible and empathetic was the consultant during the review?",
     "q3Title": "Methodology mastery",
-    "q3Desc": "How much mastery did they show of the 7-module YourBrand methodology?",
+    "q3Desc": "How much mastery did they show of the 7-module TryAIGap methodology?",
     "q4Title": "Comments (optional)",
     "q4Ph": "Anything to highlight, a suggestion, or a free comment…",
     "labels": [
@@ -989,7 +994,7 @@
     "save": "Submit rating",
     "missing": "Rate the three dimensions to submit.",
     "successTitle": "Thanks for your rating!",
-    "successSub": "We share it with the consultant and with the YourBrand quality team.",
+    "successSub": "We share it with the consultant and with the TryAIGap quality team.",
     "done": "Close"
   },
   "cases": {
@@ -1107,7 +1112,7 @@
     "preview": "Message preview",
     "send": "Send to leader’s WhatsApp",
     "cancel": "Cancel",
-    "sample": "Hi Margaret 👋 this is the YourBrand agent. Question 1 of 4 in Block A · Sales data. On a 1–5 scale, where are you? \"We have a single corporate CRM with >80% adoption...\""
+    "sample": "Hi Margaret 👋 this is the TryAIGap agent. Question 1 of 4 in Block A · Sales data. On a 1–5 scale, where are you? \"We have a single corporate CRM with >80% adoption...\""
   },
   "examples": {
     "org": {
@@ -1147,7 +1152,7 @@
     "teamRole": "Leader",
     "teamRoleUnassigned": "Unassigned",
     "consultant": "P. Holloway",
-    "consultantOrg": "P. Holloway · YourBrand",
+    "consultantOrg": "P. Holloway · TryAIGap",
     "sessionDate": "12 May 2026 · 15:00 BST",
     "sessionMeta": "P. Holloway · 60 min · Google Meet",
     "residencyCity": "United Kingdom (London · AWS eu-west-2)",
@@ -1603,7 +1608,7 @@
     ],
     "terms": "I accept the",
     "cta": "Start free diagnostic",
-    "back": "← Back",
+    "back": "Back",
     "goLogin": "Go to sign in",
     "submitting": "Creating your account…",
     "errors": {
@@ -1611,7 +1616,20 @@
       "emailInvalid": "Enter a valid email.",
       "alreadyExists": "An account with this email already exists.",
       "terms": "You must accept the terms and conditions."
-    }
+    },
+    "badge": "Module 1 · Guided Freemium Assessment",
+    "valueTitle": "Why diagnose with TryAIGap?",
+    "valueSub": "Structured 7-module methodology to turn AI uncertainty into a quantified roadmap.",
+    "benefit1Title": "5D Pentagonal Radar",
+    "benefit1Desc": "Instant baseline across Data, Technology, Talent, Processes, and Culture.",
+    "benefit2Title": "7-Department Heatmap",
+    "benefit2Desc": "Opportunity prioritization in Sales, Marketing, IT, Ops, Finance, and HR.",
+    "benefit3Title": "Executive A4 PDF Report",
+    "benefit3Desc": "Board-ready formal report with technology decision tree and ROI matrix.",
+    "securityBadge": "UK GDPR · EU AI Act Compliant",
+    "securityDesc": "Your enterprise data resides in the UK and is never used to train third-party models.",
+    "alreadyHaveAccount": "Already have an enterprise account?",
+    "loginLink": "Sign In"
   },
   "paywall": {
     "eyebrow": "Free preview completed",
@@ -1672,7 +1690,7 @@
       "done": "Validated",
       "stalled": "Stalled"
     },
-    "back": "← Back to clients",
+    "back": "Back to clients",
     "detail": "Client detail",
     "dims": "Maturity dimensions",
     "actions": "Actions",

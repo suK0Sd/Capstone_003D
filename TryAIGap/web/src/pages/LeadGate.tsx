@@ -1,7 +1,17 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  FileText, 
+  Layers, 
+  Radar, 
+  ShieldCheck, 
+  Sparkles,
+  Loader2
+} from 'lucide-react';
+import { motion } from 'motion/react';
 import { createLead, fetchMetadata } from '@/api';
 import { tokenStorage } from '@/api/client';
 import type { MetadataResponse } from '@/api';
@@ -10,10 +20,10 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import {
   Select,
   SelectContent,
@@ -125,150 +135,309 @@ export default function LeadGate() {
     ) : null;
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <header className="flex h-16 items-center justify-between px-4 md:px-8">
-        <BrandLogo compact />
-        <div className="flex items-center gap-1">
+    <div className="min-h-screen flex flex-col bg-background text-foreground relative overflow-hidden">
+      {/* Background Dot Grid + Glow Decorativo */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-[0.18]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, hsl(var(--primary) / 0.55) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+          maskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%)',
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Header Corporativo */}
+      <header className="relative z-10 flex h-16 items-center justify-between border-b border-border/40 bg-background/80 px-4 md:px-8 backdrop-blur-md">
+        <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <BrandLogo compact />
+        </Link>
+        <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
           <ThemeToggle />
+          <Link
+            to="/login"
+            className="hidden sm:inline-flex text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {t('leadgate.loginLink')}
+          </Link>
         </div>
       </header>
 
-      <main className="mx-auto flex w-full max-w-xl flex-1 items-start px-4 pb-16 pt-8">
-        <Card className="w-full">
-          <CardContent className="p-6 md:p-8">
-            <h1 className="text-2xl font-bold">{t('leadgate.title')}</h1>
-            <p className="mt-1 text-sm text-muted-foreground">{t('leadgate.sub')}</p>
-            <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-secondary px-2.5 py-1 text-xs font-semibold text-secondary-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              {t('leadgate.perks')}
-            </span>
-
-            <form onSubmit={(e) => void handleSubmit(e)} className="mt-6 space-y-4" noValidate>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="space-y-1.5">
-                  <Label htmlFor="lg-name">{t('leadgate.name')} *</Label>
-                  <Input
-                    id="lg-name"
-                    value={values.full_name}
-                    onChange={(e) => set('full_name', e.target.value)}
-                    placeholder="Margaret Reid"
-                    aria-invalid={!!fieldErrors.full_name}
-                  />
-                  {errText('full_name')}
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="lg-role">{t('leadgate.role')} *</Label>
-                  <Input
-                    id="lg-role"
-                    value={values.job_title}
-                    onChange={(e) => set('job_title', e.target.value)}
-                    placeholder="COO"
-                    aria-invalid={!!fieldErrors.job_title}
-                  />
-                  {errText('job_title')}
-                </div>
-                <div className="space-y-1.5 sm:col-span-2">
-                  <Label htmlFor="lg-email">{t('leadgate.email')} *</Label>
-                  <Input
-                    id="lg-email"
-                    type="email"
-                    value={values.company_email}
-                    onChange={(e) => set('company_email', e.target.value)}
-                    placeholder="margaret@acme.co.uk"
-                    aria-invalid={!!fieldErrors.company_email}
-                  />
-                  {fieldErrors.company_email ? (
-                    <p className="text-xs text-destructive">
-                      {t(fieldErrors.company_email)}{' '}
-                      {suggestLogin && (
-                        <Link to="/login" className="font-medium underline">
-                          {t('leadgate.goLogin')}
-                        </Link>
-                      )}
-                    </p>
-                  ) : (
-                    <p className="text-xs text-muted-foreground">{t('leadgate.emailHint')}</p>
-                  )}
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="lg-company">{t('leadgate.company')} *</Label>
-                  <Input
-                    id="lg-company"
-                    value={values.company_name}
-                    onChange={(e) => set('company_name', e.target.value)}
-                    placeholder="Acme Industrial Ltd."
-                    aria-invalid={!!fieldErrors.company_name}
-                  />
-                  {errText('company_name')}
-                </div>
-                <CatalogSelect
-                  id="lg-size"
-                  label={t('leadgate.size')}
-                  value={values.company_size}
-                  options={catalogs.sizes}
-                  onChange={(v) => set('company_size', v)}
-                />
-                <CatalogSelect
-                  id="lg-industry"
-                  label={t('leadgate.industry')}
-                  value={values.industry}
-                  options={catalogs.industries}
-                  onChange={(v) => set('industry', v)}
-                />
-                <CatalogSelect
-                  id="lg-country"
-                  label={t('leadgate.country')}
-                  value={values.country}
-                  options={catalogs.countries}
-                  onChange={(v) => set('country', v)}
-                />
-              </div>
-
-              <label
-                className={cn(
-                  'flex cursor-pointer items-start gap-2 text-sm',
-                  fieldErrors.terms_accepted && 'text-destructive',
-                )}
-              >
-                <Checkbox
-                  checked={values.terms_accepted}
-                  onCheckedChange={(c) => set('terms_accepted', c === true)}
-                  aria-invalid={!!fieldErrors.terms_accepted}
-                  className="mt-0.5"
-                />
-                <span>
-                  {t('leadgate.terms')}{' '}
-                  <Link to="/terms" state={{ from: '/start' }} className="text-primary underline">
-                    {t('terms.title')}
-                  </Link>
+      {/* Main Container: 2-Column Split Screen */}
+      <main className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 items-center px-4 py-8 md:py-12">
+        <div className="grid w-full gap-8 lg:grid-cols-12 lg:gap-12 items-center">
+          {/* Left Column: Formulario de Registro */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:col-span-7"
+          >
+            <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 md:p-8 shadow-xl backdrop-blur-xl">
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary mb-2">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {t('leadgate.badge')}
                 </span>
-              </label>
-              {errText('terms_accepted')}
-
-              {formError && (
-                <Alert variant="destructive">
-                  <AlertDescription className="text-xs">{formError}</AlertDescription>
-                </Alert>
-              )}
-
-              <Button
-                type="submit"
-                size="lg"
-                disabled={submitting}
-                className="brand-gradient w-full border-0 text-white"
-              >
-                {submitting ? t('leadgate.submitting') : t('leadgate.cta')}
-                {!submitting && <ArrowRight className="h-4 w-4" />}
-              </Button>
-              <div className="text-center">
-                <Link to="/" className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:underline">
-                  <ArrowLeft className="h-3 w-3" /> {t('leadgate.back')}
-                </Link>
+                <h1 className="text-2xl font-bold md:text-3xl tracking-tight text-foreground">
+                  {t('leadgate.title')}
+                </h1>
+                <p className="mt-1 text-xs sm:text-sm text-muted-foreground">
+                  {t('leadgate.sub')}
+                </p>
               </div>
-            </form>
-          </CardContent>
-        </Card>
+
+              <form onSubmit={(e) => void handleSubmit(e)} className="space-y-4" noValidate>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {/* Nombre Completo */}
+                  <div className="space-y-1.5">
+                    <Label htmlFor="lg-name" className="text-xs font-semibold">
+                      {t('leadgate.name')} <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="lg-name"
+                      value={values.full_name}
+                      onChange={(e) => set('full_name', e.target.value)}
+                      placeholder="Ej. Fabrizio Martínez"
+                      aria-invalid={!!fieldErrors.full_name}
+                      className="bg-background/50 h-9 text-xs sm:text-sm"
+                    />
+                    {errText('full_name')}
+                  </div>
+
+                  {/* Cargo */}
+                  <div className="space-y-1.5">
+                    <Label htmlFor="lg-role" className="text-xs font-semibold">
+                      {t('leadgate.role')} <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="lg-role"
+                      value={values.job_title}
+                      onChange={(e) => set('job_title', e.target.value)}
+                      placeholder="Ej. CTO / Director de Operaciones"
+                      aria-invalid={!!fieldErrors.job_title}
+                      className="bg-background/50 h-9 text-xs sm:text-sm"
+                    />
+                    {errText('job_title')}
+                  </div>
+
+                  {/* Email Corporativo */}
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <Label htmlFor="lg-email" className="text-xs font-semibold">
+                      {t('leadgate.email')} <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="lg-email"
+                      type="email"
+                      value={values.company_email}
+                      onChange={(e) => set('company_email', e.target.value)}
+                      placeholder="nombre@empresa.com"
+                      aria-invalid={!!fieldErrors.company_email}
+                      className="bg-background/50 h-9 text-xs sm:text-sm"
+                    />
+                    {fieldErrors.company_email ? (
+                      <p className="text-xs text-destructive">
+                        {t(fieldErrors.company_email)}{' '}
+                        {suggestLogin && (
+                          <Link to="/login" className="font-medium underline text-primary">
+                            {t('leadgate.goLogin')}
+                          </Link>
+                        )}
+                      </p>
+                    ) : (
+                      <p className="text-[11px] text-muted-foreground">{t('leadgate.emailHint')}</p>
+                    )}
+                  </div>
+
+                  {/* Nombre de la Empresa */}
+                  <div className="space-y-1.5">
+                    <Label htmlFor="lg-company" className="text-xs font-semibold">
+                      {t('leadgate.company')} <span className="text-primary">*</span>
+                    </Label>
+                    <Input
+                      id="lg-company"
+                      value={values.company_name}
+                      onChange={(e) => set('company_name', e.target.value)}
+                      placeholder="Ej. Innova Corp S.A."
+                      aria-invalid={!!fieldErrors.company_name}
+                      className="bg-background/50 h-9 text-xs sm:text-sm"
+                    />
+                    {errText('company_name')}
+                  </div>
+
+                  {/* Tamaño de Empresa */}
+                  <CatalogSelect
+                    id="lg-size"
+                    label={t('leadgate.size')}
+                    value={values.company_size}
+                    options={catalogs.sizes}
+                    onChange={(v) => set('company_size', v)}
+                  />
+
+                  {/* Industria */}
+                  <CatalogSelect
+                    id="lg-industry"
+                    label={t('leadgate.industry')}
+                    value={values.industry}
+                    options={catalogs.industries}
+                    onChange={(v) => set('industry', v)}
+                  />
+
+                  {/* País */}
+                  <CatalogSelect
+                    id="lg-country"
+                    label={t('leadgate.country')}
+                    value={values.country}
+                    options={catalogs.countries}
+                    onChange={(v) => set('country', v)}
+                  />
+                </div>
+
+                {/* Términos y Condiciones */}
+                <label
+                  className={cn(
+                    'flex cursor-pointer items-start gap-2.5 pt-2 text-xs text-muted-foreground',
+                    fieldErrors.terms_accepted && 'text-destructive',
+                  )}
+                >
+                  <Checkbox
+                    checked={values.terms_accepted}
+                    onCheckedChange={(c) => set('terms_accepted', c === true)}
+                    aria-invalid={!!fieldErrors.terms_accepted}
+                    className="mt-0.5"
+                  />
+                  <span>
+                    {t('leadgate.terms')}{' '}
+                    <Link to="/terms" state={{ from: '/start' }} className="text-primary underline font-medium">
+                      {t('terms.title')}
+                    </Link>{' '}
+                    y la Política de Privacidad.
+                  </span>
+                </label>
+                {errText('terms_accepted')}
+
+                {formError && (
+                  <Alert variant="destructive" className="py-2.5">
+                    <AlertDescription className="text-xs">{formError}</AlertDescription>
+                  </Alert>
+                )}
+
+                {/* Botón CTA */}
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={submitting}
+                  className="brand-gradient w-full text-white font-semibold shadow-lg hover:opacity-95 transition-opacity h-11 text-sm rounded-xl cursor-pointer"
+                >
+                  {submitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      {t('leadgate.submitting')}
+                    </>
+                  ) : (
+                    <>
+                      {t('leadgate.cta')}
+                      <ArrowRight className="h-4 w-4 ml-1.5" />
+                    </>
+                  )}
+                </Button>
+
+                {/* Volver a la Landing */}
+                <div className="pt-2 flex items-center justify-between text-xs text-muted-foreground">
+                  <Link to="/" className="inline-flex items-center gap-1 hover:text-foreground transition-colors">
+                    <ArrowLeft className="h-3.5 w-3.5" /> {t('leadgate.back')}
+                  </Link>
+                  <Link to="/login" className="hover:text-primary transition-colors">
+                    {t('leadgate.alreadyHaveAccount')} <span className="font-semibold text-foreground underline">{t('leadgate.loginLink')}</span>
+                  </Link>
+                </div>
+              </form>
+            </SpotlightCard>
+          </motion.div>
+
+          {/* Right Column: Panel de Valor & Confianza */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="lg:col-span-5 space-y-6"
+          >
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-primary">
+                TryAIGap Enterprise Assessment
+              </span>
+              <h2 className="text-xl md:text-2xl font-bold text-foreground mt-1 tracking-tight">
+                {t('leadgate.valueTitle')}
+              </h2>
+              <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {t('leadgate.valueSub')}
+              </p>
+            </div>
+
+            {/* 3 Bloques de Entregables */}
+            <div className="space-y-3.5">
+              {/* Beneficio 1 */}
+              <div className="flex items-start gap-3.5 rounded-xl border border-border/70 bg-card/60 p-4 shadow-sm backdrop-blur-sm">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg brand-gradient text-white shadow-sm">
+                  <Radar className="h-4 w-4" />
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-bold text-foreground">
+                    {t('leadgate.benefit1Title')}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {t('leadgate.benefit1Desc')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Beneficio 2 */}
+              <div className="flex items-start gap-3.5 rounded-xl border border-border/70 bg-card/60 p-4 shadow-sm backdrop-blur-sm">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg brand-gradient text-white shadow-sm">
+                  <Layers className="h-4 w-4" />
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-bold text-foreground">
+                    {t('leadgate.benefit2Title')}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {t('leadgate.benefit2Desc')}
+                  </p>
+                </div>
+              </div>
+
+              {/* Beneficio 3 */}
+              <div className="flex items-start gap-3.5 rounded-xl border border-border/70 bg-card/60 p-4 shadow-sm backdrop-blur-sm">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg brand-gradient text-white shadow-sm">
+                  <FileText className="h-4 w-4" />
+                </div>
+                <div>
+                  <h3 className="text-xs sm:text-sm font-bold text-foreground">
+                    {t('leadgate.benefit3Title')}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {t('leadgate.benefit3Desc')}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Badge de Seguridad y Soberanía */}
+            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 flex items-start gap-3">
+              <ShieldCheck className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+              <div>
+                <p className="text-xs font-bold text-foreground">
+                  {t('leadgate.securityBadge')}
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
+                  {t('leadgate.securityDesc')}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </main>
     </div>
   );
@@ -289,14 +458,16 @@ function CatalogSelect({
 }) {
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className="text-xs font-semibold text-foreground">
+        {label}
+      </Label>
       <Select value={value} onValueChange={onChange}>
-        <SelectTrigger id={id}>
+        <SelectTrigger id={id} className="bg-background/50 h-9 text-xs sm:text-sm">
           <SelectValue placeholder="—" />
         </SelectTrigger>
         <SelectContent>
           {options.map((o) => (
-            <SelectItem key={o} value={o}>
+            <SelectItem key={o} value={o} className="text-xs sm:text-sm">
               {o}
             </SelectItem>
           ))}
