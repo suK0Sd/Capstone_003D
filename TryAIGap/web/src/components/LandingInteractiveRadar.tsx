@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
+import { cn } from '@/lib/utils';
 
 interface DimensionConfig {
   key: 'data' | 'tech' | 'talent' | 'processes' | 'culture';
@@ -194,27 +195,46 @@ export function LandingInteractiveRadar() {
               {DIMENSIONS.map((dim) => {
                 const Icon = dim.icon;
                 const val = values[dim.key] ?? 0;
+                // Parse dimension title and subtitle
+                const fullText = t(`landing.demo.dims.${dim.key}`);
+                const match = fullText.match(/^([^(]+)(?:\((.*)\))?$/);
+                const title = match ? match[1].trim() : fullText;
+                const sub = match && match[2] ? match[2].trim() : '';
+
                 return (
-                  <motion.div key={dim.key} variants={itemVariants} className="space-y-1.5">
-                    <div className="flex items-center justify-between gap-2 text-sm">
-                      <div className="flex items-center gap-2 font-medium min-w-0 flex-1">
-                        <Icon className="h-4 w-4 text-primary shrink-0" />
-                        <span className="text-xs sm:text-sm font-semibold text-foreground truncate sm:whitespace-normal">
-                          {t(`landing.demo.dims.${dim.key}`)}
-                        </span>
+                  <motion.div
+                    key={dim.key}
+                    variants={itemVariants}
+                    className="space-y-2 rounded-xl bg-card/50 p-3 sm:p-3.5 border border-border/50 shadow-2xs"
+                  >
+                    <div className="flex items-center justify-between gap-2 min-w-0">
+                      <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 text-primary shrink-0">
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs sm:text-sm font-bold text-foreground truncate">
+                            {title}
+                          </p>
+                          {sub && (
+                            <p className="text-[10px] sm:text-xs text-muted-foreground truncate leading-tight">
+                              {sub}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <span className="font-bold tabular-nums text-primary text-xs sm:text-sm shrink-0">
-                        {val}%
-                      </span>
+                      <div className="flex items-center justify-center shrink-0 rounded-lg bg-primary/10 px-2.5 py-1 border border-primary/20">
+                        <span className="font-bold tabular-nums text-primary text-xs sm:text-sm">{val}%</span>
+                      </div>
                     </div>
                     <Slider
                       value={[val]}
                       min={10}
                       max={100}
                       step={5}
-                      aria-label={t(`landing.demo.dims.${dim.key}`)}
+                      aria-label={fullText}
                       onValueChange={(v) => handleSliderChange(dim.key, v)}
-                      className="cursor-pointer"
+                      className="cursor-pointer pt-0.5"
                     />
                   </motion.div>
                 );
@@ -225,7 +245,7 @@ export function LandingInteractiveRadar() {
                 className="rounded-xl bg-muted/40 p-3.5 border border-border/50 flex items-start gap-3 mt-3"
               >
                 <Bot className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <div className="text-xs space-y-1">
+                <div className="text-xs space-y-1 min-w-0 flex-1">
                   <p className="font-bold text-foreground">{t('landing.demo.insightTitle')}</p>
                   <p className="text-muted-foreground leading-relaxed">{levelInfo.desc}</p>
                 </div>
@@ -238,11 +258,11 @@ export function LandingInteractiveRadar() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
-              className="lg:col-span-5 flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl brand-gradient-soft border border-border/40 text-center w-full"
+              className="lg:col-span-5 flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl brand-gradient-soft border border-border/40 text-center w-full min-w-0"
             >
               {/* SVG Pentagonal Dynamic Radar */}
-              <div className="relative w-full max-w-[260px] sm:max-w-[280px] aspect-square flex items-center justify-center">
-                <svg viewBox="-30 -30 360 360" className="w-full h-full">
+              <div className="relative w-full max-w-[240px] sm:max-w-[270px] aspect-square flex items-center justify-center">
+                <svg viewBox="-40 -40 380 380" className="w-full h-full">
                   {/* Concentric Pentagons (25%, 50%, 75%, 100%) */}
                   <polygon points={getPentagonPoints(0.25)} fill="none" stroke="currentColor" strokeOpacity="0.12" strokeDasharray="3 3" />
                   <polygon points={getPentagonPoints(0.5)} fill="none" stroke="currentColor" strokeOpacity="0.18" strokeDasharray="3 3" />
@@ -283,35 +303,35 @@ export function LandingInteractiveRadar() {
                   })}
 
                   {/* 5 Axis Labels positioned around the pentagon */}
-                  <text x="150" y="32" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
+                  <text x="150" y="26" textAnchor="middle" className="text-[13px] fill-foreground font-bold">
                     {t('landing.demo.axes.data')}
                   </text>
-                  <text x="268" y="122" textAnchor="start" className="text-[12px] fill-foreground font-bold">
+                  <text x="275" y="122" textAnchor="start" className="text-[13px] fill-foreground font-bold">
                     {t('landing.demo.axes.tech')}
                   </text>
-                  <text x="220" y="270" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
+                  <text x="228" y="278" textAnchor="middle" className="text-[13px] fill-foreground font-bold">
                     {t('landing.demo.axes.talent')}
                   </text>
-                  <text x="80" y="270" textAnchor="middle" className="text-[12px] fill-foreground font-bold">
+                  <text x="72" y="278" textAnchor="middle" className="text-[13px] fill-foreground font-bold">
                     {t('landing.demo.axes.proc')}
                   </text>
-                  <text x="32" y="122" textAnchor="end" className="text-[12px] fill-foreground font-bold">
+                  <text x="25" y="122" textAnchor="end" className="text-[13px] fill-foreground font-bold">
                     {t('landing.demo.axes.cult')}
                   </text>
                 </svg>
               </div>
 
               {/* Score & Badge Output */}
-              <div className="mt-4 space-y-1.5">
-                <div className="flex items-center justify-center gap-2">
+              <div className="mt-4 space-y-2 w-full">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
                   <span className="text-3xl font-extrabold tracking-tight text-brand-gradient">
                     {avgScore}%
                   </span>
-                  <Badge variant={levelInfo.variant} className={levelInfo.badgeClass}>
+                  <Badge variant={levelInfo.variant} className={cn("text-[11px] sm:text-xs py-1 px-3 max-w-full text-center whitespace-normal leading-tight font-semibold", levelInfo.badgeClass)}>
                     {levelInfo.label}
                   </Badge>
                 </div>
-                <p className="text-xs text-muted-foreground max-w-xs">
+                <p className="text-xs text-muted-foreground max-w-xs mx-auto">
                   {t('landing.demo.radarFootnote')}
                 </p>
               </div>
