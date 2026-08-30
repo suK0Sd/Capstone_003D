@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, ArrowUpRight, Award, ChevronRight, Globe, Lock, Menu, Scale, ShieldCheck, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, ChevronRight, Cpu, Globe, Lock, Menu, Scale, ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Button } from '@/components/ui/button';
+import { Marquee } from '@/components/ui/marquee';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { LandingInteractiveRadar } from '@/components/LandingInteractiveRadar';
 import { LandingComparison } from '@/components/LandingComparison';
@@ -327,36 +328,42 @@ export default function Landing() {
               {t('landing.ctaNote')}
             </motion.p>
 
-            {/* Compliance & Trust Frameworks */}
+            {/* Compliance & Trust Frameworks (Infinite Marquee) */}
             <motion.div variants={itemFadeUp} className="mt-12 space-y-3">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground text-center">
                 {t('landing.trustLabel')}
               </p>
-              <motion.div
-                variants={gridReveal}
-                className="flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto"
-              >
-                {[
-                  { name: 'EU AI Act', label: 'Regulation-Ready', icon: Scale },
-                  { name: 'ISO/IEC 42001', label: 'AI Management', icon: Award },
-                  { name: 'NIST AI RMF', label: 'Risk Framework', icon: ShieldCheck },
-                  { name: 'UK GDPR', label: 'Data Privacy', icon: Lock },
-                  { name: 'OECD AI', label: 'Ethics Principles', icon: Globe },
-                ].map((fw) => {
-                  const Icon = fw.icon;
-                  return (
-                    <motion.div
-                      key={fw.name}
-                      variants={badgeCascade}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-medium text-muted-foreground shadow-xs transition-colors hover:border-primary/40 hover:text-foreground"
-                    >
-                      <Icon className="h-3.5 w-3.5 text-primary shrink-0" />
-                      <span className="font-semibold text-foreground">{fw.name}</span>
-                      <span className="text-[10px] text-muted-foreground hidden sm:inline">· {fw.label}</span>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
+              <div className="relative flex w-full max-w-4xl mx-auto flex-col items-center justify-center overflow-hidden py-1">
+                <Marquee pauseOnHover className="[--duration:28s] py-1">
+                  {[
+                    { name: 'EU AI Act', label: 'Regulation-Ready', icon: Scale },
+                    { name: 'ISO/IEC 42001', label: 'AI Management', icon: Award },
+                    { name: 'NIST AI RMF', label: 'Risk Framework', icon: ShieldCheck },
+                    { name: 'UK GDPR', label: 'Data Privacy', icon: Lock },
+                    { name: 'OECD AI', label: 'Ethics Principles', icon: Globe },
+                    { name: 'IEEE 7000', label: 'Ethical Design', icon: Cpu },
+                  ].map((fw) => {
+                    const Icon = fw.icon;
+                    return (
+                      <div
+                        key={fw.name}
+                        className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/80 px-4 py-1.5 text-xs font-medium text-foreground shadow-2xs backdrop-blur-xs transition-all hover:border-primary/50 hover:bg-card hover:shadow-xs cursor-default shrink-0 mx-1"
+                      >
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary shrink-0">
+                          <Icon className="h-3 w-3" />
+                        </div>
+                        <span className="font-bold text-foreground">{fw.name}</span>
+                        <span className="text-[11px] text-muted-foreground border-l border-border/80 pl-2">
+                          {fw.label}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
+                {/* Edge fade masks */}
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-background/90 to-transparent" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-background/90 to-transparent" />
+              </div>
             </motion.div>
           </motion.div>
         </section>
