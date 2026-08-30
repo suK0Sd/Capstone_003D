@@ -117,9 +117,6 @@
   a {
     cursor: pointer;
   }
-  :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
