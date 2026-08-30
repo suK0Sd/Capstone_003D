@@ -50,18 +50,6 @@ const itemFadeUp: Variants = {
   },
 };
 
-const badgeCascade: Variants = {
-  hidden: { opacity: 0, scale: 0.94, y: 12 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
 
 const gridReveal: Variants = {
   hidden: { opacity: 0 },
