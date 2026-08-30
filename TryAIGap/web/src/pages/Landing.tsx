@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, ArrowUpRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
-import { motion, type Variants } from 'motion/react';
+import { ArrowRight, ArrowUpRight, Award, ChevronRight, Globe, Lock, Menu, Scale, ShieldCheck, X } from 'lucide-react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -87,6 +87,7 @@ export default function Landing() {
   const stats = t('landing.stats', { returnObjects: true }) as LandingStat[];
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,6 +116,7 @@ export default function Landing() {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -153,7 +155,7 @@ export default function Landing() {
             </button>
           </div>
 
-          {/* Center: Navigation Links */}
+          {/* Center: Navigation Links (Desktop) */}
           <nav className="hidden lg:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.id;
@@ -174,18 +176,99 @@ export default function Landing() {
           </nav>
 
           {/* Right: Controls & Actions */}
-          <div className="flex items-center gap-1 sm:gap-1.5">
-            <LanguageSwitcher />
-            <ThemeToggle />
-            <Button asChild size="sm" variant="ghost" className="hidden sm:inline-flex text-xs font-semibold h-8 px-2.5">
-              <Link to="/login">{t('landing.navLogin')}</Link>
-            </Button>
+          <div className="flex items-center gap-1.5">
+            <div className="hidden sm:flex items-center gap-1">
+              <LanguageSwitcher />
+              <ThemeToggle />
+              <Button asChild size="sm" variant="ghost" className="text-xs font-semibold h-8 px-2.5">
+                <Link to="/login">{t('landing.navLogin')}</Link>
+              </Button>
+            </div>
             <Button asChild size="sm" className="brand-gradient border-0 text-white shadow-xs text-xs font-semibold h-8 px-3.5 rounded-full">
               <Link to="/start">{t('landing.ctaPrimary')}</Link>
+            </Button>
+            {/* Hamburger Button for Mobile / Tablet */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              className="lg:hidden h-8 w-8 rounded-full text-foreground hover:bg-muted/60"
+              aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú de navegación'}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </Button>
           </div>
         </motion.header>
       </div>
+
+      {/* Mobile Navigation Drawer Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-20 inset-x-4 max-w-md mx-auto rounded-3xl border border-border/80 bg-background/95 p-5 shadow-2xl backdrop-blur-2xl space-y-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Navigation Links */}
+              <div className="space-y-1">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground px-2 pb-1">
+                  {t('landing.eyebrow')}
+                </p>
+                {NAV_ITEMS.map((item) => {
+                  const isActive = activeSection === item.id;
+                  return (
+                    <a
+                      key={item.id}
+                      href={`#${item.id}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-2xl text-sm font-semibold transition-colors ${
+                        isActive
+                          ? 'bg-primary/10 text-primary font-bold'
+                          : 'text-foreground hover:bg-muted/60'
+                      }`}
+                    >
+                      <span>{t(item.labelKey)}</span>
+                      <ChevronRight className="h-4 w-4 text-muted-foreground/60" />
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Preferences & Quick Actions */}
+              <div className="pt-2 border-t border-border/50 space-y-3">
+                <div className="flex items-center justify-between px-2">
+                  <span className="text-xs font-semibold text-muted-foreground">Configuración</span>
+                  <div className="flex items-center gap-1.5">
+                    <LanguageSwitcher />
+                    <ThemeToggle />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-2 pt-1">
+                  <Button asChild variant="outline" className="w-full text-xs font-semibold rounded-xl h-9" onClick={() => setMobileMenuOpen(false)}>
+                    <Link to="/login">{t('landing.navLogin')}</Link>
+                  </Button>
+                  <Button asChild className="w-full brand-gradient border-0 text-white text-xs font-semibold rounded-xl h-9 shadow-xs" onClick={() => setMobileMenuOpen(false)}>
+                    <Link to="/start">{t('landing.ctaPrimary')}</Link>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main Content Landmark with Top Spacer */}
       <main className="flex-1 pt-16">
@@ -354,12 +437,20 @@ export default function Landing() {
         >
           <div className="mx-auto max-w-5xl px-4 py-16 text-center text-white">
             <h2 className="text-2xl font-bold md:text-3xl">{t('landing.finalTitle')}</h2>
-            <p className="mx-auto mt-2 max-w-xl text-white/85">{t('landing.finalSub')}</p>
-            <Button asChild size="lg" variant="secondary" className="mt-6 shadow-lg hover:opacity-95 rounded-full px-6">
-              <Link to="/start">
-                {t('landing.finalCta')} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
+            <p className="mx-auto mt-2 max-w-xl text-white/85 text-sm sm:text-base leading-relaxed px-2">{t('landing.finalSub')}</p>
+            <div className="mt-6 flex justify-center px-2">
+              <Button
+                asChild
+                size="lg"
+                variant="secondary"
+                className="h-auto min-h-12 py-3 px-6 rounded-full shadow-lg hover:opacity-95 max-w-full sm:max-w-md w-full sm:w-auto text-xs sm:text-sm font-semibold text-center whitespace-normal leading-snug"
+              >
+                <Link to="/start" className="inline-flex items-center justify-center gap-2 w-full text-center">
+                  <span>{t('landing.finalCta')}</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </motion.section>
       </main>
