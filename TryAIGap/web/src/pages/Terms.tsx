@@ -76,8 +76,8 @@ export default function Terms() {
         <div className="grid w-full gap-8 lg:grid-cols-12 items-start">
           {/* Left Sidebar (Sticky Table of Contents) */}
           <motion.aside
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="hidden lg:block lg:col-span-4 sticky top-24 space-y-4"
           >

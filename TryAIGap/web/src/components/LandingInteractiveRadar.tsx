@@ -1,4 +1,4 @@
-﻿import { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ArrowRight, Bot, Cpu, Database, Network, ShieldCheck, Sparkles, Users } from 'lucide-react';
@@ -34,10 +34,10 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, x: -16 },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       duration: 0.45,
       ease: [0.22, 1, 0.36, 1],

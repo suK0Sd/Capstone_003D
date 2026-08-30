@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, ArrowUp, ArrowUpRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
-import { motion, AnimatePresence, type Variants } from 'motion/react';
+import { ArrowRight, ArrowUpRight, Award, Globe, Lock, Scale, ShieldCheck } from 'lucide-react';
+import { motion, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -85,7 +85,6 @@ const NAV_ITEMS = [
 export default function Landing() {
   const { t } = useTranslation();
   const stats = t('landing.stats', { returnObjects: true }) as LandingStat[];
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -93,7 +92,6 @@ export default function Landing() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 25);
-      setShowBackToTop(scrollY > 400);
 
       // Section scrollspy tracking
       const sections = NAV_ITEMS.map((item) => document.getElementById(item.id));
@@ -483,29 +481,6 @@ export default function Landing() {
           </div>
         </motion.div>
       </footer>
-
-      {/* Modern Executive Floating Pill "Scroll to Top" Indicator */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.button
-            key="back-to-top"
-            initial={{ opacity: 0, y: 15, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 15, scale: 0.9 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            onClick={scrollToTop}
-            aria-label={t('landing.navLinks.backToTop')}
-            className="fixed bottom-6 right-6 z-40 group inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/90 px-3.5 py-2 text-xs font-semibold text-muted-foreground shadow-lg shadow-black/5 dark:shadow-black/20 backdrop-blur-xl transition-all hover:border-primary/60 hover:text-foreground hover:shadow-primary/10 cursor-pointer"
-          >
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-              <ArrowUp className="h-3 w-3" />
-            </div>
-            <span className="text-[11px] tracking-wide uppercase font-bold text-foreground">
-              {t('landing.navLinks.backToTop')}
-            </span>
-          </motion.button>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
