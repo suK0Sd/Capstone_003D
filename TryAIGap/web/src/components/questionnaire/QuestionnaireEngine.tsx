@@ -158,31 +158,16 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
   const isFreeMaturity = module === 'maturity' && plan === 'free';
   const limitReached = isFreeMaturity && freeMaturityLimitReached(plan, answered);
 
-  if (qQuery.isLoading || answersLoading) {
-    return (
-      <div className="space-y-6">
-        <Skeleton className="h-10 w-72 rounded-xl" />
-        <Skeleton className="h-64 w-full rounded-2xl" />
-        <Skeleton className="h-14 w-full rounded-xl" />
-      </div>
-    );
-  }
-
-  if (qQuery.error || blocks.length === 0) {
-    return (
-      <Alert variant="destructive" className="rounded-xl">
-        <AlertDescription>{t('common.errorGeneric')}</AlertDescription>
-      </Alert>
-    );
-  }
-
-  const block = blocks[Math.min(blockIdx, blocks.length - 1)];
-  const question = block.questions[Math.min(qIdx, block.questions.length - 1)];
+  const block = blocks.length > 0 ? blocks[Math.min(blockIdx, blocks.length - 1)] : undefined;
+  const question =
+    block && block.questions.length > 0
+      ? block.questions[Math.min(qIdx, block.questions.length - 1)]
+      : undefined;
   const stored = question ? answers[question.id] : undefined;
 
   function ordinal(): number {
     let ord = 0;
-    for (let i = 0; i < blockIdx; i++) ord += blocks[i].questions.length;
+    for (let i = 0; i < blockIdx; i++) ord += blocks[i]?.questions.length ?? 0;
     return ord + qIdx + 1;
   }
 
@@ -216,19 +201,19 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
     }
     if (view === 'module') {
       setBlockIdx(blocks.length - 1);
-      setQIdx(blocks[blocks.length - 1].questions.length - 1);
+      setQIdx((blocks[blocks.length - 1]?.questions.length ?? 1) - 1);
       setView('question');
       return;
     }
     if (qIdx > 0) setQIdx(qIdx - 1);
     else if (blockIdx > 0) {
       setBlockIdx(blockIdx - 1);
-      setQIdx(blocks[blockIdx - 1].questions.length - 1);
+      setQIdx((blocks[blockIdx - 1]?.questions.length ?? 1) - 1);
     }
   }
 
   function goNext() {
-    if (qIdx < block.questions.length - 1) {
+    if (block && qIdx < block.questions.length - 1) {
       setQIdx(qIdx + 1);
     } else {
       void saveNow();
@@ -280,6 +265,24 @@ export function QuestionnaireEngine({ module, areaKey, moduleLabel }: Questionna
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [view, delegateOpen, paywallOpen, blockIdx, qIdx, question]);
+
+  if (qQuery.isLoading || answersLoading) {
+    return (
+      <div className="space-y-6">
+        <Skeleton className="h-10 w-72 rounded-xl" />
+        <Skeleton className="h-64 w-full rounded-2xl" />
+        <Skeleton className="h-14 w-full rounded-xl" />
+      </div>
+    );
+  }
+
+  if (qQuery.error || blocks.length === 0 || !block || !question) {
+    return (
+      <Alert variant="destructive" className="rounded-xl">
+        <AlertDescription>{t('common.errorGeneric')}</AlertDescription>
+      </Alert>
+    );
+  }
 
   const levels = t('questionnaire.levels', { returnObjects: true }) as string[];
   const levelLabel = (score: number) =>

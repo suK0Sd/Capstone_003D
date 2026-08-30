@@ -4,10 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { 
   ArrowLeft, 
   ArrowRight, 
+  Briefcase,
   Building2, 
   Check, 
   Clock, 
+  Headphones,
   Layers, 
+  LineChart,
   Loader2, 
   Plus, 
   Scale, 
@@ -15,6 +18,8 @@ import {
   Trash2, 
   UserPlus, 
   Users,
+  Wallet,
+  Wrench,
   Sparkles,
   Zap
 } from 'lucide-react';
@@ -662,6 +667,27 @@ function StepFrameworks({
 // ----------------------------------------------------
 // Paso 3: Áreas Funcionales a Evaluar
 // ----------------------------------------------------
+function getAreaLucideIcon(areaKey: string) {
+  switch (areaKey) {
+    case 'ventas':
+      return Briefcase;
+    case 'marketing':
+      return LineChart;
+    case 'servicio':
+      return Headphones;
+    case 'finanzas':
+      return Wallet;
+    case 'rrhh':
+      return Users;
+    case 'operaciones':
+      return Wrench;
+    case 'legal':
+      return Scale;
+    default:
+      return Layers;
+  }
+}
+
 function StepAreas({
   draft,
   onChange,
@@ -716,6 +742,7 @@ function StepAreas({
       <ul className="grid gap-2.5 sm:grid-cols-2">
         {Object.entries(areaList).map(([key, area]) => {
           const active = draft.areas.includes(key);
+          const Icon = getAreaLucideIcon(key);
           return (
             <li key={key}>
               <button
@@ -729,8 +756,8 @@ function StepAreas({
                     : 'border-border/70 bg-card/60 hover:bg-muted/40 opacity-80',
                 )}
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-background/80 text-lg shadow-sm border border-border/40">
-                  {area.icon}
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-background/80 shadow-sm border border-border/40 text-primary">
+                  <Icon className="h-4 w-4" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="block text-xs font-bold text-foreground truncate">{area.name}</span>
