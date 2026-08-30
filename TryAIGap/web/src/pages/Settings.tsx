@@ -34,12 +34,14 @@ export default function Settings() {
 
       <div className="grid gap-6 sm:grid-cols-2">
         {/* Idioma */}
-        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center gap-2 border-b border-border/60 pb-3">
-            <Globe2 className="h-4 w-4 text-primary" />
-            <div>
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm flex flex-col justify-between space-y-6">
+          <div className="flex items-start gap-3.5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 mt-0.5">
+              <Globe2 className="h-5 w-5" />
+            </div>
+            <div className="space-y-1">
               <h2 className="text-base font-bold text-foreground">{t('settings.appLang')}</h2>
-              <p className="text-xs text-muted-foreground">{t('settings.appLangDesc')}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{t('settings.appLangDesc')}</p>
             </div>
           </div>
 
@@ -65,12 +67,14 @@ export default function Settings() {
         </SpotlightCard>
 
         {/* Tema */}
-        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm space-y-4">
-          <div className="flex items-center gap-2 border-b border-border/60 pb-3">
-            <Palette className="h-4 w-4 text-primary" />
-            <div>
+        <SpotlightCard className="rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm flex flex-col justify-between space-y-6">
+          <div className="flex items-start gap-3.5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary shrink-0 mt-0.5">
+              <Palette className="h-5 w-5" />
+            </div>
+            <div className="space-y-1">
               <h2 className="text-base font-bold text-foreground">{t('settings.theme')}</h2>
-              <p className="text-xs text-muted-foreground">Alterna entre modo oscuro deep-tech y claro.</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">Alterna entre modo oscuro deep-tech y claro.</p>
             </div>
           </div>
 

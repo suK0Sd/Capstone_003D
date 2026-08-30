@@ -489,7 +489,7 @@ export default function Estimator() {
                 </div>
 
                 {/* Código de Descuento / Partner */}
-                <div className="space-y-2 rounded-xl border border-border/70 bg-muted/20 p-3 mt-2">
+                <div className="space-y-2 rounded-xl border border-dashed border-border/80 bg-muted/20 p-3 mt-2">
                   <p className="flex items-center gap-1.5 text-xs font-bold text-foreground">
                     <BadgePercent className="h-4 w-4 text-primary" />
                     {t('estimator2.distLabel')}
