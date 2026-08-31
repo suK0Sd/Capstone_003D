@@ -6,6 +6,8 @@ import { RequireRole } from '@/components/RequireRole';
 import { RouteError } from '@/components/RouteError';
 import { AppShell } from '@/layouts/AppShell';
 
+import { ScrollToTop } from '@/components/ScrollToTop';
+
 // Route-level code splitting for internal/secondary pages
 const LeadGate = lazy(() => import('@/pages/LeadGate'));
 const Terms = lazy(() => import('@/pages/Terms'));
@@ -41,8 +43,10 @@ function PageLoader() {
 
 export default function App() {
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
+    <>
+      <ScrollToTop />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
         {/* Public */}
         <Route path="/" element={<Landing />} errorElement={<RouteError />} />
         <Route path="/start" element={<LeadGate />} />
@@ -102,5 +106,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    </>
   );
 }
