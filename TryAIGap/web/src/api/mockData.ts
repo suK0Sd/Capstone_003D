@@ -1,4 +1,4 @@
-﻿import type {
+import type {
   AnswerListResponse,
   AreaListResponse,
   AssessmentSummary,
@@ -41,9 +41,9 @@ export const mockUser: MeResponse = {
 export const mockOrg: Organization = {
   id: 'org_demo_01',
   name: 'Empresa Demo S.A. (Fase Inicial)',
-  sector: 'tecnologia',
-  size: '50-249',
-  country: 'CL',
+  sector: 'Tecnología',
+  size: '51-200',
+  country: 'España',
   currency: 'USD',
   plan: getDemoPlan(),
   settings: {
@@ -54,20 +54,33 @@ export const mockOrg: Organization = {
 };
 
 export const mockMetadata: MetadataResponse = {
-  sizes: ['1-9', '10-49', '50-249', '250-999', '1000+'],
+  sizes: ['1-10', '11-50', '51-200', '201-500', '501-1000', '1000+'],
   industries: [
-    'tecnologia',
-    'servicios_financieros',
-    'salud',
-    'retail',
-    'manufactura',
-    'educacion',
-    'logistica',
-    'otro',
+    'Tecnología',
+    'Servicios financieros',
+    'Salud',
+    'Manufactura',
+    'Comercio minorista',
+    'Educación',
+    'Sector público',
+    'Energía',
+    'Transporte y logística',
+    'Otro',
   ],
-  countries: ['CL', 'MX', 'CO', 'PE', 'AR', 'ES', 'US'],
-  currencies: ['USD', 'CLP', 'EUR', 'MXN'],
-  frameworks: ['EU AI Act', 'NIST AI RMF', 'ISO/IEC 42001', 'Ley IA Chile'],
+  countries: [
+    'España',
+    'Reino Unido',
+    'Alemania',
+    'Portugal',
+    'Francia',
+    'Estados Unidos',
+    'México',
+    'Brasil',
+    'Argentina',
+    'Colombia',
+  ],
+  currencies: ['GBP', 'EUR', 'USD'],
+  frameworks: ['UK GDPR', 'EU AI Act', 'ISO 42001', 'NIST AI RMF'],
 };
 
 export const mockAssessment: AssessmentSummary = {
