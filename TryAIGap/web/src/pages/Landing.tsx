@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, ArrowUpRight, Award, ChevronRight, Cpu, Globe, Lock, Menu, Scale, ShieldCheck, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Award, ChevronRight, Lock, Menu, Scale, ShieldCheck, X } from 'lucide-react';
 import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
@@ -322,14 +322,12 @@ export default function Landing() {
                 {t('landing.trustLabel')}
               </p>
               <div className="relative flex w-full max-w-4xl mx-auto flex-col items-center justify-center overflow-hidden py-1">
-                <Marquee pauseOnHover className="[--duration:28s] py-1">
+                <Marquee pauseOnHover className="[--duration:24s] py-1">
                   {[
                     { name: 'EU AI Act', label: 'Regulation-Ready', icon: Scale },
                     { name: 'ISO/IEC 42001', label: 'AI Management', icon: Award },
                     { name: 'NIST AI RMF', label: 'Risk Framework', icon: ShieldCheck },
                     { name: 'UK GDPR', label: 'Data Privacy', icon: Lock },
-                    { name: 'OECD AI', label: 'Ethics Principles', icon: Globe },
-                    { name: 'IEEE 7000', label: 'Ethical Design', icon: Cpu },
                   ].map((fw) => {
                     const Icon = fw.icon;
                     return (
