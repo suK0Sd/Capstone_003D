@@ -18,6 +18,7 @@ import {
 import { BrandLogo } from '@/components/BrandLogo';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { PlanDemoToggle } from '@/components/PlanDemoToggle';
 import { UserMenu } from '@/components/UserMenu';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -180,7 +181,8 @@ export function AppShell() {
           <div className="lg:hidden">
             <BrandLogo compact />
           </div>
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ml-auto flex items-center gap-1.5">
+            <PlanDemoToggle />
             <LanguageSwitcher />
             <ThemeToggle />
             <UserMenu />
