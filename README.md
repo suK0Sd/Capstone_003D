@@ -1,4 +1,4 @@
-﻿# 🎓 Portafolio de Título (APT122 / Capstone) — Sección 003D
+# 🎓 Portafolio de Título (APT122 / Capstone) — Sección 003D
 
 **Carrera:** Ingeniería en Informática  
 **Institución:** Duoc UC — Escuela de Informática y Telecomunicaciones  
@@ -10,7 +10,8 @@
 
 * **Proyecto Asignado:** **TryAIGap** (*"Bridge the AI Gap"*) — Plataforma SaaS B2B para evaluación de madurez en Inteligencia Artificial y consultoría estratégica.
 * **Empresa Colaboradora:** **Losentlic** & **Lux&Trick**
-* **Coordinación Docente:** Gerardo Galán (Duoc UC)
+* **Docente Guía:** Luis Bravo (Duoc UC)
+* **Coordinación Institucional:** Gerardo Galán (Duoc UC)
 * **Coordinación Operativa / Técnica:** Karina Álvarez / Max (Losentlic)
 
 ---
